@@ -8,11 +8,16 @@ const router = new express.Router();
 //  @desc   Dashboard
 //  @route  GET /dashboard
 router.post("/addCategory",  adminController.addCategory);
+router.put("/editCategory",  adminController.editCategory);
+router.get("/getCategorys",  adminController.getCategory);
+router.delete("/deleteCategory",  adminController.deleteCategory);
 
 
 //! @Producte
 router.post("/addProduct",  adminController.addProducts);
 router.put("/editProduct",  adminController.editProducts);
+router.delete("/deleteProduct",  adminController.deleteProducts);
+router.get("/getProducts",  adminController.getProducts);
 
 
 

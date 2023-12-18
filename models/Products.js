@@ -30,11 +30,14 @@ const Products = new mongoose.Schema({
       required: [true,'قیمت محصول الزامی میباشد'],
       trim: true,
     },
-    sell:{
+    sale:{
       type: Number,
       trim: true,
       default:0
-
+    },
+    new:{
+       type:Boolean,
+       default:false,
     },
     number:{
       type: Number,
