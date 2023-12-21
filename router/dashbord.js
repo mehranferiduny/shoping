@@ -5,6 +5,9 @@ const adminController = require("../controller/dashbord");
 
 const router = new express.Router();
 
+//!askli
+router.get("/",  adminController.getDashbord);
+
 //  @desc   Dashboard
 //  @route  GET /dashboard
 router.post("/addCategory",  adminController.addCategory);

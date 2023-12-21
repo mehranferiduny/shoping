@@ -5,6 +5,24 @@ const fs=require("fs");
 
 const Category=require('../models/Category')
 const Products=require('../models/Products');
+const {separate}=require('../utils/separate')
+
+//!dashbord
+exports.getDashbord=async(req,res)=>{
+  try {
+      const products=await Products.find({}).sort({ title: -1 })
+      if(!products) res.status(401).send('not Products in db');
+      res.render('admin/index',{
+        pageTitle:"dashbord",
+        layout:'./layouts/dashLayot',
+        path:'/dashbord'
+      })
+      
+  } catch (err) {
+      console.log(err);
+      
+  }
+}
 
 
 //!category
@@ -210,8 +228,27 @@ exports.editProducts = async (req, res) => {
 exports.getProducts=async(req,res)=>{
     try {
         const products=await Products.find({}).sort({ title: -1 })
+        const category=await Category.find({}).sort({ name: -1 })
+        let sales=0;
+        for(let pro of products){
+              if(pro.sale>0){
+                sales++;
+              }
+        }
+      
+        
+       
+      
         if(!products) res.status(401).send('not Products in db');
-        res.status(201).send(products)
+        res.render('admin/product',{
+          pageTitle:"dashbord",
+          layout:'./layouts/dashLayot',
+          path:'/getProducts',
+          products,
+          sales,
+          category,
+          separate
+        })
         
     } catch (err) {
         console.log(err);

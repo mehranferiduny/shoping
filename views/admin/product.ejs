@@ -1,0 +1,161 @@
+<div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+  <div class="row mt-4 nametab text-center mx-auto justify-content-center">
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="card">
+        <div class="card-body p-3">
+          <a href="http://google.com">
+          <div class="row">
+            <div class="col-8">
+              <div class="numbers">
+                <h5 class="font-weight-bolder mb-0 text-capitalize">
+                  اضافه کردن محصول
+                 </h5>
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">  تعداد محصولات: <%= products.length  %></p>
+               
+              </div>
+            </div>
+            <div class="col-3 text-end">
+              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                <i class="ni ni-money-coins text-lg opacity-10 fa fa-plus" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="card">
+        <div class="card-body p-3">
+          <a href="http://">
+          <div class="row">
+            <div class="col-8">
+              <div class="numbers">
+                <h5 class="font-weight-bolder mb-0">
+                  اضافه کردن دسته بندی
+                  <!-- <span class="text-success text-sm font-weight-bolder">+3%</span> -->
+                </h5>
+                <p class="text-sm mb-0 text-capitalize font-weight-bold"> تعداد دسته بندی:<%= category.length  %></p>
+               
+              </div>
+            </div>
+            <div class="col-4 text-end">
+              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                <i class="ni ni-world text-lg opacity-10 fa fa-tag" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+      <div class="card">
+        <div class="card-body p-3">
+          <a href="http://">
+          <div class="row">
+            <div class="col-8">
+              <div class="numbers">
+                <h5 class="font-weight-bolder mb-0">
+                  اعمال تخفیف
+                  <!-- <span class="text-danger text-sm font-weight-bolder">-2%</span> -->
+                </h5>
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">تعداد محصولات تخفیف دار: <%=sales   %></p>
+               
+              </div>
+            </div>
+            <div class="col-4 text-end">
+              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                <i class="ni ni-paper-diploma text-lg opacity-10 fa fa-calculator " aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+<div class="row my-4">
+  <div class="col-lg-8 col-md-6 mb-md-0 mb-4 w-100 m-2 nametab">
+    <div class="card">
+      <div class="card-header pb-0">
+        <div class="row">
+          <div class="col-lg-6 col-7">
+            <h6>محصولات</h6>
+           
+          </div>
+    
+        </div>
+      </div>
+      <div class="card-body px-0 pb-2">
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">نام محصول</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">برند</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">تعداد</th>
+                <th class="text-lowercase text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">قیمت</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let product of products){ %>
+              <tr>
+               
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div>
+                      <img src="../assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm"><%= product.titlefa   %></h6>
+                    </div>
+                  </div>
+                </td>
+           
+                <td>
+                  <div class="avatar-group mt-2">
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm"><%= product.berand   %></h6>
+                    </div>
+                  </div>
+                </td>
+                <td class="align-middle text-center text-sm">
+                  <span class="text-xs font-weight-bold"> <%= product.number  %> </span>
+                </td>
+                <td class="align-middle">
+                  <div class="progress-wrapper w-75 mx-auto">
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm"><%= separate(product.price)   %> تومان</h6>
+                    </div>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <div class="progress-wrapper w-75 mx-auto">
+                    <div class="d-flex flex-column justify-content-center">
+                      <a href="http://" class="btn btn-outline-primary btn-sm">ویرایش</a>
+                    </div>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <div class="progress-wrapper w-75 mx-auto">
+                    <div class="d-flex flex-column justify-content-center">
+                     <a href="" class="btn btn-outline-danger btn-sm">حذف</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% } %>
+      
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</div>
