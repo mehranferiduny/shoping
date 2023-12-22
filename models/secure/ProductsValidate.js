@@ -20,7 +20,7 @@ exports.schema = Yup.object().shape({
    description: Yup.string().required("محصول جدید باید دارای محتوا باشد"),
 
     image: Yup.object().shape({
-        name: Yup.string().required("عکس بند انگشتی الزامی می باشد"),
+        name: Yup.string().required("عکس محصول الزامی می باشد"),
         size: Yup.number().max(5000000, "عکس نباید بیشتر از 5 مگابایت باشد"),
         mimetype: Yup.mixed().oneOf(
             ["image/jpeg", "image/png","image/HEIC"],

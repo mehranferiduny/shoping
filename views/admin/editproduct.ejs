@@ -1,0 +1,79 @@
+
+
+
+
+
+<div class="container mt-5 text-end">
+  <h4>فرم ویرایش محصول</h4>
+
+  <%- include('./dashbord/validmessage.ejs')  %>
+  <form action="/dashbord/editProduct/<%= product._id  %>" method="POST" enctype="multipart/form-data">
+
+       <!-- فیلد تصویر -->
+       <div class="mb-3">
+        <label for="image" class="form-label">تصویر</label>
+        <input type="file" class="form-control" value="<%= product.image  %>" id="image" name="image" accept="image/*" >
+      </div>
+
+    <!-- فیلدهای متنی -->
+    <div class="row">
+    <div class="mb-3 col">
+      <label for="text2" class="form-label">نام محصول (فارسی) </label>
+      <input type="text" class="form-control nametab" value="<%= product.titlefa  %>"  id="text2" name="titlefa" required>
+    </div>
+
+    <div class="mb-3 col">
+      <label for="text1" class="form-label">نام محصول</label>
+      <input type="text" class="form-control" value="<%= product.title  %>" id="text1" name="title" required>
+    </div>
+  </div>
+    
+  <div class="row">
+    <div class="mb-3 col">
+      <label for="text5" class="form-label">برند</label>
+      <input type="text" class="form-control" value="<%= product.berand  %>" id="text5" name="berand" required>
+    </div>
+
+    <div class="mb-3 col">
+      <label for="text5" class="form-label">دسته بندی</label>
+
+      <select class="form-select text-center " id="selectOption" name="category" required>
+        <% for(let cat1 of category) {
+          if(cat1._id==product.category){
+          %>
+        <option class="nametab" value="" disabled selected>value="<%= cat1.name %>"</option>
+        <%} } %>
+        <% for(let cat of category) {%>
+        <option class="text-right nametab justify-content-center" value="<%= cat._id  %>"><%= cat.name  %></option>
+        <% } %>
+    
+      </select>
+    </div>
+  </div>
+    <div class="mb-3">
+      <label for="text6" class="form-label">توضیحات</label>
+      <textarea rows="5" type="text" class="form-control nametab"  id="text6" name="description" required><%= product.description  %></textarea>
+    </div>
+    <div class="row">
+      <div class="mb-3 col">
+        <label for="text4" class="form-label">تعداد</label>
+        <input type="number" class="form-control " value="<%= product.number  %>" id="text4" name="number" required>
+      </div>
+
+    <div class="mb-3 col">
+      <label for="text3" class="form-label">قیمت (تومان)</label>
+      <input type="tel" class="form-control" value="<%= product.price  %>" id="text3" name="price" required>
+    </div>
+
+
+  </div>
+
+
+
+  
+
+ 
+
+    <button type="submit" class="btn btn-primary">ویرایش</button>
+  </form>
+</div>

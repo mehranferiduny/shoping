@@ -18,9 +18,13 @@ router.delete("/deleteCategory",  adminController.deleteCategory);
 
 //! @Producte
 router.post("/addProduct",  adminController.addProducts);
-router.put("/editProduct",  adminController.editProducts);
+router.post("/editProduct/:id",  adminController.editProducts);
 router.delete("/deleteProduct",  adminController.deleteProducts);
 router.get("/getProducts",  adminController.getProducts);
+
+//! getindex
+router.get("/getProductindex",  adminController.getProductindex);
+router.get("/editProductindex/:_id",  adminController.editProductindex);
 
 
 

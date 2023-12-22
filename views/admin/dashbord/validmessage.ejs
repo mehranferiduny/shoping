@@ -1,0 +1,10 @@
+<% if(typeof errors != 'undefined') {%> <% errors.forEach(function(error) { %>
+
+  <div class="alert alert-warning alert-dismissible fade show text-white" role="alert">
+      <%= error.message %>
+      <button type="button" class="close border-0 text-white closebtn" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <% }) %> <% } %>
+  
