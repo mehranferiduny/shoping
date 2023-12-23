@@ -93,63 +93,7 @@
 		</div>
 	</div>
 
-	<div class="untree_co-section">
-		<div class="container">
-
-			<div class="row">
-				<% for(let product of products){ %>
-				<div class="col-6 col-sm-6 col-md-6 mb-4 col-lg-4">
-					<a href="">
-					<div class="product-item">
-						<a href="shop-single.html" class="product-img">
-
-
-							<% if(product.new == true){ %>
-							<div class="label new top-right">
-								<div class='content'>New</div>
-							</div>
-							<% } %>
-               <% if(product.sale > 0){ %>
-							<div class="label sale top-right second">
-								<div class='content'>Sale</div>
-							</div>
-							<% } %>
-							<img src="uploads/products/<%= product.image %>" alt="Image" class="img-fluid">
-						</a>
-						<h3 class="title p-2"><a href="#"><%= product.titlefa  %></a></h3>
-						<h3 class="title p-2"><a href="#"><%= product.berand  %></a></h3>
-						<div class="price">
-							<% if(product.sale > 0) {%>
-							<del><img src="/images/toman.png" alt="" srcset="">
-								<%= separate(product.price) %></del> &mdash;
-								<span class="p-2 m-2">
-									<img src="/images/toman.png" alt="" srcset="">
-								
-									<%= separate(product.price - product.sale ) %>
-								
-								</span> 
-							<% }else{ %>
-							<span class="p-2 m-2">
-								<img src="/images/toman.png" alt="" srcset="">
-							
-								<%= separate(product.price) %>
-							
-							</span>
-							<% } %>
-						</div>
-						<div class="w-100 btn btn-danger text-white"> افزودن به سبد خرید</div>
-					</div>
-				</a>
-				</div>
-				<% } %>
-			
-
-				
-		
-			</div>
-		</div>
-	</div> <!-- /.untree_co-section -->
-
+<%- include('./index/products.ejs')  %>
 
 	<div class="container">
 

@@ -21,9 +21,11 @@ router.post("/addProduct",  adminController.addProducts);
 router.post("/editProduct/:id",  adminController.editProducts);
 router.delete("/deleteProduct",  adminController.deleteProducts);
 router.get("/getProducts",  adminController.getProducts);
+router.post("/saleProduct",  adminController.editProductsale);
 
 //! getindex
 router.get("/getProductindex",  adminController.getProductindex);
+router.get("/getsales",  adminController.getProductsale);
 router.get("/editProductindex/:_id",  adminController.editProductindex);
 
 

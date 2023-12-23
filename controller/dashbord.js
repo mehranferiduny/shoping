@@ -69,7 +69,7 @@ exports.editCategory =async(req,res)=>{
                 message: e.message,
             });
         });
-       res.send(errorArr)
+      //  res.send(errorArr)
     }
 
 }
@@ -134,7 +134,7 @@ exports.addProducts = async (req, res) => {
     req.body={... req.body,image};
           if(!req.body) res.send("body requrd")
           await Products.ProductsValidation(req.body);
-        console.log(req.body);
+     
 
           await sharp(image.data)
               .jpeg({ quality: 70 })
@@ -326,6 +326,28 @@ exports.deleteProducts = async (req, res) => {
     }
 
   }
+  exports.getProductsale=async(req,res)=>{
+    try {
+
+    
+      const products=await Products.find({}).sort({ title: -1 })
+
+
+    
+      if(!products) res.status(401).send('not Products in db');
+      res.render('admin/saleproduct',{
+        pageTitle:'اعمال تخفیف محصول',
+        layout:'./layouts/dashLayot',
+        path:'/getProducts',
+        products,
+        separate,
+      
+      })
+    } catch (err) {
+      
+    }
+
+  }
   exports.editProductindex=async(req,res)=>{
     const productID = req.params._id;
     try {
@@ -345,4 +367,28 @@ exports.deleteProducts = async (req, res) => {
       
     }
 
+  }
+  exports.editProductsale =async(req,res)=>{
+    const errorArr = [];
+    const productID = req.headers.authorization;
+    if(!productID) res.status(404).send('productID requrd');
+    const {sale}=req.body;
+
+    try {
+        const product = await Products.findOne({ _id: productID });
+        if(!product) res.status(401).send("not id product in db")
+        // await Category.categoryValidation({name:name});
+        product.sale=sale;
+        product.save();
+        res.status(200).send('ok');
+    } catch (err) {
+        console.log(err);
+        err.inner.forEach((e) => {
+            errorArr.push({
+                name: e.path,
+                message: e.message,
+            });
+        });
+      //  res.send(errorArr)
+    }
   }
