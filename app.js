@@ -32,6 +32,7 @@ app.use(fileUpload());
 //!router
 app.use(require('./router/index'))
 app.use('/dashbord',require('./router/dashbord'))
+app.use('/user',require('./router/users'))
 
 
 

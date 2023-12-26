@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 4,
+    minlength: 8,
     maxlength: 255,
   },
   createdAt: {
@@ -42,8 +42,8 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
     unique: true,
-    minlength: 11,
-    maxlength: 11,
+    // minlength: [11,'sss'],
+    // maxlength: [11,"aaa"],
     required: true,
   },
 });
