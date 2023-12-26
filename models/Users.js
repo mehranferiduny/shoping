@@ -12,6 +12,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  phone: {
+    type: String,
+    trim: true,
+    unique: [true,"شما قبلا ثبت نام کرده اید "],
+    minlength: 11,
+    maxlength: 11,
+    required: true,
+  },
   email: {
     type: String,
     unique: true,
@@ -38,14 +46,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  phone: {
-    type: String,
-    trim: true,
-    unique: true,
-    // minlength: [11,'sss'],
-    // maxlength: [11,"aaa"],
-    required: true,
-  },
+
 });
 
 UserSchema.statics.userValidationsabt = function (body) {
