@@ -13,4 +13,10 @@ router.post("/loginUser",  userController.loginUser,userController.rememberMe);
 
 
 
+
+//!page
+router.get("/LoginPage",  userController.loginPage);
+
+
+
 module.exports = router;

@@ -36,8 +36,7 @@ exports.addUsers = async (req, res) => {
 
 exports.loginUser= (req,res,next)=>{
   passport.authenticate("local", {
-            failureRedirect: res.status(400),
-            successRedirect:res.status(200),
+            failureRedirect: res.redirect('/user/LoginPage'),
             failureFlash: true,
         })(req, res,next);
     
@@ -53,3 +52,20 @@ exports.rememberMe = (req, res) => {
 
    
 };
+
+
+
+exports.loginPage=async(req,res)=>{
+    try {
+    
+        res.render("index/loginPage",{
+          pageTitle:' ورود کاربر ',
+          path: "/",
+    
+        })
+        
+    } catch (err) {
+        console.log(err);
+        
+    }
+  }
