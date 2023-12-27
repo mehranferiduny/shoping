@@ -9,6 +9,7 @@ const router = new express.Router();
 //! @Users
 
 router.post("/addUser",  userController.addUsers);
+router.post("/loginUser",  userController.loginUser,userController.rememberMe);
 
 
 

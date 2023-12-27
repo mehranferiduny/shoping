@@ -1,4 +1,4 @@
-
+const passport = require("passport");
 const Users=require('../models/Users');
 
 //!Users
@@ -32,4 +32,24 @@ exports.addUsers = async (req, res) => {
 
       
   }
+};
+
+exports.loginUser= (req,res,next)=>{
+  passport.authenticate("local", {
+            failureRedirect: res.status(400),
+            successRedirect:res.status(200),
+            failureFlash: true,
+        })(req, res,next);
+    
+}
+exports.rememberMe = (req, res) => {
+    // if (req.body.remember) {
+    //     req.session.cookie.originalMaxAge = 24 * 60 * 60 * 1000; // 1 day 24
+    // } else {
+    //     req.session.cookie.expire = null;
+    // }
+
+    res.send("ok")
+
+   
 };
