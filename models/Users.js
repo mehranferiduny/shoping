@@ -20,15 +20,19 @@ const UserSchema = new mongoose.Schema({
     maxlength: 11,
     required: true,
   },
-  email: {
-    type: String,
-    unique: true,
-  },
+  // email: {
+  //   type: String,
+  //   unique: true,
+  // },
   password: {
     type: String,
     required: true,
     minlength: 8,
     maxlength: 255,
+  },
+  email:{
+    type:String,
+    default:"shoping.caro@gmail.com"
   },
   createdAt: {
     type: Date,

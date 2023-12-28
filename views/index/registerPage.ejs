@@ -12,29 +12,30 @@
                   <p class="mb-0">جهت خرید و تعامل وارد اکانت خود شوید</p>
                 </div>
                 <div class="card-body">
-                  <%- include('../includes/messageLogin.ejs')  %>
-                  <form role="form" action="/userloginUser" method="post">
+                  <%- include('../admin/dashbord/validmessage.ejs')  %>
+                  <form role="form" action="/user/addUser" method="post">
                     <label>شماره تماس</label>
                     <div class="mb-3">
                       <input type="tel" name="phone" class="form-control rtl text-end" placeholder=" شماره تماس" aria-label="Email" aria-describedby="email-addon">
                     </div>
                     <label>کلمه عبور</label>
                     <div class="mb-3">
-                      <input type="password" name="password" class="form-control rtl text-end" placeholder="کلمه عبور" aria-label="Password" aria-describedby="password-addon">
+                      <input type="password" name="password"  class="form-control rtl text-end" placeholder="کلمه عبور" aria-label="Password" aria-describedby="password-addon">
                     </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" name="rememberMe" type="checkbox" id="rememberMe" checked="">
-                      <label class="form-check-label"  for="rememberMe"> من را به خاطر بسپارید</label>
+                    <label>تکرار کلمه عبور</label>
+                    <div class="mb-3">
+                      <input type="password" name="confirmPassword" class="form-control rtl text-end" placeholder="تکرار عبور" aria-label="Password" aria-describedby="password-addon">
                     </div>
+                 
                     <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">ورود</button>
+                      <button type="submit"  class="btn bg-gradient-info w-100 mt-4 mb-0">ثبت نام</button>
                     </div>
                   </form>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-sm mx-auto">
-                   حساب کاربری ندارم
-                    <a href="/user/registerPage" class="text-info text-gradient font-weight-bold">ثبت نام</a>
+                   حساب کاربری دارم
+                    <a href="/user/LoginPage"  class="text-info text-gradient font-weight-bold"> ورود</a>
                   </p>
                 </div>
               </div>
@@ -49,4 +50,3 @@
       </div>
     </section>
   </main>
-  <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
