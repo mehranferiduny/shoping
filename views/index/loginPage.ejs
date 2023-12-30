@@ -12,8 +12,8 @@
                   <p class="mb-0">جهت خرید و تعامل وارد اکانت خود شوید</p>
                 </div>
                 <div class="card-body">
-                  <%- include('../includes/messageLogin.ejs')  %>
-                  <form role="form" action="/userloginUser" method="post">
+                  <%- include('../includes/messageLogin')  %>
+                  <form role="form" action="/user/loginUser" method="POST">
                     <label>شماره تماس</label>
                     <div class="mb-3">
                       <input type="tel" name="phone" class="form-control rtl text-end" placeholder=" شماره تماس" aria-label="Email" aria-describedby="email-addon">

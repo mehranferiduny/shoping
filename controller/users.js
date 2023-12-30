@@ -20,7 +20,7 @@ exports.addUsers = async (req, res) => {
             error: req.flash("error"),
           })}
           if(!req.body) res.send("body requrd")
-          
+            console.log(req.body);
           await Users.userValidationsabt(req.body);
 
           await Users.create(
@@ -37,7 +37,7 @@ exports.addUsers = async (req, res) => {
           });
       });
      
-      res.render("index/loginPage",{
+      res.render("index/registerPage",{
         pageTitle:' ثبت نام کاربر ',
         path: "/",
         layout:'./layouts/loginLayout',
@@ -51,8 +51,10 @@ exports.addUsers = async (req, res) => {
 };
 
 exports.loginUser= (req,res,next)=>{
+
+  
   passport.authenticate("local", {
-            failureRedirect: res.redirect('/user/LoginPage'),
+            failureRedirect: '/user/LoginPage',
             failureFlash: true,
         })(req, res,next);
     
@@ -63,6 +65,7 @@ exports.rememberMe = (req, res) => {
     } else {
         req.session.cookie.expire = null;
     }
+  
 
     res.redirect('/')
 

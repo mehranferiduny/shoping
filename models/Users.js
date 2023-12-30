@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-const { schemaEdit,schemaSabte } = require("./secure/UsersValidete");
+const { schemaSabte } = require("./secure/UsersValidete");
+const { schemaEdit } = require("./secure/Uservall");
 
 const UserSchema = new mongoose.Schema({
   name: {
