@@ -16,16 +16,17 @@
                   <form role="form" action="/user/loginUser" method="POST">
                     <label>شماره تماس</label>
                     <div class="mb-3">
-                      <input type="tel" name="phone" class="form-control rtl text-end" placeholder=" شماره تماس" aria-label="Email" aria-describedby="email-addon">
+                      <input type="tel" name="phone" required class="form-control rtl text-end" placeholder=" شماره تماس" aria-label="Email" aria-describedby="email-addon">
                     </div>
                     <label>کلمه عبور</label>
                     <div class="mb-3">
-                      <input type="password" name="password" class="form-control rtl text-end" placeholder="کلمه عبور" aria-label="Password" aria-describedby="password-addon">
+                      <input type="password" name="password" required class="form-control rtl text-end" placeholder="کلمه عبور" aria-label="Password" aria-describedby="password-addon">
                     </div>
                     <div class="form-check form-switch">
                       <input class="form-check-input" name="rememberMe" type="checkbox" id="rememberMe" checked="">
                       <label class="form-check-label"  for="rememberMe"> من را به خاطر بسپارید</label>
                     </div>
+                    <div class="g-recaptcha  capcha" data-sitekey="6Ldo-kApAAAAADQbC2hPz6T38ZR1FpgJ8beWG0nP"></div>
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">ورود</button>
                     </div>
