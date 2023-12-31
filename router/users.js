@@ -17,6 +17,7 @@ router.post("/loginUser",  userController.loginUser,userController.rememberMe);
 //!page
 router.get("/LoginPage",  userController.loginPage);
 router.get("/registerPage",  userController.registerPage);
+router.get("/editPage",  userController.editPage);
 
 
 

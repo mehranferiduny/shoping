@@ -3,9 +3,14 @@
 
     <h3 class="text-start mb-2 float-right d-block w-100 text-right">محصولات</h3>
 
-    <div class="row" style="background-color: #f6f6f6;">
+    <div class="row " >
       <% for(let product of products){ %>
-      <div class="col-3 ">
+      <div class="col-3  productt ">
+        <% if(product.sale > 0){ %>
+          <div class="label sale top-right second">
+            <div class='content labseal'>تخفیف</div>
+          </div>
+          <% } %>
         <a href="">
         <div class="product-item">
           <a href="shop-single.html" class="product-img">
@@ -16,42 +21,56 @@
               <div class='content'><%= product.berand  %></div>
             </div>
           
-             <% if(product.sale > 0){ %>
-            <div class="label sale top-right second">
-              <div class='content labseal'>تخفیف</div>
-            </div>
-            <% } %>
+         
             <img src="uploads/products/<%= product.image %>" alt="Image" class="img-fluid">
           </a>
           <h3 class="title p-2"><a href="#"><%= product.berand  %></a></h3>
           <h3 class="title p-2 small"><a href="#"><%= product.titlefa  %></a></h3>
           
-          <div class="price row text-right">
+          <div class="price d-block  text-right ">
           
             <% if(product.sale > 0) {%>
-             
-            <del class="col rtl text-warning">
-              <%= separate(product.price) %>
-              تومان
-            </del>
--
-            <span class="col rtl">
+             <div class="row rtl ">
+              <span class=" col col-lg-2 ml-0 pl-0 mr-3 p-0" style="color: #787878; width: 13.667% !important;">قیمت:</span>
+           
+            <span class=" col-auto p-0 rtl">
               
                  <%= separate(product.price - product.sale ) %>
                  تومان 
             </span>
-           
+            &nbsp;
+              -
+              &nbsp;
+            <del class=" rtl col-auto p-0 text-warning">
+              <%= separate(product.price) %>
+              تومان
+            </del>
+
+          </div>
             <% }else{ %>
-            <span class="col rtl  float-right">
-          
+
+            <span class=" w-100 rtl  float-right">
+           <span class="col mr-1 p-0" style="color: #787878;">قیمت:</span>
               <%= separate(product.price) %>
               تومان
             </span>
             <% } %>
-            <span class="btn-shop"><i class="fa fa-shopping-bag"></i></span>
+         
           </div>
+          
           <!-- <div class="w-100 btn btn-outline-danger text-white"> افزودن به سبد خرید</div> -->
         </div>
+        <div class="d-block w-100 ">
+        
+            <div class="btn-shop hover-text" >
+              <span class="tooltip-text" id="top">افزودن به سبد خرید</span>
+              <i class="fa fa-shopping-bag" > </i>
+           
+        
+       
+        
+        </div>
+      </div>
       </a>
       </div>
       <% } %>
@@ -62,3 +81,11 @@
     </div>
   </div>
 </div> <!-- /.untree_co-section -->
+
+<script>
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
+</script>

@@ -8,7 +8,11 @@ const {separate}=require('../utils/separate')
 
 //! Products
 exports.getProducts=async(req,res)=>{
-  
+  let user='';
+  if(req.user){
+  user=req.user
+  }
+
   try {
       const products=await Products.find({}).sort({ createdAt: -1 })
       const category=await Category.find({}).sort({ name: -1 })
@@ -20,7 +24,8 @@ exports.getProducts=async(req,res)=>{
         path: "/",
         products,
         category,
-        separate
+        separate,
+        user:req.user
       })
       
   } catch (err) {

@@ -83,12 +83,14 @@ exports.loginUser = async (req, res, next) => {
 
 }
 exports.rememberMe = (req, res) => {
-  if (req.body.rememberMe) {
+  
+  if (req.body.remember == 'on') {
+  
     req.session.cookie.originalMaxAge = 24 * 60 * 60 * 1000; // 1 day 24
   } else {
     req.session.cookie.expire = null;
   }
-
+  
 
   res.redirect('/')
 
@@ -119,6 +121,24 @@ exports.loginPage = async (req, res) => {
 
     res.render("index/loginPage", {
       pageTitle: ' ورود کاربر ',
+      path: "/",
+      layout: './layouts/loginLayout',
+      message: req.flash('message'),
+      error: req.flash("error"),
+
+    })
+
+  } catch (err) {
+    console.log(err);
+
+  }
+}
+exports.editPage = async (req, res) => {
+
+  try {
+
+    res.render("index/editPage", {
+      pageTitle: ' ویرایش کاربر ',
       path: "/",
       layout: './layouts/loginLayout',
       message: req.flash('message'),
