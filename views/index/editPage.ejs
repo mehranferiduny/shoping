@@ -1,1 +1,68 @@
-<h1>hiii</h1>
+
+
+<main class="main-content  mt-0 text-end">
+  <section>
+    <div class="page-header min-vh-75">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column w-100">
+            <div class="card card-plain mt-8 w-100">
+              <div class="card-header pb-0 text-left bg-transparent">
+                <h3 class="font-weight-bolder text-info text-gradient">تکمیل پروفایل </h3>
+                <p class="mb-0">جهت خرید و ادامه مراحل پروفایل خود را تکمیل کنید</p>
+              </div>
+            
+              
+                <%- include('../admin/dashbord/validmessage.ejs')  %>
+                <form class="row" role="form" action="/user/addUser" method="POST" >
+                  <div class=" col">
+                  <label>نام خانوادگی </label>
+                  <div class="mb-3">
+                    <input type="text" name="family" required class="form-control rtl text-end" placeholder="  نام خانوادگی " aria-label="Email" aria-describedby="email-addon">
+                  </div>
+                  <label>ایمیل(اختیاری) </label>
+                  <div class="mb-3">
+                    <input type="email" name="email"   class="form-control rtl text-end" placeholder=" <%= user.email %>" aria-label="Password" aria-describedby="password-addon">
+                  </div>
+                  <label> کد پستی </label>
+                  <div class="mb-3">
+                    <input type="text"  name="codeposti" required class="form-control rtl text-end" placeholder="کد پستی " aria-label="Password" aria-describedby="password-addon">
+                  </div>
+               
+                
+                </div>
+             <div class="col">
+                  <label>نام </label>
+                  <div class="mb-3">
+                    <input type="text" name="name" required class="form-control rtl text-end" placeholder=" نام " aria-label="Email" aria-describedby="email-addon">
+                  </div>
+                  <label>شماره تماس</label>
+                  <div class="mb-3">
+                    <input type="tel" name="phone" required  value="<%= user.phone %>"  class="form-control rtl text-end" placeholder="شماره تماس " aria-label="Password" aria-describedby="password-addon">
+                  </div>
+                  <label>کد ملی  </label>
+                  <div class="mb-3">
+                    <input type="text" name="codemeli" required class="form-control rtl text-end" placeholder="کد ملی " aria-label="Password" aria-describedby="password-addon">
+                  </div>
+               
+                  
+                </div>
+                <label>نشانی   </label>
+                  <div class="mb-3">
+                    <textarea required class="form-control rtl text-end w-100" name="address" id="" cols="100" rows="5"></textarea>
+                 
+                  </div>
+                <div class="text-center">
+                  <button type="submit"  class="btn bg-gradient-info w-100 mt-4 mb-0">ویرایش پروفایل </button>
+                </div>
+                </form>
+              
+          
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

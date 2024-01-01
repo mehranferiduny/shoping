@@ -17,23 +17,24 @@
             </ul>
           </li>
           <li class="has-children">
+            <a href="#">&nbsp;&nbsp; برند ها </a>
+            <ul class="dropdown">
+              <% for(let brand of products){ %>
+              <li><a href="#"><%= brand.berand %></a></li>
+            <% } %>
+
+            </ul>
+          </li>
+          <li class="has-children">
             <a href="#">سایت</a>
             <ul class="dropdown">
             
               <li><a href="about.html">درباره ما</a></li>
               <li><a href="contact.html">تماس با ما</a></li>
-              <li><a href="cart.html">سبد خرید</a></li>
+            
             
               
-              <li class="has-children">
-                <a href="#">&nbsp;&nbsp; برند ها </a>
-                <ul class="dropdown">
-                  <% for(let brand of products){ %>
-                  <li><a href="#"><%= brand.berand %></a></li>
-                <% } %>
-
-                </ul>
-              </li>
+              
             
             </ul>
           </li>
