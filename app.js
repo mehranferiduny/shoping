@@ -5,6 +5,9 @@ const expressLayout = require("express-ejs-layouts");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
+const mongoose = require("mongoose");
+const MongoStore = require('connect-mongo')(session);
+
 
 
 
@@ -26,6 +29,7 @@ app.use(
       resave: false,
       saveUninitialized: false,
       unset: "destroy",
+      store: new MongoStore({ mongooseConnection: mongoose.connection,collection: 'session' })
     
   })
 );

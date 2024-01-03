@@ -25,10 +25,17 @@ exports.addUsers = async (req, res) => {
     if (!req.body) res.send("body requrd")
     console.log(req.body);
     await Users.userValidationsabt(req.body);
-
-    await Users.create(
-      req.body
-    );
+       const {phone,password,email}=req.body;
+    await Users.create({
+      phone,
+      password,
+      email,
+      name:'',
+      family:"",
+      address:'',
+      codemeli:'',
+      codeposti:'',
+  });
     req.flash("message", "ثبت نام با موفقیت انجام شد.وارد شوید")
     res.status(200).redirect('/user/LoginPage')
   } catch (err) {
@@ -60,7 +67,17 @@ exports.editUser=async(req,res)=>{
   
   
 
-  if(!UserID) res.status(404).send('ProductsID requrd')
+  if(!UserID) {
+    errorArr.push({ message: " از پرفایل خود خارج شدید دوباره امتحان کنید" });
+    res.render("index/loginPage", {
+      pageTitle: ' ورورد کاربر ',
+      path: "/",
+      layout: './layouts/loginLayout',
+      errors: errorArr,
+      message: req.flash('message'),
+      error: req.flash("error"),
+    })
+  }
 
 
 
@@ -68,21 +85,29 @@ exports.editUser=async(req,res)=>{
   try {
      
     const user = await Users.findOne({ _id: UserID });
-    const category=await Category.find({}).sort({ name: -1 });
+
 
       if (!user) {
           return res.redirect("/404");
       }
 
-     await Users.userValidationedit(req.body);
+     
+       await Users.userValidationedit(req.body);
+     
       
-         
+         console.log(req.body);
 
-          const { title, titlefa, description,number,berand, price} = req.body;
+          const { name, family, codeposti,email, codemeli,phone,address} = req.body;
+          user.name=name;
+          user.family=family;
+          user.codemeli=codemeli;
+          user.codeposti=codeposti;
+          user.email=email;
+          user.address=address;
+
+          await user.save();
        
-
-        
-          return res.status(200).redirect('/dashbord/getProducts');
+          return res.status(200).redirect('/');
       
   } catch (err) {
       console.log(err);
@@ -92,12 +117,13 @@ exports.editUser=async(req,res)=>{
               message: e.message,
           });
       });
-      res.render('admin/editproduct',{
-        pageTitle:'ویرایش کردن محصول',
-        layout:'./layouts/dashLayot',
-        path:'/getProducts',
-        category,
-        product,
+      res.render("index/editPage", {
+        pageTitle: ' ویرایش کاربر ',
+        path: "/",
+        layout: './layouts/loginLayout',
+        message: req.flash('message'),
+        error: req.flash("error"),
+        user:req.user,
         errors:errorArr,
       })
   }
@@ -148,6 +174,13 @@ exports.rememberMe = (req, res) => {
 
 
 };
+exports.logout = (req, res,next) => {
+  req.session = null;
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+};
 
 
 //!page
@@ -190,7 +223,6 @@ exports.editPage = async (req, res) => {
   try {
     const category=await Category.find({}).sort({ name: -1 })
     const products=await Products.find({}).sort({ createdAt: -1 })
-    console.log(req.user);
     res.render("index/editPage", {
       pageTitle: ' ویرایش کاربر ',
       path: "/",

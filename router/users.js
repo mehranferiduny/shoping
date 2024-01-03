@@ -2,6 +2,7 @@ const  express  = require("express");
 // const { authenticated } = require("../middlewares/auth");
 
 const userController = require("../controller/users");
+const { authenticated } = require("../middlewares/auth");
 
 const router = new express.Router();
 
@@ -10,6 +11,8 @@ const router = new express.Router();
 
 router.post("/addUser",  userController.addUsers);
 router.post("/loginUser",  userController.loginUser,userController.rememberMe);
+router.post("/editUser/:id",  userController.editUser);
+router.get("/logout", authenticated, userController.logout);
 
 
 

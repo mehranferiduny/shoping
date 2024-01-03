@@ -1,6 +1,6 @@
 const Yup = require("yup");
 
-const schemaEdit = Yup.object().shape({
+exports.schemaEdit = Yup.object().shape({
   name: Yup.string()
         .required("نام شما الزامی می باشد"),
   family: Yup.string()
@@ -14,8 +14,8 @@ const schemaEdit = Yup.object().shape({
         email: Yup.string()
         .email("ایمیل معتبر نمی باشد")
         .required("ایمیل الزامی می باشد"),
+      
 
 });
 
 
-exports.module={schemaEdit }

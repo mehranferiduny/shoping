@@ -14,19 +14,19 @@
             
               
                 <%- include('../admin/dashbord/validmessage.ejs')  %>
-                <form class="row" role="form" action="/user/addUser" method="POST" >
+                <form class="row" role="form" action="/user/editUser/<%= user.id  %>" method="POST" >
                   <div class=" col">
                   <label>نام خانوادگی </label>
                   <div class="mb-3">
-                    <input type="text" name="family" required class="form-control rtl text-end" placeholder="  نام خانوادگی " aria-label="Email" aria-describedby="email-addon">
+                    <input type="text" name="family" required class="form-control rtl text-end" placeholder="  نام خانوادگی " value="<%= user.family %>" aria-label="Email" aria-describedby="email-addon">
                   </div>
                   <label>ایمیل(اختیاری) </label>
                   <div class="mb-3">
-                    <input type="email" name="email"   class="form-control rtl text-end" placeholder=" <%= user.email %>" aria-label="Password" aria-describedby="password-addon">
+                    <input type="email" name="email"   class="form-control rtl text-end" placeholder=" <%= user.email %>" value="<%= user.email %>" aria-label="Password" aria-describedby="password-addon">
                   </div>
                   <label> کد پستی </label>
                   <div class="mb-3">
-                    <input type="text"  name="codeposti" required class="form-control rtl text-end" placeholder="کد پستی " aria-label="Password" aria-describedby="password-addon">
+                    <input type="text"  name="codeposti" required class="form-control rtl text-end" value="<%= user.codeposti %>" placeholder="کد پستی " aria-label="Password" aria-describedby="password-addon">
                   </div>
                
                 
@@ -34,22 +34,22 @@
              <div class="col">
                   <label>نام </label>
                   <div class="mb-3">
-                    <input type="text" name="name" required class="form-control rtl text-end" placeholder=" نام " aria-label="Email" aria-describedby="email-addon">
+                    <input type="text" name="name" value="<%= user.name %>" required class="form-control rtl text-end" placeholder=" نام " aria-label="Email" aria-describedby="email-addon">
                   </div>
                   <label>شماره تماس</label>
                   <div class="mb-3">
-                    <input type="tel" name="phone" required  value="<%= user.phone %>"  class="form-control rtl text-end" placeholder="شماره تماس " aria-label="Password" aria-describedby="password-addon">
+                    <input type="tel" name="phone" required  value="<%= user.phone %>" disabled  class="form-control rtl text-end" placeholder="شماره تماس " aria-label="Password" aria-describedby="password-addon">
                   </div>
                   <label>کد ملی  </label>
                   <div class="mb-3">
-                    <input type="text" name="codemeli" required class="form-control rtl text-end" placeholder="کد ملی " aria-label="Password" aria-describedby="password-addon">
+                    <input type="text" name="codemeli" value="<%= user.codemeli %>" required class="form-control rtl text-end" placeholder="کد ملی " aria-label="Password" aria-describedby="password-addon">
                   </div>
                
                   
                 </div>
                 <label>نشانی   </label>
                   <div class="mb-3">
-                    <textarea required class="form-control rtl text-end w-100" name="address" id="" cols="100" rows="5"></textarea>
+                    <textarea required class="form-control rtl text-end w-100" name="address" id="" cols="100" rows="5"><%= user.address %></textarea>
                  
                   </div>
                 <div class="text-center">
