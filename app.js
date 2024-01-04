@@ -7,6 +7,8 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const mongoose = require("mongoose");
 const MongoStore = require('connect-mongo')(session);
+const {Server}=require('socket.io');
+const http=require('http');
 
 
 
@@ -21,6 +23,11 @@ require("./config/pasport");
 const PORT=process.env.PORT||7000;
 
 const app=express();
+
+//!server
+const server=http.createServer(app);
+const io= new Server(server);
+
 
 //! Session
 app.use(
@@ -65,4 +72,13 @@ app.use('/user',require('./router/users'))
 
 
 
-app.listen(PORT,()=> console.log(`start port : ${PORT}`))
+server.listen(PORT,()=> console.log(`start port : ${PORT}`))
+
+
+
+io.on("connection",(socket)=>{
+  console.log(socket.id);
+  socket.on("add_bsk",(data)=>{
+    console.log(data);
+  })
+})

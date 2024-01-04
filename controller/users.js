@@ -167,7 +167,7 @@ exports.rememberMe = (req, res) => {
   } else {
     req.session.cookie.expire = null;
   }
-  console.log(req.session)
+
   
 
   res.redirect('/')

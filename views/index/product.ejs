@@ -61,15 +61,18 @@
           <!-- <div class="w-100 btn btn-outline-danger text-white"> افزودن به سبد خرید</div> -->
         </div>
         <div class="d-block w-100 ">
-        
-            <div class="btn-shop hover-text" >
+          <% if(user){ %>
+            <div id="btn_shop"  class="btn-shop hover-text" >
               <span class="tooltip-text" id="top">افزودن به سبد خرید</span>
-              <i class="fa fa-shopping-bag" > </i>
-           
-        
-       
-        
-        </div>
+              <i class="fa fa-shopping-bag bag-shop " > </i>
+            </div>
+            <% }else{ %>
+              <a href="/user/loginPage " class="btn-shop hover-text" >
+                <span class="tooltip-text" id="top">افزودن به سبد خرید</span>
+                <i class="fa fa-shopping-bag bag-shop " > </i>
+              </a>
+
+              <% } %> 
       </div>
       </a>
       </div>
