@@ -10,6 +10,8 @@ const MongoStore = require('connect-mongo')(session);
 const {Server}=require('socket.io');
 const http=require('http');
 
+const basketcontroll=  require("./controller/bascket");
+
 
 
 
@@ -77,8 +79,8 @@ server.listen(PORT,()=> console.log(`start port : ${PORT}`))
 
 
 io.on("connection",(socket)=>{
-  console.log(socket.id);
+ 
   socket.on("add_bsk",(data)=>{
-    console.log(data);
+        basketcontroll.addProToShop(data)
   })
 })

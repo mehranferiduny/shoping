@@ -62,10 +62,18 @@
         </div>
         <div class="d-block w-100 ">
           <% if(user){ %>
-            <div id="btn_shop"  class="btn-shop hover-text" >
+           
+            <div id="btn_shop" class="btn-shop hover-text" >
+               <script>
+                const user=`<%= user._id%>`;
+                const product=`<%= product._id%>`
+               </script>
               <span class="tooltip-text" id="top">افزودن به سبد خرید</span>
-              <i class="fa fa-shopping-bag bag-shop " > </i>
+              <i class="fa fa-shopping-bag bag-shop " > 
+               
+              </i>
             </div>
+         
             <% }else{ %>
               <a href="/user/loginPage " class="btn-shop hover-text" >
                 <span class="tooltip-text" id="top">افزودن به سبد خرید</span>
@@ -84,7 +92,12 @@
     </div>
   </div>
 </div> <!-- /.untree_co-section -->
-
+<script>
+  function sendData(user,product){
+    let data={user:user,product:product};
+    return data;
+  }
+</script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
