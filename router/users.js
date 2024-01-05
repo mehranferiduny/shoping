@@ -2,6 +2,7 @@ const  express  = require("express");
 // const { authenticated } = require("../middlewares/auth");
 
 const userController = require("../controller/users");
+const basketController = require("../controller/bascket");
 const { authenticated } = require("../middlewares/auth");
 
 const router = new express.Router();
@@ -21,6 +22,11 @@ router.get("/logout", authenticated, userController.logout);
 router.get("/LoginPage",  userController.loginPage);
 router.get("/registerPage",  userController.registerPage);
 router.get("/editPage",  userController.editPage);
+
+
+
+//!Bascket
+router.post("/addToCart",  basketController.addProToShop);
 
 
 
