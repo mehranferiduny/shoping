@@ -81,6 +81,6 @@ server.listen(PORT,()=> console.log(`start port : ${PORT}`))
 io.on("connection",(socket)=>{
  
   socket.on("add_bsk",(data)=>{
-        basketcontroll.addProToShop(data)
+        basketcontroll.addProToShop(data,socket)
   })
 })
