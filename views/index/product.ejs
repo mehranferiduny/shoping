@@ -1,6 +1,10 @@
 <div class="untree_co-section">
   <div class="container">
 
+
+
+
+    <%- include('../includes/toust.ejs') %>
     <h3 class="text-start mb-2 float-right d-block w-100 text-right">محصولات</h3>
 
     <div class="row " >
@@ -80,7 +84,6 @@
               <div  onclick="addItem('<%=product._id%>, <%=user._id%>')" class="btn-shop hover-text"  >
               <span class="tooltip-text" id="top">افزودن به سبد خرید</span>
               <i class="fa fa-shopping-bag bag-shop " > 
-               
               </i>
             </div>
               <% } %> 
@@ -108,6 +111,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 })
 
 </script>
+
 
 
 

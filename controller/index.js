@@ -25,7 +25,8 @@ exports.getProducts=async(req,res)=>{
         products,
         category,
         separate,
-        user:req.user
+        user:req.user,
+        toust:""
       })
       
   } catch (err) {
