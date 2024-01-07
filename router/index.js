@@ -2,7 +2,7 @@ const  express  = require("express");
 // const { authenticated } = require("../middlewares/auth");
 
 const indexController = require("../controller/index");
-const userController = require("../controller/users");
+// const userController = require("../controller/users");
 
 const router = new express.Router();
 
@@ -12,6 +12,8 @@ const router = new express.Router();
 //! @Producte
 
 router.get("/",  indexController.getProducts);
+router.post("/product",  indexController.singelProduct);
+
 
 
 

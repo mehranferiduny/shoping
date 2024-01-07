@@ -68,39 +68,42 @@
             </a>
    
      </a>
-         <ul class="dropdown ">
-          <div class="scrollable-shopbas">
-         <% if(user){ %>
-           <li class="text-sm small pl-1 px-2" style="font-size: 12px; color: #787878;">
-            تعداد کالا:  <%= productbas.length  %> 
-           </li>
-           
+     <% if(productbas){ %>
+      <ul class="dropdown ">
+        <div class="scrollable-shopbas">
+       <% if(user){ %>
+         <li class="text-sm small pl-1 px-2" style="font-size: 12px; color: #787878;">
+          تعداد کالا:  <%= productbas.length  %> 
+         </li>
+         
 
-           <% for(let baspro of productbas){ %>
+         <% for(let baspro of productbas){ %>
 
-           <li class="lishoping">
-            <div class="row">
-              <img  src="/uploads/products/<%=baspro.image   %>" class="col imgshopbsk">
-              <div class="col titleshopbsk"><%= baspro.titlefa   %>
-              <p><%= baspro.berand  %><span>:برند</span></p> 
-              </div>
+         <li class="lishoping">
+          <div class="row">
+            <img  src="/uploads/products/<%=baspro.image   %>" class="col imgshopbsk">
+            <div class="col titleshopbsk"><%= baspro.titlefa   %>
+            <p><%= baspro.berand  %><span>:برند</span></p> 
             </div>
-
-            <div class="row m-1">
-              <div class="col numbershopbsk "><span class="fa fa-plus ml-4"></span>1<span class=" fa fa-trash mr-4"></span></div>
-              <div class="col priceshpobsk m-0">
-              <span class=" mr-1 p-0" style="color: #787878;">قیمت:</span>
-              <%= separate(baspro.price) %>
-              تومان
-            </span>
           </div>
-            </div>
-          </li>
-         <% } %>
+
+          <div class="row m-1">
+            <div class="col numbershopbsk "><span class="fa fa-plus ml-4"></span>1<span class=" fa fa-trash mr-4"></span></div>
+            <div class="col priceshpobsk m-0">
+            <span class=" mr-1 p-0" style="color: #787878;">قیمت:</span>
+            <%= separate(baspro.price) %>
+            تومان
+          </span>
+        </div>
+          </div>
+        </li>
+       <% } %>
+    <% } %>
+  </div>
+    <a href="///" class="w-100 m-0 btn btn-primary bottom-0 texetbtn text-white mx-auto"> ادامه فرایند خرید</a>
+       </ul>
       <% } %>
-    </div>
-      <a href="///" class="w-100 btn btn-primary bottom-0 texetbtn text-white mx-2"> ادامه فرایند خرید</a>
-         </ul>
+       
          
        </li>
             

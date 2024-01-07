@@ -9,27 +9,30 @@
 
     <div class="row " >
       <% for(let product of products){ %>
-      <div class="col-3  productt ">
+      <div class="col-3  productt " >
+     
         <% if(product.sale > 0){ %>
           <div class="label sale top-right second">
             <div class='content labseal'>تخفیف</div>
           </div>
           <% } %>
-        <a href="">
-        <div class="product-item">
-          <a href="shop-single.html" class="product-img">
-
-
-          
+       
+        <div class="product-item" >
+          <form action="/product" method="POST" class="title   small cursortitle">
+          <a  class="product-img" >
             <div class="label new top-right">
               <div class='content'><%= product.berand  %></div>
             </div>
-          
-         
+           <button type="submit" class="imagepro">
             <img src="uploads/products/<%= product.image %>" alt="Image" class="img-fluid">
+           </button>
           </a>
-          <h3 class="title p-2"><a href="#"><%= product.berand  %></a></h3>
-          <h3 class="title p-2 small"><a href="#"><%= product.titlefa  %></a></h3>
+       
+         
+            <input class="w-100" type="submit" value="  <%= product.berand  %>">
+            <input type="submit" value="  <%= product.titlefa  %>">
+            <input type="hidden" value="<%= product._id  %>" name="productId">
+          </form>
           
           <div class="price d-block  text-right ">
           
@@ -65,9 +68,10 @@
           <!-- <div class="w-100 btn btn-outline-danger text-white"> افزودن به سبد خرید</div> -->
         </div>
         <div class="d-block w-100 ">
+        
           <% if(!user){ 
             %>
-            <a href="/user/loginPage " class="btn-shop hover-text" >
+            <a href="/user/loginPage " class="btn-shop hover-text ml-2" >
                 <span class="tooltip-text" id="top">افزودن به سبد خرید</span>
                 <i class="fa fa-shopping-bag bag-shop " > </i>
               </a>
@@ -93,20 +97,9 @@
   
     </div>
   </div>
-</div> <!-- /.untree_co-section -->
-<script>
-  function sendData(user,product){
-    let data={user:user,product:product};
-    return data;
-  }
-</script>
-<script>
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
+</div> 
 
-</script>
+
 
 
 

@@ -83,4 +83,5 @@ io.on("connection",(socket)=>{
   socket.on("add_bsk",(data)=>{
         basketcontroll.addProToShop(data,socket)
   })
+
 })

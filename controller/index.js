@@ -39,3 +39,38 @@ exports.getProducts=async(req,res)=>{
       
   }
 }
+
+exports.singelProduct=async(req,res)=>{
+  let user='';
+  if(req.user){
+  user=req.user
+  }
+
+  try {
+    const products=await Products.find({}).sort({ createdAt: -1 })
+    const category=await Category.find({}).sort({ name: -1 })
+    const basckeid=await Basket.find({userId:user.id}).sort({ name: -1 });
+    if(basckeid.length > 0){
+      var productbas=await Products.find({_id:basckeid[0].productId})
+      }
+      const productId=req.body.productId;
+      if(!productId) console.log("id product is requaid");
+      const product=await Products.findOne({_id:productId});
+      console.log(product);
+      res.render('index/singelPage',{
+        pageTitle:`hiii`,
+        path: "/",
+        product,
+        category,
+        basckeid,
+        products,
+        user,
+        productbas,
+        separate
+      });
+  } catch (err) {
+    console.log(err);
+  }
+
+}
+
