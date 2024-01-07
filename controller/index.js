@@ -58,7 +58,7 @@ exports.singelProduct=async(req,res)=>{
       const product=await Products.findOne({_id:productId});
       console.log(product);
       res.render('index/singelPage',{
-        pageTitle:`hiii`,
+        pageTitle:`${product.titlefa} || ${product.title}`,
         path: "/",
         product,
         category,

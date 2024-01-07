@@ -1,12 +1,14 @@
-<div class="container rtl mt-5 pt-5">
-  <h1 class="my-5"><%= product.title  %></h1>
-  <div class="row">
+<div class="untree_co-section">
+    <div class="w-100 body-full">
+<div class="container rtl pt-5">
+
+  <div class="row mt-5">
       <div class="col-md-6">
           <div id="carouselExample" class="carousel slide" data-ride="carousel">
          
-              <div class="carousel-inner">
+              <div class="carousel-inner image-product">
                  
-                      <img src="uploads/products/<%= product.image %>" class="d-block w-100" alt="...">
+                      <img src="uploads/products/<%= product.image %>" class="d-block " alt="...">
                
                  
               </div>
@@ -14,18 +16,84 @@
           </div>
       </div>
       <div class="col-md-6 rtl text-right">
-          <h2><%= product.titlefa  %></h2>
+        <div class="row ">
+            <div class="col">
+                <div class="row">
+
+                    <div class="col-6 col-md-4 title-product">نام محصول </div>
+                    <div class="col-12 col-sm-6 p-0 col-md-8 decfont"><%= product.titlefa  %></div>
+            </div>
+            </div>
+            <div class="col">
+                <div class="row ">
+                    <div class="col-6 col-md-4 title-product">نام محصول(انگلیسی) </div>
+                    <div class="col-12 col-sm-6 p-0 col-md-8 decfont"><%= product.title  %></div>
+            </div>
+            </div>
+        </div>
+
+        <div class="row mt-3 ">
+            <div class="col">
+                <div class="row">
+
+                    <div class="col-6 col-md-4 title-product">نام برند </div>
+                    <div class="col-12 col-sm-6 p-0 col-md-8 decfont"><%= product.title  %></div>
+            </div>
+            </div>
+            <div class="col">
+                <div class="row ">
+                    <div class="col-6 col-md-4 title-product">دسته بندی  </div>
+                    <div class="col-12 col-sm-6 p-0 col-md-8 decfont">
+                        <% for(let cat of category){
+                            if(cat.id == product.category){
+                                %>
+                        <%= cat.name  %>
+    
+                        <% }} %>
+                    </div>
+            </div>
+            </div>
+        </div>
+        <div class="row mt-3 ">
+            <div class="col">
+                <div class="row">
+
+                    <div class="col-6 col-md-4 title-product">تعداد موجود در انبار  </div>
+                    <div class="col-12 col-sm-6 p-0 col-md-8 decfont"><%= product.number  %></div>
+            </div>
+            </div>
+            <div class="col">
+                <div class="row">
+
+                    <div class="col-6 col-md-4 title-product">قیمت محصول  </div>
+                    <div class="col-12 col-sm-6 p-0 col-md-8 decfont"><%= separate(product.price)  %> تومان</div>
+            </div>
+            </div>
           
-          <p><%= product.berand  %></p>
-          <p><%= product.description  %></p>
-          <h4><%=product.price %></h4>
-          <form>
-              <div class="form-group">
-                  <label for="quantity">Quantity</label>
-                  <input type="number" class="form-control" id="quantity" value="1">
-              </div>
-              <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
+        </div>
+        <div class="row mt-3 ">
+            <div class="col">
+                <div class="row">
+
+                    <div class="title-product">توضیحات محصول  </div>
+                    <div class="p-0 decfont"><%= product.description  %></div>
+            </div>
+            </div>
+          
+        </div>
+
+      
+      
+       
+      
+    
+       
+         
+             
+              <button type="submit" onclick="addItem('<%=product._id%>, <%=user._id%>')" class="btn btn-primary float-left m-5 rounded-2 decfont"><span class=" fa fa-shopping-basket pl-2"></span>افزودن به سبد خرید</button>
+         
       </div>
   </div>
+</div>
+</div>
 </div>
