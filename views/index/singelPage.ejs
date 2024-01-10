@@ -4419,32 +4419,23 @@
                             <div
                               class="min-w-fit text-zinc-500 dark:text-zinc-400"
                             >
-                              جنس :
+                              برند :
                             </div>
                             <div class="text-zinc-600 dark:text-zinc-300">
-                              پارچه
+                              <%= product.brand  %>
                             </div>
                           </li>
                           <li class="flex gap-x-2">
                             <div
                               class="min-w-fit text-zinc-500 dark:text-zinc-400"
                             >
-                              جنس زیره :
+                              جنس  :
                             </div>
                             <div class="text-zinc-600 dark:text-zinc-300">
-                              لاستیک
+                             <%= product.jens  %>
                             </div>
                           </li>
-                          <li class="flex gap-x-2">
-                            <div
-                              class="min-w-fit text-zinc-500 dark:text-zinc-400"
-                            >
-                              نحوه بسته شدن کفش :
-                            </div>
-                            <div class="text-zinc-600 dark:text-zinc-300">
-                              بندی
-                            </div>
-                          </li>
+                    
                         </ul>
                       </div>
                     </div>
@@ -4461,7 +4452,10 @@
                             </div>
                             <fieldset class="flex flex-wrap items-center gap-1">
                               <legend class="sr-only">Color</legend>
-
+                              <%
+                              let c=product.color.toString().split(',');
+                          
+                              for(let xc of c){ %>
                               <div>
                                 <input
                                   checked
@@ -4478,15 +4472,15 @@
                                 >
                                   <div class="flex items-center gap-x-2">
                                     <div
+                                    id="colorsingel"
                                       class="h-6 w-6 rounded-full border-2 border-gray-200 shadow-base dark:border-white/30"
-                                      style="background-color: black"
+                                      style="background: <%= xc %>"
                                     ></div>
-                                    <p class="text-zinc-600 dark:text-zinc-300">
-                                      مشکی
-                                    </p>
+                                    
                                   </div>
                                 </label>
                               </div>
+                              <% } %>
                               <div>
                                 <input
                                   type="radio"
@@ -4547,7 +4541,10 @@
                             
                         
                            
-                         
+                         <%
+                             
+                               let z=product.size.toString().split(',');
+                         for(let x of z){ %>
                               <div>
                                 <input
                                   checked
@@ -4565,92 +4562,13 @@
                                   <p
                                     class="text-sm font-bold text-zinc-600 dark:text-zinc-300 md:text-base"
                                   >
-                                  <%= split(product.size)%>
+                                  <%= x %>
                                   </p>
                                 </label>
                               </div>
                             
-
-                              <div>
-                                <input
-                                  type="radio"
-                                  name="size-desktop"
-                                  value="size-desktop-2"
-                                  id="size-desktop-2"
-                                  class="peer hidden"
-                                />
-
-                                <label
-                                  for="size-desktop-2"
-                                  class="relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-gray-100 p-1 shadow-base peer-checked:border-emerald-500 hover:border-gray-200 dark:border-white/5 peer-checked:dark:border-emerald-400 dark:hover:border-white/10"
-                                >
-                                  <p
-                                    class="text-sm font-bold text-zinc-600 dark:text-zinc-300 md:text-base"
-                                  >
-                                    40
-                                  </p>
-                                </label>
-                              </div>
-                              <div>
-                                <input
-                                  type="radio"
-                                  name="size-desktop"
-                                  value="size-desktop-3"
-                                  id="size-desktop-3"
-                                  class="peer hidden"
-                                />
-
-                                <label
-                                  for="size-desktop-3"
-                                  class="relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-gray-100 p-1 shadow-base peer-checked:border-emerald-500 hover:border-gray-200 dark:border-white/5 peer-checked:dark:border-emerald-400 dark:hover:border-white/10"
-                                >
-                                  <p
-                                    class="text-sm font-bold text-zinc-600 dark:text-zinc-300 md:text-base"
-                                  >
-                                    44
-                                  </p>
-                                </label>
-                              </div>
-                              <div>
-                                <input
-                                  type="radio"
-                                  name="size-desktop"
-                                  value="size-desktop-4"
-                                  id="size-desktop-4"
-                                  class="peer hidden"
-                                />
-
-                                <label
-                                  for="size-desktop-4"
-                                  class="relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-gray-100 p-1 shadow-base peer-checked:border-emerald-500 hover:border-gray-200 dark:border-white/5 peer-checked:dark:border-emerald-400 dark:hover:border-white/10"
-                                >
-                                  <p
-                                    class="text-sm font-bold text-zinc-600 dark:text-zinc-300 md:text-base"
-                                  >
-                                    43
-                                  </p>
-                                </label>
-                              </div>
-                              <div>
-                                <input
-                                  type="radio"
-                                  name="size-desktop"
-                                  value="size-desktop-5"
-                                  id="size-desktop-5"
-                                  class="peer hidden"
-                                />
-
-                                <label
-                                  for="size-desktop-5"
-                                  class="relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-gray-100 p-1 shadow-base peer-checked:border-emerald-500 hover:border-gray-200 dark:border-white/5 peer-checked:dark:border-emerald-400 dark:hover:border-white/10"
-                                >
-                                  <p
-                                    class="text-sm font-bold text-zinc-600 dark:text-zinc-300 md:text-base"
-                                  >
-                                    42
-                                  </p>
-                                </label>
-                              </div>
+                                <% } %>
+                         
                             </fieldset>
                           </div>
                         </div>
@@ -4694,7 +4612,7 @@
                           <div
                             class="flex items-center gap-x-1 text-emerald-500 dark:text-emerald-400"
                           >
-                            <span class="text-xl font-bold">1,800,000</span>
+                            <span class="text-xl font-bold"><%=separate(product.price) %></span>
                             <span>تومان</span>
                           </div>
                         </div>
@@ -8287,6 +8205,7 @@
         </div>
       </footer>
     </div>
+
     <script>
       const copyToClipboardSocialShareDesktop = (button) => {
         const linkToCopy = button.getAttribute("data-link");
