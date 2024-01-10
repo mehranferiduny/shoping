@@ -1,0 +1,427 @@
+<div class="mb-6 rounded-lg bg-white p-6 shadow-base dark:bg-zinc-900">
+
+<div class="mb-6 grid flex-grow grid-cols-12 gap-4">
+  <div class="col-span-4">
+    <div class="min-w-fit space-y-2">
+      <!-- Product other actions -->
+      <div class="py-2">
+        <div
+          class="flex items-center gap-x-4 text-zinc-700 dark:text-white"
+        >
+          <!-- add to favorite -->
+
+          <div>
+            <button
+              data-tooltip-target="add-to-favorite"
+              type="button"
+            >
+              <svg class="h-6 w-6">
+                <use xlink:href="#heart" />
+              </svg>
+            </button>
+            <div
+              id="add-to-favorite"
+              role="tooltip"
+              class="tooltip invisible absolute z-10 inline-block rounded-lg bg-zinc-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-zinc-800"
+            >
+              افزودن به علاقه‌مندی ها
+            </div>
+          </div>
+          <!-- add to compare -->
+
+          <div>
+            <button
+              data-tooltip-target="add-to-compare"
+              type="button"
+            >
+              <svg class="h-6 w-6">
+                <use xlink:href="#compare" />
+              </svg>
+            </button>
+            <div
+              id="add-to-compare"
+              role="tooltip"
+              class="tooltip invisible absolute z-10 inline-block rounded-lg bg-zinc-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-zinc-800"
+            >
+              افزودن به لیست مقایسه
+            </div>
+          </div>
+
+          <!-- share on social -->
+          <div>
+            <button
+              id="dropdownMenuCopySocialShareLink"
+              data-dropdown-toggle="copy-social-share-link"
+              data-tooltip-target="share-on-social"
+              type="button"
+            >
+              <svg class="h-6 w-6">
+                <use xlink:href="#social-share" />
+              </svg>
+            </button>
+            <div
+              id="share-on-social"
+              role="tooltip"
+              class="tooltip invisible absolute z-10 inline-block rounded-lg bg-zinc-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-zinc-800"
+            >
+              اشتراک گذاری
+            </div>
+            <!-- Dropdown menu -->
+            <div
+              class="z-10 !ml-5 hidden w-50 overflow-hidden rounded-lg border border-gray-100 bg-white shadow-base dark:border-white/5 dark:bg-zinc-900"
+              id="copy-social-share-link"
+            >
+              <ul class="space-y-2 p-2">
+                <li>
+                  <button
+                    type="button"
+                    data-link="https://www.google.com"
+                    onclick="copyToClipboardSocialShareDesktop(this)"
+                    class="flex w-full items-center justify-between rounded-lg px-4 py-3 text-sky-500 hover:bg-sky-500/10 dark:text-sky-400 dark:hover:bg-sky-400/10"
+                  >
+                    <div class="flex items-center gap-x-2">
+                      <svg class="h-6 w-6">
+                        <use xlink:href="#copy"></use>
+                      </svg>
+                      <span id="copyToClipboardSocialShareText">
+                        کپی کردن لینک
+                      </span>
+                    </div>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Main image -->
+      <div>
+        <img
+        src="uploads/products/<%= product.image %>"
+          alt=""
+          class="mx-auto"
+          loading="lazy"
+        />
+      </div>
+      <!-- Gallery -->
+      <div class="flex items-center justify-center gap-x-2">
+        <!-- image -->
+        <button
+          type="button"
+          data-modal-target="product-gallery-modal"
+          data-modal-toggle="product-gallery-modal"
+          class="cursor-pointer rounded-lg border border-gray-100 p-1 dark:border-white/5"
+        >
+          <img
+          src="uploads/products/<%= product.image1 %>"
+            alt=""
+            class="h-16 w-16 xl:h-20 xl:w-20"
+            loading="lazy"
+          />
+        </button>
+
+        <!-- image -->
+        <button
+          type="button"
+          data-modal-target="product-gallery-modal"
+          data-modal-toggle="product-gallery-modal"
+          class="cursor-pointer rounded-lg border border-gray-100 p-1 dark:border-white/5"
+        >
+          <img
+          src="uploads/products/<%= product.image2 %>"
+            alt=""
+            class="h-16 w-16 xl:h-20 xl:w-20"
+            loading="lazy"
+          />
+        </button>
+
+        <!-- image -->
+        <button
+          type="button"
+          data-modal-target="product-gallery-modal"
+          data-modal-toggle="product-gallery-modal"
+          class="cursor-pointer rounded-lg border border-gray-100 p-1 dark:border-white/5"
+        >
+          <img
+          src="uploads/products/<%= product.image3 %>"
+            alt=""
+            class="h-16 w-16 xl:h-20 xl:w-20"
+            loading="lazy"
+          />
+        </button>
+
+        <!-- Load more -->
+       
+      </div>
+    </div>
+  </div>
+  <div class="col-span-8 flex min-h-full flex-col">
+    <div
+      class="mb-2 flex items-center gap-x-1 text-emerald-500 dark:text-emerald-400"
+    >
+      <a href="#"> نایک </a>
+      <svg class="h-5 w-5">
+        <use xlink:href="#chevron-left" />
+      </svg>
+    </div>
+    <!-- Main Title ( persian ) -->
+    <h1
+      class="mb-4 text-lg font-semibold text-zinc-700 dark:text-white"
+    >
+      <%= product.title  %>
+    </h1>
+
+    <div class="grid flex-grow grid-cols-2 gap-x-4">
+      <!-- right side -->
+      <div class="col-span-1">
+        <!-- Title ( english) -->
+        <div class="mb-4 flex items-center gap-x-2">
+          <h2
+            class="line-clamp-1 text-sm font-light text-zinc-500 dark:text-zinc-400"
+          >
+            New Balance Men's Walking Shoes Model Mdrftlm2
+          </h2>
+          <span
+            class="h-px flex-grow bg-gray-200 dark:bg-white/10"
+          ></span>
+        </div>
+        <!-- comments & SKU -->
+        <div
+          class="mb-4 flex items-center gap-x-4 text-sm font-light text-emerald-500 dark:text-emerald-400"
+        >
+          <div>
+            <a href="#"> کد کالا <%= product.productID  %># </a>
+          </div>
+          <span
+            class="h-4 w-px rounded-full bg-gray-200 dark:bg-white/10"
+          ></span>
+          <div>
+            <a href="#"> 20 دیدگاه </a>
+          </div>
+        </div>
+        <!-- users suggestion -->
+        <div class="mb-4 flex gap-x-2">
+          <svg
+            class="h-4 w-4 text-emerald-500 dark:text-emerald-400"
+          >
+            <use xlink:href="#like" />
+          </svg>
+          <p
+            class="text-sm font-light text-zinc-500 dark:text-zinc-400"
+          >
+            80% از خریداران، خرید این کالا را پیشنهاد کرده‌اند
+          </p>
+        </div>
+
+        <!-- Property -->
+        <div>
+          <p
+            class="mb-6 font-medium text-zinc-700 dark:text-white"
+          >
+            ویژگی های محصول
+          </p>
+
+          <ul class="space-y-4">
+            <li class="flex gap-x-2">
+              <div
+                class="min-w-fit text-zinc-500 dark:text-zinc-400"
+              >
+                برند :
+              </div>
+              <div class="text-zinc-600 dark:text-zinc-300">
+                <%= product.brand  %>
+              </div>
+            </li>
+            <li class="flex gap-x-2">
+              <div
+                class="min-w-fit text-zinc-500 dark:text-zinc-400"
+              >
+                جنس  :
+              </div>
+              <div class="text-zinc-600 dark:text-zinc-300">
+               <%= product.jens  %>
+              </div>
+            </li>
+      
+          </ul>
+        </div>
+      </div>
+
+      <!-- left side -->
+      <div class="col-span-1 flex flex-col">
+        <div class="flex-grow">
+          <!-- variant -->
+          <div class="mb-6 space-y-6">
+            <!-- Color -->
+            <div>
+              <div class="mb-4 text-zinc-700 dark:text-white">
+                انتخاب رنگ
+              </div>
+              <fieldset class="flex flex-wrap items-center gap-1">
+                <legend class="sr-only">Color</legend>
+                <%
+                let c=product.color.toString().split(',');
+            
+                for(let xc of c){ %>
+                <div>
+                  <input
+                    checked
+                    type="radio"
+                    name="color-desktop"
+                    value="color-desktop-1"
+                    id="color-desktop-1"
+                    class="peer hidden"
+                  />
+
+                  <label
+                    for="color-desktop-1"
+                    class="relative block cursor-pointer rounded-full border-2 border-gray-100 p-2 shadow-base peer-checked:border-emerald-500 hover:border-gray-200 dark:border-white/5 peer-checked:dark:border-emerald-400 dark:hover:border-white/10"
+                  >
+                    <div class="flex items-center gap-x-2">
+                      <div
+                      id="colorsingel"
+                        class="h-6 w-6 rounded-full border-2 border-gray-200 shadow-base dark:border-white/30"
+                        style="background:<%= xc %>"
+                      ></div>
+                      
+                    </div>
+                  </label>
+                </div>
+                <% } %>
+              
+              </fieldset>
+            </div>
+            <!-- Size -->
+            <div>
+              <div class="mb-4 text-zinc-700 dark:text-white">
+                انتخاب سایز
+              </div>
+              <fieldset class="flex flex-wrap items-center gap-2">
+                <legend class="sr-only">Size</legend>
+              
+          
+             
+           <%
+               
+                 let z=product.size.toString().split(',');
+           for(let x of z){ %>
+                <div>
+                  <input
+                    checked
+                    type="radio"
+                    name="size-desktop"
+                    value="size-desktop-1"
+                    id="size-desktop-1"
+                    class="peer hidden"
+                  />
+              
+                  <label
+                    for="size-desktop-1"
+                    class="relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-gray-100 p-1 shadow-base peer-checked:border-emerald-500 hover:border-gray-200 dark:border-white/5 peer-checked:dark:border-emerald-400 dark:hover:border-white/10"
+                  >
+                    <p
+                      class="text-sm font-bold text-zinc-600 dark:text-zinc-300 md:text-base"
+                    >
+                    <%= x %>
+                    </p>
+                  </label>
+                </div>
+              
+                  <% } %>
+           
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!-- verified text -->
+          <div
+            class="mb-6 flex items-center gap-x-2 rounded-lg bg-emerald-500/10 p-4 text-sm text-emerald-500 dark:bg-emerald-400/5 dark:text-emerald-400"
+          >
+            <svg class="h-6 w-6">
+              <use xlink:href="#verified" />
+            </svg>
+            تضمین سلامت فیزیکی و اصالت کالا
+          </div>
+          <!-- price -->
+          <div class="mb-6 flex items-center justify-between">
+            <div
+              class="flex h-12 w-32 items-center justify-between rounded-lg border border-gray-100 px-4 py-1 dark:border-white/5"
+            >
+              <button type="button" data-action="increment">
+                <svg
+                  class="h-6 w-6 text-emerald-500 dark:text-emerald-400"
+                >
+                  <use xlink:href="#plus" />
+                </svg>
+              </button>
+              <input
+                value="1"
+                disabled
+                type="number"
+                class="flex h-6 w-6 w-full select-none items-center justify-center bg-transparent text-center text-zinc-700 outline-none dark:text-white"
+              />
+              <button type="button" data-action="decrement">
+                <svg
+                  class="h-6 w-6 text-red-600 dark:text-red-500"
+                >
+                  <use xlink:href="#minus" />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="flex items-center gap-x-1 text-emerald-500 dark:text-emerald-400"
+            >
+              <span class="text-xl font-bold"><%=separate(product.price) %></span>
+              <span>تومان</span>
+            </div>
+          </div>
+          <!-- add to cart -->
+          <div class="mb-6">
+            <button class="btn-primary w-full py-3">
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex justify-between gap-4">
+  <div
+    class="flex w-full items-center gap-x-2 rounded-lg border border-gray-100 px-2 py-4 text-sm text-zinc-500 dark:border-white/5 dark:text-zinc-400"
+  >
+    <svg class="h-6 w-6">
+      <use xlink:href="#refund" />
+    </svg>
+    هفت روز ضمانت بازگشت کالا
+  </div>
+
+  <div
+    class="flex w-full items-center gap-x-2 rounded-lg border border-gray-100 px-2 py-4 text-sm text-zinc-500 dark:border-white/5 dark:text-zinc-400"
+  >
+    <svg class="h-6 w-6">
+      <use xlink:href="#verified" />
+    </svg>
+    تضمین اصالت کالا
+  </div>
+  <div
+    class="flex w-full items-center gap-x-2 rounded-lg border border-gray-100 px-2 py-4 text-sm text-zinc-500 dark:border-white/5 dark:text-zinc-400"
+  >
+    <svg class="h-6 w-6">
+      <use xlink:href="#support" />
+    </svg>
+    هفت روز هفته
+  </div>
+  <div
+    class="flex w-full items-center gap-x-2 rounded-lg border border-gray-100 px-2 py-4 text-sm text-zinc-500 dark:border-white/5 dark:text-zinc-400"
+  >
+    <svg class="h-6 w-6">
+      <use xlink:href="#fast-delivery" />
+    </svg>
+    تحویل اکسپرس در تهران, کرج
+  </div>
+</div>
+
+</div>
