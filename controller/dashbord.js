@@ -122,6 +122,7 @@ exports.deleteCategory = async (req, res) => {
 
 //!Products
 exports.addProducts = async (req, res) => {
+
   const category=await Category.find({}).sort({ name: -1 });
   const errorArr = [];
 
@@ -129,7 +130,27 @@ exports.addProducts = async (req, res) => {
   const fileName = `${shortId.generate()}_${image.name}`;
   const uploadPath = `${appRoot}/public/uploads/products/${fileName}`;
 
+  const image1 = req.files ? req.files.image1 : {};
+  
+  if(typeof(image1)!="undefined"){
+  var fileName1 = `${shortId.generate()}_${image1.name}`;
+  var uploadPath1 = `${appRoot}/public/uploads/products/${fileName1}`;
+  }
+
+  const image2 = req.files ? req.files.image2 : {};
+ if(typeof(image2)!="undefined"){
+  var fileName2 = `${shortId.generate()}_${image2.name}`;
+  var uploadPath2 = `${appRoot}/public/uploads/products/${fileName2}`;
+ }
+
+  const image3 = req.files ? req.files.image3 : {};
+ if(typeof(image3)!="undefined"){
+  var fileName3 = `${shortId.generate()}_${image3.name}`;
+  var uploadPath3 = `${appRoot}/public/uploads/products/${fileName3}`;
+ }
   try {
+   
+
    
     req.body={... req.body,image};
           if(!req.body) res.send("body requrd")
@@ -140,13 +161,36 @@ exports.addProducts = async (req, res) => {
               .jpeg({ quality: 70 })
               .toFile(uploadPath)
               .catch((err) => console.log(err));
-  
+
+             
+              if(typeof(image1)!= 'undefined'){
+          await sharp(image1.data)
+              .jpeg({ quality: 70 })
+              .toFile(uploadPath1)
+              .catch((err) => console.log(err));
+              }
+              if(typeof(image2)!= 'undefined'){
+          await sharp(image2.data)
+              .jpeg({ quality: 70 })
+              .toFile(uploadPath2)
+              .catch((err) => console.log(err));
+              }
+              if(typeof(image3)!= 'undefined'){
+          await sharp(image3.data)
+              .jpeg({ quality: 70 })
+              .toFile(uploadPath3)
+              .catch((err) => console.log(err));
+              }
           await Products.create({
               ...req.body,
               image: fileName,
+              image1: fileName1,
+              image2: fileName2,
+              image3: fileName3,
           });
       res.redirect('/dashbord/getProducts')
   } catch (err) {
+    console.log(err);
       err.inner.forEach((e) => {
           errorArr.push({
               name: e.path,

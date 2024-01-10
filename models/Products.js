@@ -1,8 +1,13 @@
 const mongoose = require("mongoose");
+const shortId = require("shortid");
 
 const { schema } = require("./secure/ProductsValidate");
 
 const Products = new mongoose.Schema({
+  productID:{
+    type:String,
+    default: shortId.generate()
+  },
     title: {
         type: String,
         required: [true,'عنوان الزامی میباشد'],
@@ -10,16 +15,6 @@ const Products = new mongoose.Schema({
         minlength: [5,"تعداد کلمات نباید کمتر از 5 کارکتر باشد"],
         maxlength: [100,"تعداد کلمات نباید بیشتر از 100 کارکتر باشد"],
     },
-    titlefa: {
-        type: String,
-        required: [true,'عنوان الزامی میباشد'],
-        trim: true,
-        minlength: [5,"تعداد کلمات نباید کمتر از 5 کارکتر باشد"],
-        maxlength: [100,"تعداد کلمات نباید بیشتر از 100 کارکتر باشد"],
-    },
-
-
-
 
     description: {
         type: String,
@@ -39,19 +34,40 @@ const Products = new mongoose.Schema({
        type:Boolean,
        default:false,
     },
-    number:{
-      type: Number,
-      required: [true,'تعداد محصول الزامی میباشد'],
-      trim: true,
-    },
-    berand:{
+    size:[{
       type: String,
-      required: [true,'برند محصول الزامی میباشد']
+      required: [true,'سایز محصول الزامی میباشد'],
+      trim: true,
+    }],
+    color:[{
+      type: String,
+      required: [true,'رنگ محصول الزامی میباشد']
+    }],
+    brand:{
+      type:String,
+      required:[true,'برند محصول الزامی میباشد']
+    },
+    jens:{
+      type:String,
+      required:[true,'جنس محصول الزامی میباشد']
     },
 
     image: {
         type: String,
         required: true,
+    },
+    image1: {
+        type: String,
+        default:""
+       
+    },
+    image2: {
+        type: String,
+        default:""
+    },
+    image3: {
+        type: String,
+        default:""
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,

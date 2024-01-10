@@ -12,7 +12,7 @@ const router = new express.Router();
 //! @Producte
 
 router.get("/",  indexController.getProducts);
-router.post("/product",  indexController.singelProduct);
+router.get("/:id",  indexController.singelProduct);
 
 
 

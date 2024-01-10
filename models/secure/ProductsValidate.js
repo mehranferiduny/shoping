@@ -5,16 +5,16 @@ exports.schema = Yup.object().shape({
         .required("عنوان محصول الزامی می باشد")
         .min(5, "عنوان محصول نباید کمتر از 5 کارکتر باشد")
         .max(100, "عنوان محصول نباید بیشتر از 100 کاراکتر باشد"),
-     titlefa: Yup.string()
-        .required("عنوان محصول الزامی می باشد")
-        .min(5, "عنوان محصول نباید کمتر از 5 کارکتر باشد")
-        .max(100, "عنوان محصول نباید بیشتر از 100 کاراکتر باشد"),
-
+  
         price: Yup.string()
         .required("قیمت محصول الزامی می باشد"),
-        number: Yup.string()
-        .required("تعداد محصول  الزامی می باشد"),
-        berand: Yup.string()
+        size: Yup.string()
+        .required("سایز محصول  الزامی می باشد"),
+        jens: Yup.string()
+        .required("جنس محصول  الزامی می باشد"),
+        color: Yup.string()
+        .required("رنگ محصول  الزامی می باشد"),
+        brand: Yup.string()
         .required("برند محصول  الزامی می باشد"),
 
    description: Yup.string().required("محصول جدید باید دارای محتوا باشد"),

@@ -11,29 +11,44 @@
 
        <!-- فیلد تصویر -->
        <div class="mb-3">
-        <label for="image" class="form-label">تصویر</label>
+        <label for="image" class="form-label">تصویر(اصلی)</label>
         <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
       </div>
+
+    
+       <!-- فیلد تصویر -->
+       <div class="mb-3">
+        <label for="image" class="form-label">تصویر</label>
+        <div class="row">
+          <div class="col"><input type="file" class="form-control" id="image" name="image1" accept="image/*" ></div>
+          <div class="col"><input type="file" class="form-control" id="image" name="image2" accept="image/*" ></div>
+          <div class="col"><input type="file" class="form-control" id="image" name="image3" accept="image/*" ></div>
+      
+        </div>
+      </div>
+   
+ 
 
     <!-- فیلدهای متنی -->
     <div class="row">
 
+      <div class="mb-3 col">
+        <label for="text1" class="form-label">برند </label>
+        <input type="text" class="form-control" id="text1" name="brand" required>
+      </div>
 
     <div class="mb-3 col">
-      <label for="text2" class="form-label">نام محصول (فارسی) </label>
-      <input type="text" class="form-control nametab" id="text2" name="titlefa" required>
+      <label for="text2" class="form-label">نام محصول  </label>
+      <input type="text" class="form-control nametab" id="text2" name="title" required>
     </div>
 
-    <div class="mb-3 col">
-      <label for="text1" class="form-label">نام محصول</label>
-      <input type="text" class="form-control" id="text1" name="title" required>
-    </div>
+   
   </div>
     
   <div class="row">
     <div class="mb-3 col">
-      <label for="text5" class="form-label">برند</label>
-      <input type="text" class="form-control" id="text5" name="berand" required>
+      <label for="text5" class="form-label">جنس</label>
+      <input type="text" class="form-control" id="text5" name="jens" required>
     </div>
 
     <div class="mb-3 col">
@@ -54,10 +69,26 @@
     </div>
     <div class="row">
       <div class="mb-3 col">
-        <label for="text4" class="form-label">تعداد</label>
-        <input type="number" class="form-control " id="text4" name="number" required>
+     
+        <label for="text4" class="form-label">رنگ</label>
+        <div class="form-control">
+        <input type="color" class=""   id="colorInput">
+        
+        <div id="main" class="row" ></div>
+   
       </div>
+        <div class="btnaddcolor" onclick="addColor()" >اضافه کردن</div>
+        <input type="text" class="form-control h-0 " id="colorArrray" name="color"    required >
+      </div>
+     
 
+    <div class="mb-3 col">
+      <label for="text3" class="form-label">سایز</label>
+      <input type="text" class="form-control" id="sizeInput"   >
+      <div class="btnaddcolor" onclick="addSaiz()" > اضافه کردن </div>
+      <input type="text" class="form-control" id="siazAraay" name="size"    required>
+
+    </div>
     <div class="mb-3 col">
       <label for="text3" class="form-label">قیمت (تومان)</label>
       <input type="tel" class="form-control" id="text3" name="price" required>
@@ -72,6 +103,46 @@
 
  
 
-    <button type="submit" class="btn btn-primary">ارسال</button>
+    <button type="submit" class="btn btn-primary w-100">ارسال</button>
   </form>
 </div>
+
+<script>
+   // Array to store colors
+   var colorArray = [];
+   var sizeArray = [];
+
+function addColor() {
+  // Get the input value
+  var colorInput = document.getElementById('colorInput').value;
+  var colorshow = document.getElementById('colorshow');
+  
+  var div = document.createElement("div");
+div.style.width = "50px";
+div.style.height = "50px";
+div.style.flex="1 0 0%;"
+div.style.marginRight="5px"
+div.style.background = colorInput;
+colorArray.push(colorInput)
+
+document.getElementById("main").appendChild(div);
+
+
+document.getElementById('colorArrray').value= colorArray;
+
+
+
+
+
+}
+function addSaiz() {
+  // Get the input value
+  var sizeInput = document.getElementById('sizeInput').value;
+sizeArray.push(sizeInput)
+document.getElementById('siazAraay').value= sizeArray;
+
+
+}
+
+
+</script>
