@@ -63,8 +63,8 @@ exports.singelProduct=async(req,res)=>{
 
 
 
-      res.render('index/singelPage',{
-        pageTitle:` ${product.title}`,
+    await  res.render('index/singelPage',{
+        pageTitle:` ${product.title}` || tekno,
         path: "/",
         product,
         category,
