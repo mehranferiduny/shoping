@@ -16,15 +16,28 @@
 
    
 
-    <div class="col-3 mt-5 bacbutcat">
+    <form action="/dashbord/addCategorymin/<%= cat.id %>" method="post" class="col-3 mt-5 bacbutcat">
+      
       <div class="product-item">
-        <h3 id="colorDiv<%= number %>" on class="title-cat p-5 colorDiv"><a href="#"><%= cat.name  %></a></h3>
+        <h3 onclick="uishowcat()" id="colorDiv<%= number %>" on class="title-cat p-5 colorDiv"><a href="#"><%= cat.name  %></a></h3>
+         <div  id="uicat">
+        <input  class=" inputcat mx-auto p-2 text-center w-100" type="text" name="name" id="" placeholder="نام زیر دسته  جدید را وارد کنید ...">
+       <ul class="list-group list-group-flush" >
+        <% for(let catq of catmain){
+          if(catq.IdCat == cat.id){
+            %>
+
+        <li class="list-group-item text-dark text-center"> <%= catq.name %></li>
+        <% }} %>
+        </ul>
+        </div>
         <div class="w-100 justify-content-center text-center d-block">
           <a  onclick="getidauth('DELETE','<%= cat.id  %>','/dashbord/deleteCategory','/dashbord/getCategorys')" class="btn btn-danger justify-content-center text-center mx-auto d-inline-flex bottom-0  w-100 m-2 bottom-0">حذف</a>
           <a  onclick="getidauth('PUT','<%= cat.id  %>','/dashbord/editCategory','/dashbord/getCategorys','<%= cat.name %>')" class="btn btn-outline-primary text-center justify-content-center mx-auto d-inline-flex bottom-0  w-100 m-2 bottom-0">ویرایش</a>
+          <input  type="submit" class="btn btn-outline-primary text-center justify-content-center mx-auto d-inline-flex bottom-0  w-100 m-2 bottom-0" value="افزودن">
         </div>
       </div>
-    </div> <!-- /.item -->
+    </form> <!-- /.item -->
     
     <% } %>
 </div>
@@ -50,6 +63,14 @@
     }
   }
   changeColors();
+
+    function uishowcat(){
+     
+      let ui=document.getElementById('uicat');
+       ui.style.display = 'none';
+     
+    }
+
  
 </script>
 

@@ -74,7 +74,7 @@ app.use('/user',require('./router/users'))
 
 
 
-server.listen(PORT,()=> console.log(`start port : ${PORT}`))
+server.listen(PORT,()=> console.log(`start port http://localhost:${PORT}`))
 
 
 

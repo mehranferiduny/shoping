@@ -5,7 +5,8 @@ const fs=require("fs");
 
 const Category=require('../models/Category')
 const Products=require('../models/Products');
-const {separate}=require('../utils/separate')
+const {separate}=require('../utils/separate');
+const Categorymin = require("../models/Categorymin");
 
 //!dashbord
 exports.getDashbord=async(req,res)=>{
@@ -76,12 +77,14 @@ exports.editCategory =async(req,res)=>{
 exports.getCategory=async(req,res)=>{
     try {
         const category=await Category.find({}).sort({ name: -1 })
+        const catmain=await Categorymin.find({}).sort({ name: -1 })
         if(!category) res.status(401).send('not category in db');
         res.render('admin/category',{
           pageTitle:'اضافه کردن دسته بندی',
           layout:'./layouts/dashLayot',
           path:'/getProducts',
           category,
+          catmain
         })
       
         
@@ -121,15 +124,17 @@ exports.deleteCategory = async (req, res) => {
 
   exports.addCategorymin = async (req, res) => {
     const errorArr = [];
+    const catId=req.params.id;
+    console.log(catId);
   
     try {
      
         const name=req.body.name;
-        if(!name) res.send("name requrd")
+        if(!name) res.status(401).send("name requrd")
   
-        await Category.categoryValidation({name:name});
-        await Category.create({name:name});
-      res.redirect('/dashbord/getCategorys')
+        await Categorymin.categoryValidation({name:name});
+        await Categorymin.create({name:name,IdCat:catId});
+      res.status(200).redirect('/dashbord/getCategorys')
     } catch (err) {
         err.inner.forEach((e) => {
             errorArr.push({

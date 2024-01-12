@@ -101,6 +101,41 @@ function getidauth(method,productId,url,redirct,name){
   .catch(error => console.error('Error:', error));
   alert(` تغییر اعمال شد`); 
   }
+  if(url == '/dashbord/addCategorymin'){
+    var userInput = window.prompt(` نام دسته بندی  را که میخواهید اضافه کنید را وارد کنید`);
+  fetch(url, {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+      // درخواست Authorization را با مقدار ذخیره شده از متغیر جاوااسکریپت ارسال کنید
+      'Authorization': productId
+    },
+    
+    // ممکن است نیاز باشد داده‌های اضافی را نیز ارسال کنید
+    body: JSON.stringify({
+      // productId: productId,
+      name: userInput,
+      catid:productId
+      // ممکن است دیگر داده‌ها نیز بخواهید ارسال کنید
+      // ...
+    })
+  })
+  .then(response =>{
+    response.json();
+    console.log(response);
+    if(response.status == 200){
+      window.location.href =redirct;
+      
+    }
+    
+  } )
+  .then(data => {
+    // پاسخ از Backend را در اینجا پردازش کنید
+    console.log(data);
+  })
+  .catch(error => console.error('Error:', error));
+  alert(` تغییر اعمال شد`); 
+  }
 }
 
 

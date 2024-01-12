@@ -1,5 +1,6 @@
 const Products=require('../models/Products');
 const Category=require('../models/Category')
+const CategoryMin=require('../models/Categorymin')
 const {separate}=require('../utils/separate')
 const split = require('split-string');
 
@@ -17,6 +18,7 @@ exports.getProducts=async(req,res)=>{
   try {
       const products=await Products.find({}).sort({ createdAt: -1 })
       const category=await Category.find({}).sort({ name: -1 })
+      const categorymin=await CategoryMin.find({}).sort({ name: -1 })
       const basckeid=await Basket.find({userId:user.id}).sort({ name: -1 });
       if(basckeid.length > 0){
       var productbas=await Products.find({_id:basckeid[0].productId})
@@ -32,7 +34,8 @@ exports.getProducts=async(req,res)=>{
         category,
         separate,
         user:req.user,
-        productbas
+        productbas,
+        categorymin
       })
       
   } catch (err) {
@@ -51,6 +54,7 @@ exports.singelProduct=async(req,res)=>{
     const productId=req.params.id;
     const products=await Products.find({}).sort({ createdAt: -1 })
     const category=await Category.find({}).sort({ name: -1 })
+    const categorymin=await CategoryMin.find({}).sort({ name: -1 })
     const basckeid=await Basket.find({userId:user.id}).sort({ name: -1 });
     if(basckeid.length > 0){
       var productbas=await Products.find({_id:basckeid[0].productId})
@@ -69,7 +73,8 @@ exports.singelProduct=async(req,res)=>{
         user:user,
         productbas,
         separate,
-        split
+        split,
+        categorymin
       });
   } catch (err) {
     console.log(err);

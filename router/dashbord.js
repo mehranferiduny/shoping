@@ -16,6 +16,11 @@ router.get("/getCategorys",  adminController.getCategory);
 router.delete("/deleteCategory",  adminController.deleteCategory);
 
 
+//!mincat
+//  @desc   Dashboard
+//  @route  GET /dashboard
+router.post("/addCategorymin/:id",  adminController.addCategorymin);
+
 //! @Producte
 router.post("/addProduct",  adminController.addProducts);
 router.post("/editProduct/:id",  adminController.editProducts);

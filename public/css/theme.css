@@ -215,7 +215,9 @@
 
 .bordleft{
   border-left: 1px solid #78787845;
-  height: 8% !important;
+  height: 50% !important;
+  margin-top: 12px;
+
 }
 
 :is(.dark .dark\:bg-emerald-400\/50) {
@@ -226,4 +228,29 @@
 }
 .image-singel{
   width: 60%;
+
+}
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.w-100{
+  width: 100%;
+  display: block;
+}
+.p-5{
+  padding: 15px !important;
+}
+.pr-2{
+  padding-right: 15px !important;
+}
+.mb-0{
+  margin-bottom: 0;
 }
