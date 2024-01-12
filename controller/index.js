@@ -59,18 +59,14 @@ exports.singelProduct=async(req,res)=>{
       if(!productId) console.log("id product is requaid");
       const product=await Products.findOne({productID:productId});
 
-     
-
-
-
-    await  res.render('index/singelPage',{
-        pageTitle:` ${product.title}` || tekno,
+      res.render('index/singelPage',{
+        pageTitle:product.title,
         path: "/",
         product,
         category,
         basckeid,
         products,
-        user,
+        user:user,
         productbas,
         separate,
         split

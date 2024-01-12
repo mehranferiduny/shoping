@@ -1,0 +1,82 @@
+
+/* 
+This font is considered a proprietary software. To gain information about the laws regarding the use of these fonts, please visit www.fontiran.com
+--------------------------------------------------------------------------------------
+This set of fonts are used in this project under the license: (0PT2Z64G)
+--------------------------------------------------------------------------------------
+*/
+
+@font-face {
+    font-family: "Vazir";
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/vazir/Vazirmatn-Thin.woff2") format("woff2");
+  }
+  
+  @font-face {
+    font-family: "Vazir";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/vazir/Vazirmatn-Light.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Vazir";
+    font-style: normal;
+    font-weight: 500;
+    src: url("../fonts/vazir/Vazirmatn-Medium.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Vazir";
+    font-style: normal;
+    font-weight: 600;
+    src: url("../fonts/vazir/Vazirmatn-Bold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Vazir";
+    font-style: normal;
+    font-weight: bold;
+    src: url("../fonts/vazir/Vazirmatn-SemiBold.woff2") format("woff2");
+  }
+
+  /* Webfont: Yekan */
+@font-face {
+	font-family: 'Yekan';
+	src:	url('../fonts/Yekan/Yekan.eot'); /* IE9 Compat Modes */
+	src:	url('../fonts/Yekan/Yekan.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			url('../fonts/Yekan/Yekan.woff2') format('woff2'), /* Modern Browsers */
+			url('../fonts/Yekan/Yekan.woff') format('woff'), /* Modern Browsers */
+			url('../fonts/Yekan/Yekan.otf') format('opentype'), /* Open Type Font */	
+			url('../fonts/Yekan/Yekan.ttf') format('truetype'); /* Safari, Android, iOS */
+	font-weight: auto;
+	font-style: normal;
+	text-rendering: optimizeLegibility;
+	font-display: auto;
+}
+  /* Webfont: shabnam */
+@font-face {
+	font-family: 'shabnam';
+	src:	url('../fonts/Shabnam.eot'); /* IE9 Compat Modes */
+	src:	url('../fonts/Shabnam.eot') format('embedded-opentype'), /* IE6-IE8 */
+			url('../fonts/Shabnam-Thin.woff2') format('woff2'), /* Modern Browsers */
+			url('../fonts/Shabnam-Thin.woff') format('woff'), /* Modern Browsers */
+			url('../fonts/Shabnam-Thin.eot') format('opentype'), /* Open Type Font */	
+			url('../fonts/Shabnam-Thin.ttf') format('truetype'); /* Safari, Android, iOS */
+	font-weight: normal;
+	font-style: normal;
+	text-rendering: optimizeLegibility;
+	font-display: auto;
+}
+
+
+  /* Webfont: sans */
+  @font-face {
+    font-family: "sans";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/IRANSans-web.ttf") format("ttf");
+  }
+
+  body {
+    font-family: "Yekan","Vazir","sans", "shabnam"   !important;
+  }
+  

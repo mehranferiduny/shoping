@@ -119,6 +119,31 @@ exports.deleteCategory = async (req, res) => {
 
 
 
+  exports.addCategorymin = async (req, res) => {
+    const errorArr = [];
+  
+    try {
+     
+        const name=req.body.name;
+        if(!name) res.send("name requrd")
+  
+        await Category.categoryValidation({name:name});
+        await Category.create({name:name});
+      res.redirect('/dashbord/getCategorys')
+    } catch (err) {
+        err.inner.forEach((e) => {
+            errorArr.push({
+                name: e.path,
+                message: e.message,
+            });
+        });
+        res.send(errorArr);
+        
+    }
+  };
+
+
+
 
 //!Products
 exports.addProducts = async (req, res) => {
