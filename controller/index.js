@@ -64,7 +64,7 @@ exports.singelProduct=async(req,res)=>{
       const product=await Products.findOne({productID:productId});
 
       res.render('index/singelPage',{
-        pageTitle:product.title,
+        pageTitle:"نام محصول",
         path: "/",
         product,
         category,

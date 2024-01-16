@@ -386,6 +386,7 @@ exports.deleteProducts = async (req, res) => {
   exports.getProductindex=async(req,res)=>{
     try {
       const category=await Category.find({}).sort({ name: -1 });
+      const categorymin=await Categorymin.find({}).sort({ name: -1 });
       if(!category){
         res.status(401).send("اول دسته بندی را اضافه کنید");
       }
@@ -393,7 +394,9 @@ exports.deleteProducts = async (req, res) => {
         pageTitle:'اضافه کردن محصول',
         layout:'./layouts/dashLayot',
         path:'/getProducts',
-        category
+        category,
+        categorymin
+        
       })
     } catch (err) {
       

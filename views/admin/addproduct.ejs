@@ -62,6 +62,17 @@
     
       </select>
     </div>
+    <div class="mb-3 col">
+      <label for="text5" class="form-label">دسته بندی</label>
+
+      <select class="form-select text-center " id="selectOption" name="category" required>
+        <option class="nametab" value="" disabled selected>یک گزینه را انتخاب کنید</option>
+        <% for(let cat of categorymin) {%>
+        <option class="text-right nametab justify-content-center" value="<%= cat._id  %>"><%= cat.name  %></option>
+        <% } %>
+    
+      </select>
+    </div>
   </div>
     <div class="mb-3">
       <label for="text6" class="form-label">توضیحات</label>

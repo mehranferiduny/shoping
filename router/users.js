@@ -11,6 +11,7 @@ const router = new express.Router();
 //! @Users
 
 router.post("/addUser",  userController.addUsers);
+router.post("/addPhone",  userController.addPhone);
 router.post("/loginUser",  userController.loginUser,userController.rememberMe);
 router.post("/editUser/:id",  userController.editUser);
 router.get("/logout", authenticated, userController.logout);

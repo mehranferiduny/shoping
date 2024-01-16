@@ -73,6 +73,10 @@ const Products = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Category",
     },
+    categorymin: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Categorymin",
+    },
     createdAt: {
         type: Date,
         default: Date.now,

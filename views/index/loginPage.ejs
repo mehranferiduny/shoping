@@ -1,53 +1,17 @@
+<main class="backgrand">
+  <div class="bg-login">
+    <div class="logo">
+      <img src="/images/logo/1.png" alt="" srcset="">
+    </div>
+    <div class="m-2 p-1   mx-auto text-center mt-5  btn-login dark:text-white row btn-vorod">
+      <a class="column " href="/user/LoginPage"> ورود</a>
 
-
-  <main class="main-content  mt-0 text-end">
-    <section>
-      <div class="page-header min-vh-75">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
-              <div class="card card-plain mt-8">
-                <div class="card-header pb-0 text-left bg-transparent">
-                  <h3 class="font-weight-bolder text-info text-gradient">خوش آمدید</h3>
-                  <p class="mb-0">جهت خرید و تعامل وارد اکانت خود شوید</p>
-                </div>
-                <div class="card-body">
-                  <%- include('../includes/messageLogin')  %>
-                  <form role="form" action="/user/loginUser" method="POST">
-                    <label>شماره تماس</label>
-                    <div class="mb-3">
-                      <input type="tel" name="phone" required class="form-control rtl text-end" placeholder=" شماره تماس" aria-label="Email" aria-describedby="email-addon">
-                    </div>
-                    <label>کلمه عبور</label>
-                    <div class="mb-3">
-                      <input type="password" name="password" required class="form-control rtl text-end" placeholder="کلمه عبور" aria-label="Password" aria-describedby="password-addon">
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" name="remember" type="checkbox" id="rememberMe" checked="">
-                      <label class="form-check-label"  for="rememberMe"> من را به خاطر بسپارید</label>
-                    </div>
-                    <div class="g-recaptcha  capcha" data-sitekey="6Ldo-kApAAAAADQbC2hPz6T38ZR1FpgJ8beWG0nP"></div>
-                    <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">ورود</button>
-                    </div>
-                  </form>
-                </div>
-                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                  <p class="mb-4 text-sm mx-auto">
-                   حساب کاربری ندارم
-                    <a href="/user/registerPage" class="text-info text-gradient font-weight-bold">ثبت نام</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('/images/pexels-zhugewala-2113855.jpg')"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+      <a class="column " href="/user/LoginPage">ثبت نام</a>
+    </div>
+    <%- include("../includes/messageLogin.ejs") %>
+      <form action="/user/addPhone" method="POST" class="mx-auto mt-5 text-center">
+        <input type="text" name="phone" class="w-50 border-input p-2 text-right m-2" placeholder="شماره موبایل ">
+        <input type="submit" class="w-50 btn-sabt mt-5 p-2 text-right m-2" value="ارسال کد">
+      </form>
+  </div>
+</main>

@@ -2,42 +2,65 @@ const passport = require("passport");
 const Users = require('../models/Users');
 const Category=require('../models/Category')
 const Products=require('../models/Products');
+let CAPCHA_NUM;
 
 //!Users
+
+exports.addPhone=async(req,res)=>{
+  
+  const errorArr = [];
+  const phone=req.body.phone;
+  try {
+    const user = await Users.findOne({ phone: phone });
+  if(user){
+    req.flash("error","شما قبلا ثبت نام کرده اید! ")
+    return res.redirect("/user/LoginPage")
+  }
+
+   CAPCHA_NUM=Math.floor(Math.random() * 100000) + 1;
+    console.log("hiiii",CAPCHA_NUM);
+    req.session.phone=phone;
+   return res.render('index/verifyNumber',{
+      pageTitle:"تایید شماره موبایل",
+      path: "/",
+      layout: './layouts/loginLayout',
+      message: req.flash('message'),
+      error: req.flash("error"),
+      phone,
+    })
+  } catch (err) {
+    console.log(err);
+  }
+
+  
+}
 exports.addUsers = async (req, res) => {
 
   const errorArr = [];
+  
 
   try {
 
-    const user = await Users.findOne({ phone: req.body.phone });
-    if (user) {
-      errorArr.push({ message: " شما قبلا ثبت نام کردین لطفا وارد شوید" });
-      res.render("index/registerPage", {
-        pageTitle: ' ثبت نام کاربر ',
+    if (!req.body.CAPCHA_NUM){
+      req.flash("error","کد ارسالی را درست وارد کنید")
+      return res.redirect('/user/LoginPage')
+    }
+    console.log(req.session.phone);
+    if(req.body.CAPCHA_NUM=== CAPCHA_NUM){
+      res.render('index/sabetNam',{
+        pageTitle:"ثبت کلمه عبور",
         path: "/",
         layout: './layouts/loginLayout',
-        errors: errorArr,
         message: req.flash('message'),
         error: req.flash("error"),
+        phone:req.session.phone
       })
     }
-    if (!req.body) res.send("body requrd")
-    console.log(req.body);
-    await Users.userValidationsabt(req.body);
-       const {phone,password,email}=req.body;
-    await Users.create({
-      phone,
-      password,
-      email,
-      name:'',
-      family:"",
-      address:'',
-      codemeli:'',
-      codeposti:'',
-  });
-    req.flash("message", "ثبت نام با موفقیت انجام شد.وارد شوید")
-    res.status(200).redirect('/user/LoginPage')
+    
+       
+      
+
+
   } catch (err) {
 
     err.inner.forEach((e) => {
@@ -58,7 +81,12 @@ exports.addUsers = async (req, res) => {
 
 
   }
-};
+}
+
+
+
+
+
 
 exports.editUser=async(req,res)=>{
     
