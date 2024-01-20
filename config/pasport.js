@@ -5,7 +5,12 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/Users");
 
 passport.use(
-    new Strategy({ usernameField: "phone" }, async (phone, password, done) => {
+    new Strategy(
+        { usernameField: "phone",
+        passwordField: 'password',
+        passReqToCallback: false },
+        
+         async (phone, password, done) => {
         try {
             const user = await User.findOne({ phone });
             if (!user) {

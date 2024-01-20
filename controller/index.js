@@ -27,7 +27,7 @@ exports.getProducts=async(req,res)=>{
     
       if(!products) res.status(401).send('not Products in db');
       // res.status(201).send(products)
-      res.render("index/product",{
+      res.render("index/index",{
         pageTitle:'صفحه ای اصلی',
         path: "/",
         products,

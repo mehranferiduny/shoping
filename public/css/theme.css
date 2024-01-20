@@ -339,3 +339,15 @@
   direction: rtl;
   background-color: #0ca270 !important;
 }
+
+.banner{
+  margin-bottom: 5rem;
+}
+.message-box{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+  color: #345609 !important;
+  background-color: #fdfdfd;
+}

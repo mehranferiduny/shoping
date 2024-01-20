@@ -1,0 +1,100 @@
+<section class="mb-8">
+  <div class="container relative">
+    <!-- Section Header -->
+    <div class="mb-4 flex items-center justify-between">
+      <h3
+        class="font-medium text-zinc-700 dark:text-white md:text-lg lg:text-xl"
+      >
+        پرفروش ترین محصولات
+      </h3>
+      <a class='flex items-center gap-x-2 py-2 text-sm text-emerald-500 dark:text-emerald-400 lg:text-base' href='/shop'>
+        مشاهده همه
+        <span>
+          <svg class="h-5 w-5 lg:h-6 lg:w-6">
+            <use xlink:href="#chevron-left" />
+          </svg>
+        </span>
+      </a>
+    </div>
+    <!-- Section Content -->
+    <div class="swiper product-slider p-px">
+      <div class="swiper-wrapper">
+        <% for(let productz of products){ %>     
+        <div class="swiper-slide">
+          <div
+            class="border-gradient group relative rounded-base p-px before:absolute before:-inset-px before:h-[calc(100%+2px)] before:w-[calc(100%+2px)] before:rounded-base"
+          >
+            <!-- Product Card -->
+            <div
+              class="relative rounded-xl bg-white p-2 shadow-base dark:bg-zinc-900 md:p-5"
+            >
+              <!-- image -->
+              <div class="mb-2 md:mb-5" draggable="false">
+                <a href='/<%= productz.productID  %>'>
+                  <img
+                    alt=""
+                    class="mx-auto w-32 rounded-lg md:w-auto image-pro"
+                    src="uploads/products/<%= productz.image %>"
+                  />
+                </a>
+              </div>
+              <!-- title -->
+              <div class="mb-2">
+                <a class='line-clamp-2 h-10 text-sm text-zinc-700 dark:text-white md:h-12 md:text-base'  href='/<%= productz.productID  %>'>
+               <%= productz.title  %>
+                </a>
+              </div>
+              <!-- Prices -->
+
+              <div class="flex flex-col">
+                <!-- Old price -->
+                <% if(productz.sale != 0){ %>
+                <div class="h-5 text-left">
+                  <del
+                    class="text-sm text-zinc-500 decoration-red-600 dark:text-zinc-400 dark:decoration-red-500 md:text-base text-left"
+                  >
+                  <%= productz.price  %>
+                  </del>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p
+                      class="w-9 rounded-full bg-red-500 py-px text-center text-sm text-white dark:bg-red-500"
+                    >
+                      <%= productz.sale*100/productz.price %>
+                    </p>
+                  </div>
+                  <!-- New price -->
+                  <div
+                    class="text-sm font-bold text-emerald-500 dark:text-emerald-400 md:text-base"
+                  >
+                   <%= productz.price-productz.sale  %>
+                    <span class="text-xs font-light md:text-sm"
+                      >تومان</span
+                    >
+                  </div>
+                </div>
+                <% } else{ %>
+
+                <div
+                class="text-sm font-bold text-emerald-500 dark:text-emerald-400 md:text-base text-left"
+              >
+               <%= productz.price  %>
+                <span class="text-xs font-light md:text-sm"
+                  >تومان</span
+                >
+              </div>
+              <% } %>
+            </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+</section>

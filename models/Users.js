@@ -8,10 +8,12 @@ const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
+    default:' ',
   },
   family: {
     type: String,
     trim: true,
+    default:' ',
   },
   phone: {
     type: String,
@@ -41,14 +43,17 @@ const UserSchema = new mongoose.Schema({
   },
   address: {
     type: String,
+    default:' ',
     trim: true,
   },
   codemeli: {
     type: String,
     trim: true,
+    default:' ',
   },
   codeposti: {
     type: String,
+    default:' ',
     trim: true,
   },
 

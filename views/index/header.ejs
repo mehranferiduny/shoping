@@ -1212,10 +1212,10 @@
                             <img
                               alt="profile"
                               class="h-8 w-8 rounded-full"
-                              src="./assets/images/user.png"
+                              src="/images/vector/user.png"
                             />
                           </span>
-                          <span class="line-clamp-1"> نام تستی تستی </span>
+                          <span class="line-clamp-1"><%= user.phone  %> </span>
                         </span>
                         <span>
                           <svg class="h-6 w-6">
@@ -1284,7 +1284,7 @@
                     <li>
                       <a
                         class="flex items-center justify-between rounded-lg p-4 text-red-500 hover:bg-red-500/10 dark:text-red-400 dark:hover:bg-red-400/10"
-                        href="#"
+                        href="/user/logout"
                       >
                         <div class="flex items-center gap-x-2">
                           <svg class="h-6 w-6">
@@ -1309,7 +1309,7 @@
               <div class="m-2 p-2 row btn-login dark:text-white">
                <a href="/user/LoginPage" > ورود</a>
                <span class="bordleft"></span>
-               <a href="/user/LoginPage">ثبت نام</a>
+               <a href="/user/registerPage">ثبت نام</a>
               </div>
             <% } %>
               <!-- Basket -->
@@ -1355,7 +1355,9 @@
                   <div class="h-60">
                     <ul
                       class="main-scroll h-full space-y-2 divide-y divide-gray-100 overflow-y-auto p-5 pl-2 dark:divide-white/5"
+                      id="shopingadd"
                     >
+
                       <li>
                         <div class="flex gap-x-2 py-5">
                           <!-- Product Image -->

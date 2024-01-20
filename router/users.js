@@ -12,6 +12,7 @@ const router = new express.Router();
 
 router.post("/addUser",  userController.addUsers);
 router.post("/addPhone",  userController.addPhone);
+router.post("/creatUser",  userController.createUser);
 router.post("/loginUser",  userController.loginUser,userController.rememberMe);
 router.post("/editUser/:id",  userController.editUser);
 router.get("/logout", authenticated, userController.logout);
@@ -20,8 +21,8 @@ router.get("/logout", authenticated, userController.logout);
 
 
 //!page
-router.get("/LoginPage",  userController.loginPage);
 router.get("/registerPage",  userController.registerPage);
+router.get("/LoginPage",  userController.loginPage);
 router.get("/editPage",  userController.editPage);
 
 

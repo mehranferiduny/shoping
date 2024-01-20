@@ -18,9 +18,10 @@ exports.addPhone=async(req,res)=>{
   }
 
    CAPCHA_NUM=Math.floor(Math.random() * 100000) + 1;
-    console.log("hiiii",CAPCHA_NUM);
+    console.log(CAPCHA_NUM);
     req.session.phone=phone;
-   return res.render('index/verifyNumber',{
+    req.session.CAPCHA_NUM=CAPCHA_NUM;
+   return res.render('index/login/verifyNumber',{
       pageTitle:"تایید شماره موبایل",
       path: "/",
       layout: './layouts/loginLayout',
@@ -42,20 +43,24 @@ exports.addUsers = async (req, res) => {
   try {
 
     if (!req.body.CAPCHA_NUM){
-      req.flash("error","کد ارسالی را درست وارد کنید")
+      req.flash("error","کد ارسالی را  وارد کنید")
       return res.redirect('/user/LoginPage')
     }
     console.log(req.session.phone);
-    if(req.body.CAPCHA_NUM=== CAPCHA_NUM){
-      res.render('index/sabetNam',{
-        pageTitle:"ثبت کلمه عبور",
-        path: "/",
-        layout: './layouts/loginLayout',
-        message: req.flash('message'),
-        error: req.flash("error"),
-        phone:req.session.phone
-      })
+    console.log(req.body.CAPCHA_NUM);
+    console.log(req.session.CAPCHA_NUM);
+    if(req.body.CAPCHA_NUM != req.session.CAPCHA_NUM){
+      req.flash("error","کد ارسال شده را درست وارد کنید")
+      return res.redirect('/user/LoginPage')
     }
+    res.render('index/login/sabetNam',{
+      pageTitle:"ثبت کلمه عبور",
+      path: "/",
+      layout: './layouts/loginLayout',
+      message: req.flash('message'),
+      error: req.flash("error"),
+      phone:req.session.phone
+    })
     
        
       
@@ -80,6 +85,24 @@ exports.addUsers = async (req, res) => {
     })
 
 
+  }
+}
+
+exports.createUser=async(req,res)=>{
+  const phone=req.session.phone;
+  console.log(phone.toString());
+  const {password,confirmPassword}=req.body;
+  try {
+
+    await Users.userValidationsabt({phone,password,confirmPassword});
+    await Users.create({phone:phone,password:password})
+    req.flash("message","ثبت نام با موفقیت انجام شد وارد شوید")
+    res.redirect('/user/LoginPage')
+
+     
+    
+  } catch (err) {
+    console.log(err);
   }
 }
 
@@ -165,6 +188,7 @@ exports.loginUser = async (req, res, next) => {
   }
 
 
+
   const secretKey = process.env.CAPTCHA_SECRET;
   const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body["g-recaptcha-response"]}
   &remoteip=${req.connection.remoteAddress}`;
@@ -189,8 +213,8 @@ exports.loginUser = async (req, res, next) => {
 
 }
 exports.rememberMe = (req, res) => {
-  
-  if (req.body.remember == 'on') {
+  console.log(req.body.remember);
+  if (req.body.remember == 'remember-me') {
     req.session.cookie.originalMaxAge = 24 * 60 * 60 * 1000; // 1 day 24
   } else {
     req.session.cookie.expire = null;
@@ -212,27 +236,24 @@ exports.logout = (req, res,next) => {
 
 
 //!page
-exports.registerPage = async (req, res) => {
-  try {
+exports.registerPage =  (req, res) => {
 
-    res.render("index/registerPage", {
+
+    res.render("index/login/loginPage", {
       pageTitle: ' ثبت نام کاربر ',
       path: "/",
       layout: './layouts/loginLayout',
+      message: req.flash('message'),
       error: req.flash("error"),
-      message: req.flash('message')
+
     })
 
-  } catch (err) {
-    console.log(err);
-
-  }
 }
-exports.loginPage = async (req, res) => {
+exports.loginPage =  (req, res) => {
 
-  try {
 
-    res.render("index/loginPage", {
+
+    res.render("index/login/loginPage2", {
       pageTitle: ' ورود کاربر ',
       path: "/",
       layout: './layouts/loginLayout',
@@ -241,10 +262,6 @@ exports.loginPage = async (req, res) => {
 
     })
 
-  } catch (err) {
-    console.log(err);
-
-  }
 }
 exports.editPage = async (req, res) => {
 
