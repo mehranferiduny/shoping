@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 const shortId = require("shortid");
+const {generateUniqueNumericId} = require("../utils/randumid");
 
 const { schema } = require("./secure/ProductsValidate");
 
 const Products = new mongoose.Schema({
   productID:{
     type:String,
-    default: shortId.generate()
+    default: generateUniqueNumericId(),
   },
     title: {
         type: String,
@@ -39,10 +40,10 @@ const Products = new mongoose.Schema({
       required: [true,'سایز محصول الزامی میباشد'],
       trim: true,
     }],
-    color:[{
+    color:{
       type: String,
       required: [true,'رنگ محصول الزامی میباشد']
-    }],
+    },
     brand:{
       type:String,
       required:[true,'برند محصول الزامی میباشد']
@@ -69,10 +70,7 @@ const Products = new mongoose.Schema({
         type: String,
         default:""
     },
-    category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category",
-    },
+
     categorymin: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Categorymin",

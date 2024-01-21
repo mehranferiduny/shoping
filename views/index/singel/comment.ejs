@@ -1,0 +1,902 @@
+<div class="rounded-lg wsingel bg-white p-4 shadow-base dark:bg-zinc-900">
+  <div class="mb-6">
+    <ul
+      class="-mb-px flex justify-between gap-x-2 border-b border-gray-100 text-center text-sm font-medium dark:border-white/5 xs:justify-start xs:gap-x-4 xs:text-base"
+    >
+      <li>
+        <a
+          href="#description"
+          class="inline-block rounded-t-lg border-b-2 border-transparent px-2 pb-2 text-zinc-700 hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300"
+        >
+          معرفی
+        </a>
+      </li>
+      <li>
+        <a
+          href="#specs"
+          class="inline-block rounded-t-lg border-b-2 border-transparent px-2 pb-2 text-zinc-700 hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300"
+        >
+          مشخصات
+        </a>
+      </li>
+      <li>
+        <a
+          href="#comments"
+          class="relative inline-block rounded-t-lg border-b-2 border-transparent px-2 pb-2 text-zinc-700 hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300"
+        >
+          دیدگاه ها
+          <span
+            class="absolute -left-5 -top-4 flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-xs text-white dark:bg-emerald-600 dark:text-white xs:text-sm"
+          >
+            2
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    class="space-y-16 divide-y divide-gray-100 dark:divide-white/5"
+  >
+    <div class="py-6" id="description">
+      <div
+        class="relative mb-16 w-fit text-xl font-medium text-zinc-700 dark:text-white"
+      >
+        معرفی
+        <span
+          class="absolute right-0 top-10 h-[3px] w-full rounded-full bg-emerald-500 dark:bg-emerald-400"
+        >
+        </span>
+      </div>
+      <div
+        class="mb-6 max-h-[500px] overflow-hidden md:mb-10"
+        id="descriptionContainer"
+      >
+        <div
+          class="space-y-4 text-sm leading-loose text-zinc-600 dark:text-zinc-300 lg:text-base"
+        >
+         <%= product.description  %>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <button
+          class="btn-secondary-nobg hidden md:flex"
+          id="toggleDescriptionButton"
+        >
+          مشاهده بیشتر
+          <svg class="h-5 w-5">
+            <use xlink:href="#chevron-left" />
+          </svg>
+        </button>
+        <button
+          id="descriptionButtonMobile"
+          aria-controls="mobile-description-drawer-navigation"
+          data-drawer-show="mobile-description-drawer-navigation"
+          data-drawer-placement="bottom"
+          data-drawer-target="mobile-description-drawer-navigation"
+          type="button"
+          class="btn-secondary-nobg md:hidden"
+        >
+          مشاهده بیشتر
+          <svg class="h-5 w-5">
+            <use xlink:href="#chevron-left" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="py-6" id="specs">
+      <div
+        class="relative mb-16 w-fit text-xl font-medium text-zinc-700 dark:text-white"
+      >
+        مشخصات
+        <span
+          class="absolute right-0 top-10 h-[3px] w-full rounded-full bg-emerald-500 dark:bg-emerald-400"
+        >
+        </span>
+      </div>
+      <div
+        class="mb-6 max-h-[500px] overflow-hidden md:mb-10"
+        id="specsContainer"
+      >
+        <ul class="space-y-6 text-sm">
+          <li class="grid grid-cols-3 gap-x-2 lg:grid-cols-5">
+            <div class="col-span-1 text-zinc-500 dark:text-zinc-400">
+              جنس
+            </div>
+            <div
+              class="col-span-2 border-b border-gray-100 pb-4 text-zinc-600 dark:border-white/5 dark:text-zinc-300 lg:col-span-4"
+            >
+              <ul class="space-y-4">
+                <li><%= product.jens  %></li>
+              </ul>
+            </div>
+          </li>
+          <li class="grid grid-cols-3 gap-x-2 lg:grid-cols-5">
+            <div class="col-span-1 text-zinc-500 dark:text-zinc-400">
+              برند 
+            </div>
+            <div
+              class="col-span-2 border-b border-gray-100 pb-4 text-zinc-600 dark:border-white/5 dark:text-zinc-300 lg:col-span-4"
+            >
+              <ul class="space-y-4">
+                <li><%= product.brand  %></li>
+              </ul>
+            </div>
+          </li>
+          <li class="grid grid-cols-3 gap-x-2 lg:grid-cols-5">
+            <div class="col-span-1 text-zinc-500 dark:text-zinc-400">
+              رنگ
+            </div>
+            <div
+              class="col-span-2 border-b border-gray-100 pb-4 text-zinc-600 dark:border-white/5 dark:text-zinc-300 lg:col-span-4"
+            >
+              <ul class="space-y-4">
+                <li><%= product.color  %></li>
+              </ul>
+            </div>
+          </li>
+      
+        </ul>
+      </div>
+      <div class="flex justify-center">
+        <button
+          class="btn-secondary-nobg hidden md:flex"
+          id="toggleSpecsButton"
+        >
+          مشاهده بیشتر
+          <svg class="h-5 w-5">
+            <use xlink:href="#chevron-left" />
+          </svg>
+        </button>
+        <button
+          id="specsButtonMobile"
+          class="btn-secondary-nobg md:hidden"
+          aria-controls="mobile-spec-drawer-navigation"
+          data-drawer-show="mobile-spec-drawer-navigation"
+          data-drawer-placement="bottom"
+          data-drawer-target="mobile-spec-drawer-navigation"
+          type="button"
+        >
+          مشاهده بیشتر
+          <svg class="h-5 w-5">
+            <use xlink:href="#chevron-left" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="py-6" id="comments">
+      <div
+        class="relative mb-16 w-fit text-xl font-medium text-zinc-700 dark:text-white"
+      >
+        دیدگاه ها
+        <span
+          class="absolute right-0 top-10 h-[3px] w-full rounded-full bg-emerald-500 dark:bg-emerald-400"
+        >
+        </span>
+      </div>
+
+      <div>
+        <div class="grid grid-cols-12 gap-y-8 md:gap-8">
+          <!-- Submit New Comment -->
+          <div class="col-span-12 md:col-span-4 lg:col-span-3">
+            <div class="grid grid-cols-2 gap-4 md:sticky md:top-32">
+              <div class="text-lg text-zinc-700 dark:text-white">
+                ثبت دیدگاه
+              </div>
+              <div class="col-span-2">
+                <label
+                  for="title"
+                  class="relative block rounded-lg border border-gray-100 shadow-base dark:border-white/5"
+                >
+                  <input
+                    type="text"
+                    id="title"
+                    class="peer w-full rounded-lg border-none bg-transparent px-4 py-3 text-zinc-700 placeholder-transparent focus:outline-none focus:ring-0 dark:text-white"
+                    placeholder="عنوان دیدگاه"
+                  />
+
+                  <span
+                    class="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white px-2 py-0.5 text-sm text-zinc-600 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm dark:bg-zinc-900 dark:text-zinc-300"
+                  >
+                    عنوان دیدگاه
+                  </span>
+                </label>
+              </div>
+              <div class="col-span-2">
+                <!-- Suggestion -->
+                <div
+                  class="mb-4 text-sm text-zinc-500 dark:text-zinc-400"
+                >
+                  این محصول را به دیگران پیشنهاد
+                </div>
+                <fieldset class="flex items-center gap-4">
+                  <legend class="sr-only">Suggestion</legend>
+
+                  <div class="w-full">
+                    <input
+                      type="radio"
+                      name="suggest"
+                      value="suggest-like"
+                      id="suggest-like"
+                      class="peer hidden"
+                    />
+
+                    <label
+                      for="suggest-like"
+                      class="relative block cursor-pointer rounded-lg border border-gray-100 p-2 shadow-base peer-checked:border-emerald-500 hover:border-gray-200 dark:border-white/5 peer-checked:dark:border-emerald-400 dark:hover:border-white/10"
+                    >
+                      <div
+                        class="flex items-center gap-x-2 text-emerald-500 dark:text-emerald-400"
+                      >
+                        <svg class="h-5 w-5">
+                          <use xlink:href="#like" />
+                        </svg>
+                        <p class="text-sm xs:text-base">میکنم</p>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="w-full">
+                    <input
+                      type="radio"
+                      name="suggest"
+                      value="suggest-dislike"
+                      id="suggest-dislike"
+                      class="peer hidden"
+                    />
+
+                    <label
+                      for="suggest-dislike"
+                      class="relative block cursor-pointer rounded-lg border border-gray-100 p-2 shadow-base peer-checked:border-red-500 hover:border-gray-200 dark:border-white/5 peer-checked:dark:border-red-400 dark:hover:border-white/10"
+                    >
+                      <div
+                        class="flex items-center gap-x-2 text-red-500 dark:text-red-400"
+                      >
+                        <svg class="h-5 w-5">
+                          <use xlink:href="#dislike" />
+                        </svg>
+                        <p class="text-sm xs:text-base">نمیکنم</p>
+                      </div>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-span-2">
+                <label
+                  for="comment"
+                  class="relative block rounded-lg border border-gray-100 shadow-base dark:border-white/5"
+                >
+                  <textarea
+                    type="text"
+                    id="comment"
+                    rows="3"
+                    class="main-scroll peer w-full rounded-lg border-none bg-transparent px-4 py-3 text-zinc-700 placeholder-transparent focus:outline-none focus:ring-0 dark:text-white"
+                    placeholder="متن دیدگاه"
+                  ></textarea>
+
+                  <span
+                    class="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white px-2 py-0.5 text-sm text-zinc-600 transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm dark:bg-zinc-900 dark:text-zinc-300"
+                  >
+                    متن دیدگاه
+                  </span>
+                </label>
+              </div>
+              <div class="col-span-2 flex justify-end">
+                <button
+                  class="btn-primary w-full px-4 py-2 md:w-auto"
+                >
+                  ارسال دیدگاه
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Comments -->
+          <div
+            class="order-first col-span-12 mb-10 max-h-[500px] overflow-hidden md:order-last md:col-span-8 lg:col-span-9"
+            id="commentsContainer"
+          >
+            <!-- Desktop Comments -->
+            <div class="hidden md:block">
+              <ul
+                class="mb-8 space-y-4 divide-y divide-gray-200 dark:divide-white/10"
+              >
+                <li class="space-y-2">
+                  <div class="py-6">
+                    <div
+                      class="flex items-center justify-between gap-2"
+                    >
+                      <h5
+                        class="mb-4 leading-relaxed text-zinc-700 dark:text-white xl:text-lg"
+                      >
+                        با این قیمت کاملا مناسب و خوبه
+                      </h5>
+                      <button
+                        data-modal-target="submit-answers-to-comments-drawer-navigation"
+                        data-modal-toggle="submit-answers-to-comments-drawer-navigation"
+                        type="button"
+                        class="btn-secondary-nobg"
+                      >
+                        پاسخ
+                        <svg class="w-5 h-5">
+                          <use xlink:href="#chevron-left" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div
+                      class="mb-6 flex items-center gap-x-4 border-b border-gray-100 pb-6 dark:border-white/5"
+                    >
+                      <div
+                        class="flex items-center gap-x-2 text-emerald-500 dark:text-emerald-400"
+                      >
+                        <svg class="h-5 w-5">
+                          <use xlink:href="#like" />
+                        </svg>
+                        پیشنهاد میکنم
+                      </div>
+                      <div class="flex items-center gap-x-2">
+                        <div
+                          class="text-sm text-zinc-500 dark:text-zinc-400"
+                        >
+                          10 شهریور 1403
+                        </div>
+                        <span
+                          class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/10"
+                        ></span>
+                        <div
+                          class="text-sm text-zinc-500 dark:text-zinc-400"
+                        >
+                          خریدار
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="mb-6 border-b border-gray-100 pb-6 dark:border-white/5"
+                    >
+                      <p
+                        class="line-clamp-4 text-sm text-zinc-600 dark:text-zinc-300"
+                      >
+                        برا کسایی که نمیخوان هزینه بالایی کنن گزینه
+                        خیلی خوبیه
+                      </p>
+                    </div>
+                    <div
+                      class="flex items-center justify-end gap-x-8"
+                    >
+                      <div
+                        class="text-sm text-zinc-500 dark:text-zinc-400"
+                      >
+                        آیا این دیدگاه برایتان مفید بود؟
+                      </div>
+                      <button
+                        class="flex items-center gap-x-2 text-emerald-500 transition-all duration-200 hover:text-emerald-400 dark:text-emerald-400 hover:dark:text-emerald-500"
+                      >
+                        <span class="text-sm"> 32 </span>
+                        <svg class="h-6 w-6">
+                          <use xlink:href="#like" />
+                        </svg>
+                      </button>
+                      <button
+                        class="flex items-center gap-x-2 text-red-500 transition-all duration-200 hover:text-red-400 dark:text-red-400 hover:dark:text-red-500"
+                      >
+                        <span class="text-sm"> 76 </span>
+                        <svg class="h-6 w-6">
+                          <use xlink:href="#dislike" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Answers -->
+                  <ul class="space-y-2">
+                    <li>
+                      <div
+                        class="py-6 pr-8 border-r border-gray-200 dark:border-white/10"
+                      >
+                        <div
+                          class="flex items-center justify-between"
+                        >
+                          <h5
+                            class="mb-4 leading-relaxed text-zinc-700 dark:text-white xl:text-lg"
+                          >
+                            با این قیمت کاملا مناسب و خوبه
+                          </h5>
+                          <button
+                            data-modal-target="submit-answers-to-comments-drawer-navigation"
+                            data-modal-toggle="submit-answers-to-comments-drawer-navigation"
+                            type="button"
+                            class="btn-secondary-nobg"
+                          >
+                            پاسخ
+                            <svg class="w-5 h-5">
+                              <use xlink:href="#chevron-left" />
+                            </svg>
+                          </button>
+                        </div>
+                        <div
+                          class="mb-6 flex items-center gap-x-4 border-b border-gray-100 pb-6 dark:border-white/5"
+                        >
+                          <div class="flex items-center gap-x-2">
+                            <div
+                              class="text-sm text-zinc-500 dark:text-zinc-400"
+                            >
+                              10 شهریور 1403
+                            </div>
+                            <span
+                              class="h-3 w-px rounded-full bg-grauy-200 dark:bg-black/10"
+                            ></span>
+                            <div
+                              class="text-sm text-zinc-500 dark:text-zinc-400"
+                            >
+                              خریدار
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="mb-6 border-b border-gray-100 pb-6 dark:border-white/5"
+                        >
+                          <p
+                            class="line-clamp-4 text-sm text-zinc-600 dark:text-zinc-300"
+                          >
+                            برا کسایی که نمیخوان هزینه بالایی کنن
+                            گزینه خیلی خوبیه
+                          </p>
+                        </div>
+                        <div
+                          class="flex items-center justify-end gap-x-8"
+                        >
+                          <div
+                            class="text-sm text-zinc-500 dark:text-zinc-400"
+                          >
+                            آیا این دیدگاه برایتان مفید بود؟
+                          </div>
+                          <button
+                            class="flex items-center gap-x-2 text-emerald-500 transition-all duration-200 hover:text-emerald-400 dark:text-emerald-400 hover:dark:text-emerald-500"
+                          >
+                            <span class="text-sm"> 32 </span>
+                            <svg class="h-6 w-6">
+                              <use xlink:href="#like" />
+                            </svg>
+                          </button>
+                          <button
+                            class="flex items-center gap-x-2 text-red-500 transition-all duration-200 hover:text-red-400 dark:text-red-400 hover:dark:text-red-500"
+                          >
+                            <span class="text-sm"> 76 </span>
+                            <svg class="h-6 w-6">
+                              <use xlink:href="#dislike" />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <div class="py-6">
+                    <h5
+                      class="mb-4 leading-relaxed text-zinc-700 dark:text-white xl:text-lg"
+                    >
+                      با این قیمت اصلا مناسب نیست
+                    </h5>
+                    <div
+                      class="mb-6 flex items-center gap-x-4 border-b border-gray-100 pb-6 dark:border-white/5"
+                    >
+                      <div
+                        class="flex items-center gap-x-2 text-red-500 dark:text-red-400"
+                      >
+                        <svg class="h-5 w-5">
+                          <use xlink:href="#dislike" />
+                        </svg>
+                        پیشنهاد نمیکنم
+                      </div>
+                      <div class="flex items-center gap-x-2">
+                        <div
+                          class="text-sm text-zinc-500 dark:text-zinc-400"
+                        >
+                          10 شهریور 1403
+                        </div>
+                        <span
+                          class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/10"
+                        ></span>
+                        <div
+                          class="text-sm text-zinc-500 dark:text-zinc-400"
+                        >
+                          خریدار
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="mb-6 border-b border-gray-100 pb-6 dark:border-white/5"
+                    >
+                      <p
+                        class="line-clamp-4 text-sm text-zinc-600 dark:text-zinc-300"
+                      >
+                        اصلا خوب نیست
+                      </p>
+                    </div>
+                    <div
+                      class="flex items-center justify-end gap-x-8"
+                    >
+                      <div
+                        class="text-sm text-zinc-500 dark:text-zinc-400"
+                      >
+                        آیا این دیدگاه برایتان مفید بود؟
+                      </div>
+                      <button
+                        class="flex items-center gap-x-2 text-emerald-500 transition-all duration-200 hover:text-emerald-400 dark:text-emerald-400 hover:dark:text-emerald-500"
+                      >
+                        <span class="text-sm"> 32 </span>
+                        <svg class="h-6 w-6">
+                          <use xlink:href="#like" />
+                        </svg>
+                      </button>
+                      <button
+                        class="flex items-center gap-x-2 text-red-500 transition-all duration-200 hover:text-red-400 dark:text-red-400 hover:dark:text-red-500"
+                      >
+                        <span class="text-sm"> 76 </span>
+                        <svg class="h-6 w-6">
+                          <use xlink:href="#dislike" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <!-- Pagination -->
+              <div
+                class="flex items-center justify-center gap-x-4 md:justify-end"
+              >
+                <!-- Previous page-->
+                <a
+                  class="pagination-button flex items-center justify-center"
+                  href="#"
+                >
+                  <svg class="h-6 w-6">
+                    <use xlink:href="#chevron-right"></use>
+                  </svg>
+                </a>
+
+                <!-- Pages -->
+                <div class="flex items-center gap-x-2">
+                  <a
+                    class="pagination-button pagination-button-active"
+                    href="#"
+                  >
+                    1
+                  </a>
+                  <p class="text-sm text-zinc-500 dark:text-zinc-400">
+                    ...
+                  </p>
+
+                  <a class="pagination-button" href="#"> 3 </a>
+                  <a class="pagination-button" href="#"> 4 </a>
+
+                  <p class="text-sm text-zinc-500 dark:text-zinc-400">
+                    ...
+                  </p>
+
+                  <a class="pagination-button" href="#"> 10 </a>
+                </div>
+                <!-- Next page-->
+                <a
+                  class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-zinc-700 transition-all duration-200 hover:bg-emerald-500 hover:text-white dark:bg-zinc-900 dark:text-white hover:dark:bg-emerald-600"
+                  href="#"
+                >
+                  <svg class="h-6 w-6">
+                    <use xlink:href="#chevron-left"></use>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- Mobile Comments -->
+            <div class="md:hidden">
+              <div class="swiper product-comments-swiper">
+                <div class="swiper-wrapper">
+                  <!-- Comment -->
+                  <div class="swiper-slide">
+                    <div
+                      class="flex h-64 flex-col rounded-lg border border-gray-100 px-4 py-6 dark:border-white/5"
+                    >
+                      <!-- head -->
+                      <div
+                        class="flex items-center justify-between gap-2 mb-4"
+                      >
+                        <div
+                          class="flex items-center gap-x-2 text-emerald-500 dark:text-emerald-400"
+                        >
+                          <svg class="h-5 w-5">
+                            <use xlink:href="#like" />
+                          </svg>
+                          پیشنهاد میکنم
+                        </div>
+                        <button
+                          data-modal-target="submit-answers-to-comments-drawer-navigation"
+                          data-modal-toggle="submit-answers-to-comments-drawer-navigation"
+                          type="button"
+                          class="btn-secondary-nobg"
+                        >
+                          پاسخ
+                          <svg class="w-5 h-5">
+                            <use xlink:href="#chevron-left" />
+                          </svg>
+                        </button>
+                      </div>
+                      <!-- Comment -->
+                      <div class="flex-grow space-y-2">
+                        <h5
+                          class="text-sm leading-relaxed text-zinc-700 dark:text-white"
+                        >
+                          با این قیمت کاملا مناسب و خوبه
+                        </h5>
+
+                        <p
+                          class="line-clamp-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300"
+                        >
+                          برا کسایی که نمیخوان هزینه بالایی کنن گزینه
+                          خیلی خوبیه
+                        </p>
+                      </div>
+                      <!-- Footer -->
+                      <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-x-4">
+                          <button
+                            class="relative text-emerald-500 dark:text-emerald-400"
+                          >
+                            <svg class="h-6 w-6">
+                              <use xlink:href="#like" />
+                            </svg>
+                            <span
+                              class="absolute -right-2 top-6 text-sm"
+                            >
+                              32
+                            </span>
+                          </button>
+                          <button
+                            class="relative text-red-500 dark:text-red-400"
+                          >
+                            <svg class="h-6 w-6">
+                              <use xlink:href="#dislike" />
+                            </svg>
+                            <span
+                              class="absolute -right-2 top-6 text-sm"
+                            >
+                              76
+                            </span>
+                          </button>
+                        </div>
+                        <div class="flex items-center gap-x-2">
+                          <div
+                            class="text-xs text-zinc-500 dark:text-zinc-400"
+                          >
+                            10 شهریور 1403
+                          </div>
+                          <span
+                            class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/10"
+                          ></span>
+                          <div
+                            class="text-xs text-zinc-500 dark:text-zinc-400"
+                          >
+                            خریدار
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Comment -->
+
+                  <div class="swiper-slide">
+                    <div
+                      class="flex h-64 flex-col rounded-lg border border-gray-100 px-4 py-6 dark:border-white/5"
+                    >
+                      <!-- head -->
+                      <div
+                        class="flex items-center justify-between gap-2 mb-4"
+                      >
+                        <div
+                          class="flex items-center gap-x-2 text-red-500 dark:text-red-400"
+                        >
+                          <svg class="h-5 w-5">
+                            <use xlink:href="#dislike" />
+                          </svg>
+                          پیشنهاد نمیکنم
+                        </div>
+                        <button
+                          data-modal-target="submit-answers-to-comments-drawer-navigation"
+                          data-modal-toggle="submit-answers-to-comments-drawer-navigation"
+                          type="button"
+                          class="btn-secondary-nobg"
+                        >
+                          پاسخ
+                          <svg class="w-5 h-5">
+                            <use xlink:href="#chevron-left" />
+                          </svg>
+                        </button>
+                      </div>
+                      <!-- Comment -->
+                      <div class="flex-grow space-y-2">
+                        <h5
+                          class="text-sm leading-relaxed text-zinc-700 dark:text-white"
+                        >
+                          با این قیمت اصلا مناسب نیست
+                        </h5>
+                        <p
+                          class="line-clamp-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300"
+                        >
+                          اصلا خوب نیست
+                        </p>
+                      </div>
+                      <!-- Footer -->
+                      <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-x-4">
+                          <button
+                            class="relative text-emerald-500 dark:text-emerald-400"
+                          >
+                            <svg class="h-6 w-6">
+                              <use xlink:href="#like" />
+                            </svg>
+                            <span
+                              class="absolute -right-2 top-6 text-sm"
+                            >
+                              100 +
+                            </span>
+                          </button>
+                          <button
+                            class="relative text-red-500 dark:text-red-400"
+                          >
+                            <svg class="h-6 w-6">
+                              <use xlink:href="#dislike" />
+                            </svg>
+                            <span
+                              class="absolute -right-2 top-6 text-sm"
+                            >
+                              100 +
+                            </span>
+                          </button>
+                        </div>
+                        <div class="flex items-center gap-x-2">
+                          <div
+                            class="text-xs text-zinc-500 dark:text-zinc-400"
+                          >
+                            20 شهریور 1403
+                          </div>
+                          <span
+                            class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/10"
+                          ></span>
+                          <div
+                            class="text-xs text-zinc-500 dark:text-zinc-400"
+                          >
+                            خریدار
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Comment -->
+                  <div class="swiper-slide">
+                    <div
+                      class="flex h-64 flex-col rounded-lg border border-gray-100 px-4 py-6 dark:border-white/5"
+                    >
+                      <!-- head -->
+                      <div
+                        class="flex items-center justify-between gap-2 mb-4"
+                      >
+                        <div
+                          class="flex items-center gap-x-2 text-emerald-500 dark:text-emerald-400"
+                        >
+                          <svg class="h-5 w-5">
+                            <use xlink:href="#like" />
+                          </svg>
+                          پیشنهاد میکنم
+                        </div>
+                        <button
+                          data-modal-target="submit-answers-to-comments-drawer-navigation"
+                          data-modal-toggle="submit-answers-to-comments-drawer-navigation"
+                          type="button"
+                          class="btn-secondary-nobg"
+                        >
+                          پاسخ
+                          <svg class="w-5 h-5">
+                            <use xlink:href="#chevron-left" />
+                          </svg>
+                        </button>
+                      </div>
+                      <!-- Comment -->
+                      <div class="flex-grow space-y-2">
+                        <h5
+                          class="text-sm leading-relaxed text-zinc-700 dark:text-white"
+                        >
+                          با این قیمت کاملا مناسب و خوبه
+                        </h5>
+
+                        <p
+                          class="line-clamp-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300"
+                        >
+                          برا کسایی که نمیخوان هزینه بالایی کنن گزینه
+                          خیلی خوبیه
+                        </p>
+                      </div>
+                      <!-- Footer -->
+                      <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-x-4">
+                          <button
+                            class="relative text-emerald-500 dark:text-emerald-400"
+                          >
+                            <svg class="h-6 w-6">
+                              <use xlink:href="#like" />
+                            </svg>
+                            <span
+                              class="absolute -right-2 top-6 text-sm"
+                            >
+                              32
+                            </span>
+                          </button>
+                          <button
+                            class="relative text-red-500 dark:text-red-400"
+                          >
+                            <svg class="h-6 w-6">
+                              <use xlink:href="#dislike" />
+                            </svg>
+                            <span
+                              class="absolute -right-2 top-6 text-sm"
+                            >
+                              76
+                            </span>
+                          </button>
+                        </div>
+                        <div class="flex items-center gap-x-2">
+                          <div
+                            class="text-xs text-zinc-500 dark:text-zinc-400"
+                          >
+                            10 شهریور 1403
+                          </div>
+                          <span
+                            class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/10"
+                          ></span>
+                          <div
+                            class="text-xs text-zinc-500 dark:text-zinc-400"
+                          >
+                            خریدار
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Load More -->
+                  <div class="swiper-slide">
+                    <div
+                      class="flex h-64 items-center justify-center"
+                    >
+                      <div
+                        aria-controls="mobile-comments-drawer-navigation"
+                        data-drawer-show="mobile-comments-drawer-navigation"
+                        data-drawer-placement="bottom"
+                        data-drawer-target="mobile-comments-drawer-navigation"
+                        type="button"
+                        class="flex flex-col items-center justify-center gap-y-4 text-emerald-500 dark:text-emerald-400"
+                      >
+                        <div
+                          class="rounded-full border border-emerald-500 p-2 dark:border-emerald-400"
+                        >
+                          <svg class="h-6 w-6">
+                            <use xlink:href="#chevron-left" />
+                          </svg>
+                        </div>
+                        <div>مشاهده بیشتر</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hidden justify-center md:flex">
+        <button class="btn-secondary-nobg" id="toggleCommentsButton">
+          مشاهده بیشتر
+          <svg class="h-5 w-5">
+            <use xlink:href="#chevron-left" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

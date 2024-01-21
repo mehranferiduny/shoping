@@ -179,6 +179,8 @@ exports.addProducts = async (req, res) => {
   var uploadPath3 = `${appRoot}/public/uploads/products/${fileName3}`;
  }
   try {
+
+    console.log(req.body);
    
 
    

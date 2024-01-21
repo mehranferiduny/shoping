@@ -29,6 +29,7 @@ exports.getProducts=async(req,res)=>{
       // res.status(201).send(products)
       res.render("index/index",{
         pageTitle:'صفحه ای اصلی',
+        layout:'./layouts/mainLayout',
         path: "/",
         products,
         category,
@@ -65,7 +66,8 @@ exports.singelProduct=async(req,res)=>{
 
       res.render('index/singelPage',{
         pageTitle:"نام محصول",
-        path: "/",
+        path: "/product",
+        layout:'./layouts/mainLayout',
         product,
         category,
         basckeid,

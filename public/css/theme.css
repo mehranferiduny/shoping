@@ -351,3 +351,15 @@
   color: #345609 !important;
   background-color: #fdfdfd;
 }
+
+.wsingel{
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.xsingel{
+  width: 40%;
+  height: 90%;
+  margin-right: auto;
+  margin-left: auto;
+}
