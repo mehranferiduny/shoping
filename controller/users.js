@@ -2,6 +2,7 @@ const passport = require("passport");
 const Users = require('../models/Users');
 const Category=require('../models/Category')
 const Products=require('../models/Products');
+
 let CAPCHA_NUM;
 
 //!Users
@@ -111,6 +112,7 @@ exports.createUser=async(req,res)=>{
 
 
 
+
 exports.editUser=async(req,res)=>{
     
   const errorArr = [];
@@ -194,10 +196,12 @@ exports.loginUser = async (req, res, next) => {
   &remoteip=${req.connection.remoteAddress}`;
 
   const response = await fetch(verifyUrl, {
+
       method: "POST",
       headers: {
           Accept: "application/json",
           "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+          'Access-Control-Allow-Origin':'*',
       },
   });
 
@@ -227,11 +231,11 @@ exports.rememberMe = (req, res) => {
 
 };
 exports.logout = (req, res,next) => {
+  console.log(req.session);
   req.session = null;
-  req.logout(function(err) {
-    if (err) { return next(err); }
+  req.logout();
     res.redirect('/');
-  });
+
 };
 
 

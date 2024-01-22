@@ -1313,7 +1313,7 @@
               </div>
             <% } %>
               <!-- Basket -->
-              <div>
+              <div class="cart_items">
                 <button
                   class="group relative"
                   data-dropdown-toggle="dropdownBasketDesktop"
@@ -1329,10 +1329,14 @@
                   <span
                     class="absolute  -right-2.5 -top-2.5 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-emerald-500 text-sm font-bold text-white"
                   >
-                    10
+                  <% if(!productbas){ %>
+                    0
+                    <% }else{ %>
+                  <%= productbas.length  %>
+                  <% } %>
                   </span>
                 </button>
-
+                <% if(productbas){ %>
                 <div
                   class="z-10 !ml-5 hidden w-[400px] overflow-hidden rounded-lg border-t-2 border-t-emerald-500 bg-white dark:border-t-emerald-400 dark:bg-zinc-900"
                   id="dropdownBasketDesktop"
@@ -1340,7 +1344,11 @@
                   <!-- Head -->
                   <div class="flex items-center justify-between p-5 pb-2">
                     <div class="text-sm text-zinc-600 dark:text-zinc-300">
-                      4 مورد
+                      <% if(!productbas){ %>
+                        0
+                        <% }else{ %>
+                      <%= productbas.length  %>
+                      <% } %> مورد
                     </div>
                     <a class='flex items-center gap-x-1 text-sm text-emerald-500 dark:text-emerald-400' href='/checkout-cart'>
                       <div>مشاهده سبد خرید</div>
@@ -1354,10 +1362,12 @@
                   <!-- Items -->
                   <div class="h-60">
                     <ul
-                      class="main-scroll h-full space-y-2 divide-y divide-gray-100 overflow-y-auto p-5 pl-2 dark:divide-white/5"
+                      class="item_cart main-scroll h-full space-y-2 divide-y divide-gray-100 overflow-y-auto p-5 pl-2 dark:divide-white/5"
                       id="shopingadd"
                     >
 
+
+                 <% for(let item of productbas){ %>
                       <li>
                         <div class="flex gap-x-2 py-5">
                           <!-- Product Image -->
@@ -1368,7 +1378,7 @@
                                 alt=""
                                 class="h-[120px] w-[120px]"
                                 loading="lazy"
-                                src="./assets/images/products/p1.png"
+                                src="/uploads/products/<%= item.image  %>"
                               />
                             </a>
                             <button
@@ -1387,7 +1397,7 @@
                             <!-- Product Title -->
 
                             <a class='line-clamp-2 h-12 text-zinc-700 dark:text-white' href='/product-detail'>
-                              تیشرت اسپورت مردانه
+                           <%= item.title  %>
                             </a>
                             <!-- Product Attribute -->
                             <div
@@ -1398,11 +1408,8 @@
                                 class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/5"
                               ></div>
                               <div class="flex items-center gap-x-2">
-                                <span
-                                  class="h-4 w-4 rounded-full"
-                                  style="background: rgb(128, 128, 128)"
-                                ></span>
-                                <span> طوسی</span>
+                               
+                                <span> <%= item.color  %></span>
                               </div>
                             </div>
                             <div
@@ -1413,101 +1420,7 @@
                                 class="text-emerald-500 dark:text-emerald-400"
                               >
                                 <span class="text-lg font-bold"
-                                  >1,800,000</span
-                                >
-                                <span class="text-sm">تومان</span>
-                              </div>
-                              <!-- Product Quantity -->
-                              <div
-                                class="flex h-10 w-24 items-center justify-between rounded-lg border border-gray-100 px-2 py-1 dark:border-white/5"
-                              >
-                                <button
-                                  type="button"
-                                  data-action="increment"
-                                >
-                                  <svg
-                                    class="h-5 w-5 text-emerald-500 dark:text-emerald-400"
-                                  >
-                                    <use xlink:href="#plus" />
-                                  </svg>
-                                </button>
-                                <input
-                                  value="1"
-                                  disabled
-                                  type="number"
-                                  class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm text-zinc-700 outline-none dark:text-white"
-                                />
-                                <button
-                                  type="button"
-                                  data-action="decrement"
-                                >
-                                  <svg
-                                    class="h-5 w-5 text-red-600 dark:text-red-500"
-                                  >
-                                    <use xlink:href="#minus" />
-                                  </svg>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="flex gap-x-2 py-5">
-                          <!-- Product Image -->
-
-                          <div class="relative min-w-fit">
-                            <a href='/product-detail'>
-                              <img
-                                alt=""
-                                class="h-[120px] w-[120px]"
-                                loading="lazy"
-                                src="./assets/images/products/p2.png"
-                              />
-                            </a>
-                            <button
-                              class="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-black"
-                              type="button"
-                            >
-                              <svg
-                                class="h-6 w-6 text-red-600 dark:text-red-500"
-                              >
-                                <use xlink:href="#close" />
-                              </svg>
-                            </button>
-                          </div>
-
-                          <div class="w-full space-y-1.5">
-                            <!-- Product Title -->
-
-                            <a class='line-clamp-2 h-12 text-zinc-700 dark:text-white' href='/product-detail'>
-                              کلاه اسپورت مردانه
-                            </a>
-                            <!-- Product Attribute -->
-                            <div
-                              class="flex items-center gap-x-2 text-sm text-zinc-500 dark:text-gray-300"
-                            >
-                              <div>تعداد : 2</div>
-                              <div
-                                class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/5"
-                              ></div>
-                              <div class="flex items-center gap-x-2">
-                                <span
-                                  class="h-4 w-4 rounded-full"
-                                  style="background: rgb(128, 128, 128)"
-                                ></span>
-                                <span> طوسی</span>
-                              </div>
-                            </div>
-                            <div
-                              class="flex items-center justify-between gap-x-2"
-                            >
-                              <!-- Product Price -->
-                              <div
-                                class="text-emerald-500 dark:text-emerald-400"
-                              >
-                                <span class="text-lg font-bold"
-                                  >1,800,000</span
+                                  ><%=  separate(item.price) %></span
                                 >
                                 <span class="text-sm">تومان</span>
                               </div>
@@ -1546,6 +1459,8 @@
                           </div>
                         </div>
                       </li>
+
+                      <% } %>
                     </ul>
                   </div>
 
@@ -1560,7 +1475,16 @@
                       </div>
 
                       <div class="text-zinc-600 dark:text-zinc-300">
-                        <span class="font-bold">1,200,000</span>
+                        <span class="font-bold cart_total">
+                          <% let total=0 %>
+                          <%
+                          for( let price of productbas){
+                           total=total+price.price;
+                            %>
+                          
+                          <%} %>
+                          <%= separate(total) %>
+                        </span>
                         <span class="text-sm">تومان</span>
                       </div>
                     </div>
@@ -1574,26 +1498,29 @@
                     </a>
                   </div>
                 </div>
+                <% }else{ %>
 
-                <!--                    Empty Basket -->
-                <!--                                <div-->
-                <!--                                        class="z-10 !ml-5 hidden w-[400px] overflow-hidden rounded-lg border-t-2 border-t-emerald-500 bg-white dark:border-t-emerald-400 dark:bg-zinc-900"-->
-                <!--                                        id="dropdownBasketDesktop"-->
-                <!--                                >-->
-                <!--                                    <div class="flex justify-center items-center py-6">-->
-                <!--                                        <div class="flex items-center justify-center flex-col gap-y-4">-->
-                <!--                                            <svg class="w-20 h-20 text-zinc-600 dark:text-zinc-300">-->
-                <!--                                                <use xlink:href="#order-off"/>-->
-                <!--                                            </svg>-->
-                <!--                                            <p class="text-zinc-600 dark:text-zinc-300 text-lg">-->
-                <!--                                                سبد خرید شما خالی میباشد-->
-                <!--                                            </p>-->
-                <!--                                            <a class="btn-primary w-full py-3" href="#">-->
-                <!--                                                فروشگاه-->
-                <!--                                            </a>-->
-                <!--                                        </div>-->
-                <!--                                    </div>-->
-                <!--                                </div>-->
+             
+                                                <div
+                                                        class="z-10 !ml-5 hidden w-[400px] overflow-hidden rounded-lg border-t-2 border-t-emerald-500 bg-white dark:border-t-emerald-400 dark:bg-zinc-900"
+                                                        id="dropdownBasketDesktop"
+                                                >
+                                                    <div class="flex justify-center items-center py-6">
+                                                        <div class="flex items-center justify-center flex-col gap-y-4">
+                                                            <svg class="w-20 h-20 text-zinc-600 dark:text-zinc-300">
+                                                                <use xlink:href="#order-off"/>
+                                                            </svg>
+                                                            <p class="text-zinc-600 dark:text-zinc-300 text-lg">
+                                                                سبد خرید شما خالی میباشد
+                                                            </p>
+                                                            <a class="btn-primary w-full py-3" href="#">
+                                                                فروشگاه
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                <% } %>
               </div>
               <!-- Theme -->
               <div

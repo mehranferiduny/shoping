@@ -363,3 +363,51 @@
   margin-right: auto;
   margin-left: auto;
 }
+
+/* <select> styles */
+select {
+  text-align-last: center;
+  text-align: center;
+  -ms-text-align-last: center;
+  -moz-text-align-last: center;
+  background-color: #10b981;
+  border: 0;
+  outline: 0;
+  font: inherit;
+ width: 100%;
+  margin-left: auto;
+  padding: 4px;
+  color: white;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border-radius: 0.25em;
+  /*RemoveIEarrow*/
+  &::-ms-expand
+{
+    display: none;
+    background-color: #0ca270;
+
+  }
+  /* Remove focus outline */
+  &:focus {
+    outline: none;
+    color: #f3f4f6;
+  }
+  /* <option> colors */
+  option {
+    text-align-last: center;
+    padding: 2px;
+    text-align: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    color: #f3f4f6;
+    background-color: #0ca270;
+    cursor: pointer;
+  }
+ 
+}
+.btn-shop{
+  cursor: pointer;
+}

@@ -30,17 +30,7 @@ const server=http.createServer(app);
 const io= new Server(server);
 
 
-//! Session
-app.use(
-  session({
-      secret: process.env.SESSION_SECRET,
-      resave: false,
-      saveUninitialized: false,
-      unset: "destroy",
-      store: new MongoStore({ mongooseConnection: mongoose.connection,collection: 'session' })
-    
-  })
-);
+
 
 ///!middelwer
 app.use(express.static("public"));
@@ -58,6 +48,17 @@ app.set("views", "views");
 //! Flash
 app.use(flash()); //req.flash
 
+//! Session
+app.use(
+  session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+      unset: "destroy",
+      store: new MongoStore({ mongooseConnection: mongoose.connection,collection: 'session' })
+    
+  })
+);
 //! Passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -82,5 +83,7 @@ io.on("connection",(socket)=>{
   socket.on("add_bsk",(data)=>{
         basketcontroll.addProToShop(data,socket)
   })
+
+ 
 
 })

@@ -3,15 +3,11 @@
     <div class="logo">
       <img src="/images/logo/1.png" alt="" srcset="">
     </div>
-    <div class="m-2 p-1   mx-auto text-center mt-5  btn-login dark:text-white row btn-vorod">
-      <a class="column " href="/user/LoginPage"> ورود</a>
-
-      <a class="column " href="/user/LoginPage">ثبت نام</a>
-    </div>
+   
     <%- include("./messageLogin.ejs") %>
       <form action="/user/loginUser" method="POST" class="mx-auto mt-5 text-center">
         <input type="text" name="phone" class="w-50 border-input p-2 text-right m-2" placeholder="شماره موبایل ">
-        <input type="text" name="password" class="w-50 border-input p-2 text-right m-2" placeholder="کلمه عبور">
+        <input type="password" name="password" class="w-50 border-input p-2 text-right m-2" placeholder="کلمه عبور">
         <div class="form-group mx-auto text-center">
           <div class="checkbox mb-3">
             <label>

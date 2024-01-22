@@ -216,25 +216,19 @@
                   <legend class="sr-only">Size</legend>
 
 
-
+                  <select class="optionrex">
                   <% let z=product.size.toString().split(','); for(let x of z){ %>
                   
+                
+                      <option class="optionrex" value="<%= x %>"><%= x %></option>
                     
                     
-                      <input checked type="radio" name="size-desktop" value="size-desktop-1" id="size-desktop-1"
-                        class="peer hidden" />
-                     
-                      <label for="size-desktop-1"
-                        class="relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border-2 border-gray-100 p-1 shadow-base peer-checked:border-emerald-500 hover:border-gray-200 dark:border-white/5 peer-checked:dark:border-emerald-400 dark:hover:border-white/10">
-                        <p class="text-sm font-bold text-zinc-600 dark:text-zinc-300 md:text-base">
-                          <%= x %>
-                        </p>
-                      </label>
+                  
                       
                 
 
                     <% } %>
-
+                  </select>
                 </fieldset>
               </div>
             </div>
@@ -274,9 +268,16 @@
             </div>
             <!-- add to cart -->
             <div class="mb-6">
-              <button class="btn-primary w-full py-3">
+              <% if(user){
+                %>
+              <button onclick="addToCart(`<%=product._id%>`,`<%=product.title%>`,`<%=product.image%>`,`<%=product.color%>`,`<%=product.price%>`,`<%=user._id%>`,)" class="btn-primary w-full py-3 btn-shop">
                 افزودن به سبد خرید
               </button>
+              <% }else{ %>
+                <a href="/user/LoginPage" class="btn-primary w-full py-3 btn-shop">
+                افزودن به سبد خرید
+              </a>
+                <% } %>
             </div>
           </div>
         </div>
