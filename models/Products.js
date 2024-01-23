@@ -7,7 +7,7 @@ const { schema } = require("./secure/ProductsValidate");
 const Products = new mongoose.Schema({
   productID:{
     type:String,
-    default: generateUniqueNumericId(),
+    default: generateUniqueNumericId,
   },
     title: {
         type: String,

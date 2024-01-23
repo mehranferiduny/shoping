@@ -270,7 +270,7 @@
             <div class="mb-6">
               <% if(user){
                 %>
-              <button onclick="addToCart(`<%=product._id%>`,`<%=product.title%>`,`<%=product.image%>`,`<%=product.color%>`,`<%=product.price%>`,`<%=user._id%>`,)" class="btn-primary w-full py-3 btn-shop">
+              <button onclick="addToCart(`<%=product._id%>`,`<%=user._id%>`,)" class="btn-primary w-full py-3 btn-shop">
                 افزودن به سبد خرید
               </button>
               <% }else{ %>
