@@ -193,15 +193,17 @@
   }
 
   .btn-login{
-    border-bottom: 1px solid #78787822;
-    font-size: 15px;
- 
-    margin-left: 10px;
+  border: 1px solid #78787814;
+  font-size: 15px;
+  padding: 0 10px 0 10px ;
+  margin-left: 10px !important;
+  border-radius:5px ;
+  -webkit-border-radius:5px ;
+  -moz-border-radius:5px ;
+  -ms-border-radius:5px ;
+  -o-border-radius:5px ;
+}
 
-}
-.btn-login:hover{
-  border-bottom: 1px solid #10b981;
-}
 .btn-login > a{
   padding: 6px;
   font-size: 15px;

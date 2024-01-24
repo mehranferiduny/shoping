@@ -1297,16 +1297,17 @@
                   </ul>
                 </div>
 
-                <!-- <a href="./login.html">
+             
+              </div>
+          <%} else{ %>  
+               <!-- <a href="./login.html">
                   <div
                     class="flex h-8 cursor-pointer items-center justify-center rounded-lg border border-gray-100 px-4 text-sm font-medium text-zinc-700 transition-colors duration-200 hover:bg-emerald-500 hover:text-white dark:border-white/5 dark:text-white dark:hover:bg-emerald-500 dark:hover:text-white"
                   >
                     ورود \ ثبت نام
                   </div>
                 </a> -->
-              </div>
-          <%} else{ %>  
-              <div class="m-2 p-2 row btn-login dark:text-white">
+              <div class=" row btn-login dark:text-white">
                <a href="/user/LoginPage" > ورود</a>
                <span class="bordleft"></span>
                <a href="/user/registerPage">ثبت نام</a>
@@ -1326,15 +1327,17 @@
                       <use xlink:href="#cart" />
                     </svg>
                   </span>
+                  <% if(productbas){ %>
                   <span
                     class="absolute countt   -right-2.5 -top-2.5 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-emerald-500 text-sm font-bold text-white"
                   >
-                  <% if(productbas){ %>
                   <%= productbas.length  %>
-                  <% } %>
                   </span>
+                  <% }%>
+                   
+                
                 </button>
-                <% if(productbas){ %>
+               
                 <div
                   class="z-10 !ml-5 hidden w-[400px] overflow-hidden rounded-lg border-t-2 border-t-emerald-500 bg-white dark:border-t-emerald-400 dark:bg-zinc-900"
                   id="dropdownBasketDesktop"
@@ -1345,6 +1348,7 @@
                       <% if(productbas){ %>
                         <%=  productbas.length %> مورد
                         <% }%>
+                        
                     </div>
                     <a class='flex items-center gap-x-1 text-sm text-emerald-500 dark:text-emerald-400' href='/checkout-cart'>
                       <div>مشاهده سبد خرید</div>
@@ -1361,8 +1365,8 @@
                       class="item_cart main-scroll h-full space-y-2 divide-y divide-gray-100 overflow-y-auto p-5 pl-2 dark:divide-white/5"
                       id="shopingadd"
                     >
-
-
+                 
+                    <% if(productbas){ %>
                  <% for(let item of productbas){ %>
                       <li>
                         <div class="flex gap-x-2 py-5">
@@ -1380,6 +1384,7 @@
                             <button
                               class="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-black"
                               type="button"
+                              onclick="removeitem('<%= item._id %>','<%= user._id %>')"
                             >
                               <svg
                                 class="h-6 w-6 text-red-600 dark:text-red-500"
@@ -1399,7 +1404,7 @@
                             <div
                               class="flex items-center gap-x-2 text-sm text-zinc-500 dark:text-gray-300"
                             >
-                              <div>تعداد : 2</div>
+                              <div>رنگ</div>
                               <div
                                 class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/5"
                               ></div>
@@ -1457,6 +1462,26 @@
                       </li>
 
                       <% } %>
+                      <% }else{ %>
+  
+                    <div class="flex justify-center items-center py-6">
+                        <div class="flex items-center justify-center flex-col gap-y-4">
+                            <svg class="w-20 h-20 text-zinc-600 dark:text-zinc-300">
+                                <use xlink:href="#order-off"/>
+                            </svg>
+                            <p class="text-zinc-600 dark:text-zinc-300 text-lg">
+                                سبد خرید شما خالی میباشد
+                            </p>
+                           
+                        </div>
+                    </div>
+               
+
+                        <% } %>
+
+                     
+            
+                       
                     </ul>
                   </div>
 
@@ -1465,6 +1490,7 @@
                   <div
                     class="flex items-center justify-between border-t border-gray-100 p-5 dark:border-white/5"
                   >
+              
                     <div class="flex flex-col items-center gap-y-1">
                       <div class="text-sm text-zinc-500 dark:text-zinc-400">
                         مبلغ قابل پرداخت
@@ -1472,18 +1498,20 @@
 
                       <div class="text-zinc-600 dark:text-zinc-300">
                         <span class="font-bold cart_total totall">
-                          <% let total=0 %>
-                          <%
-                          for( let price of productbas){
+                          <% let total=0
+                          if(productbas){
+                          %>
+                          <%for( let price of productbas){
                            total=total+price.price;
                             %>
                           
-                          <%} %>
+                          <%}} %>
                           <%= separate(total) %>
                         </span>
                         <span class="text-sm">تومان</span>
                       </div>
                     </div>
+                
                     <a href="./checkout-shipping.html">
                       <button
                         class="btn-primary w-32 py-3 text-sm"
@@ -1494,29 +1522,12 @@
                     </a>
                   </div>
                 </div>
-                <% }else{ %>
+             
 
              
-                                                <div
-                                                        class="z-10 !ml-5 hidden w-[400px] overflow-hidden rounded-lg border-t-2 border-t-emerald-500 bg-white dark:border-t-emerald-400 dark:bg-zinc-900"
-                                                        id="dropdownBasketDesktop"
-                                                >
-                                                    <div class="flex justify-center items-center py-6">
-                                                        <div class="flex items-center justify-center flex-col gap-y-4">
-                                                            <svg class="w-20 h-20 text-zinc-600 dark:text-zinc-300">
-                                                                <use xlink:href="#order-off"/>
-                                                            </svg>
-                                                            <p class="text-zinc-600 dark:text-zinc-300 text-lg">
-                                                                سبد خرید شما خالی میباشد
-                                                            </p>
-                                                            <a class="btn-primary w-full py-3" href="#">
-                                                                فروشگاه
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                             
 
-                <% } %>
+
               </div>
               <!-- Theme -->
               <div

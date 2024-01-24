@@ -84,6 +84,10 @@ io.on("connection",(socket)=>{
         basketcontroll.addProToShop(data,socket)
   })
 
+  socket.on("remove",(data)=>{
+   basketcontroll.removeItem(data,socket)
+  })
+
  
 
 })

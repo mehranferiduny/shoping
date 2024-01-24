@@ -14,11 +14,19 @@ const count= document.querySelector('.count');
 const countt= document.querySelector('.countt');
 const divCart= document.querySelector('.item_cart'); 
 const totall= document.querySelector('.totall'); 
+let total=0;
 function addToCart(id,userId){
   addItem(id,userId);
   divCart.innerHTML="";
-  let total=0;
+   updateitem(userId);
+
+}
+
+function updateitem(userId){
+  console.log(userId);
+  
   socket.on("item",(item)=>{
+    divCart.innerHTML=""
     for(let product of item){
       total=total+product.price;
       count.innerHTML=`${toFarsiNumber(item.length)} مورد`
@@ -45,6 +53,8 @@ function addToCart(id,userId){
           <button
             class="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-black"
             type="button"
+            onclick="removeitem(${product._id},${userId})"
+            
           >
             <svg
               class="h-6 w-6 text-red-600 dark:text-red-500"
@@ -64,7 +74,7 @@ function addToCart(id,userId){
           <div
             class="flex items-center gap-x-2 text-sm text-zinc-500 dark:text-gray-300"
           >
-            <div>تعداد : 1</div>
+            <div>رنگ</div>
             <div
               class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/5"
             ></div>
@@ -127,10 +137,7 @@ function addToCart(id,userId){
     }
     
   })
-   
-
 }
-
 
 function addItem(productId,userId) {
   socket.emit("add_bsk",{
@@ -184,3 +191,12 @@ function separate(Number) {
   y= y.replace(rgx, '$1' + ',' + '$2');
   return y+ z;
   }
+
+function removeitem(id,userId){
+  console.log(id,"inn",userId);
+
+  const data={productId:id,userId:userId}
+  socket.emit("remove",data);
+  updateitem(userId);
+
+}
