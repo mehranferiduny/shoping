@@ -1,13 +1,22 @@
-<div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-<div class=" justify-content-center w-100 ">
-  <form action="/dashbord/addCategory" method="post" class="d-block row">
-    <input class=" inputcat m-5 col-10" type="text" name="name" id="" placeholder="نام دسته جدید را وارد کنید ...">
-      <div class="col-2 mx-auto text-center">
-        <input type="submit" value="اضافه کردن دسته بندی " class="btn btn-primary btn-md w-100">
-      </div>
-  </form>
-</div>
-<div class="container">
+<div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl">
+  <div class=" justify-content-center w-100 mt-5 mx-5 ">
+    <form action="/dashbord/addCategory" method="post" class="d-block row">
+      <input class=" inputcat m-5 col-10" type="text" name="name" id="" placeholder="نام دسته جدید را وارد کنید ...">
+        <div class="col-2 mx-auto text-center">
+          <input type="submit" value="اضافه کردن دسته بندی " class="btn btn-primary btn-md w-100">
+        </div>
+    </form>
+  </div>
+ 
+
+
+
+
+  
+
+
+
+<div class="container  px-0 mt-5 mx-auto pb-2 main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl">
   <div class="row mt-5 border-1">
   <% let number=0; 
     for(let cat of category){ 
@@ -16,18 +25,19 @@
 
    
 
-    <form action="/dashbord/addCategorymin/<%= cat.id %>" method="post" class="col-3 mt-5 bacbutcat">
+    <form action="/dashbord/addCategorymin/<%= cat.id %>" method="post" class="col mx-auto text-center px-2 mt-5 bacbutcat">
       
       <div class="product-item">
-        <h3 onclick="uishowcat()" id="colorDiv<%= number %>" on class="title-cat p-5 colorDiv"><a href="#"><%= cat.name  %></a></h3>
+        <h3 onclick="uishowcat()"  class="title-cat p-5 bg-gradient-faded-secondary"><a href="#"><%= cat.name  %></a></h3>
          <div  id="uicat">
         <input  class=" inputcat mx-auto p-2 text-center w-100" type="text" name="name" id="" placeholder="نام زیر دسته  جدید را وارد کنید ...">
-       <ul class="list-group list-group-flush" >
+       <ul class="list-group list-group-flush  p-0" >
         <% for(let catq of catmain){
           if(catq.IdCat == cat.id){
             %>
 
-        <li class="list-group-item text-dark text-center"> <%= catq.name %></li>
+        <li class="  list-group-item text-dark text-center"> <%= catq.name %>  <a href="/dashbord/deletesubCategory/<%= catq._id %>" class="position-absolute left-20 pl-2"> <span class="  text-warning fa fa-trash"></span></a></li>
+       
         <% }} %>
         </ul>
         </div>
@@ -37,7 +47,7 @@
           <input  type="submit" class="btn btn-outline-primary text-center justify-content-center mx-auto d-inline-flex bottom-0  w-100 m-2 bottom-0" value="افزودن">
         </div>
       </div>
-    </form> <!-- /.item -->
+    </form> 
     
     <% } %>
 </div>
@@ -50,19 +60,7 @@
 
 <script>
  
-  function changeColors() {
-    var colors = [" #5b1647 ", " #93073e ", " #c90035 ", " #c90035 ", "  #ffc400  "];
 
-    // Loop through each div with the class 'colorDiv'
-    var divs = document.getElementsByClassName("colorDiv");
-    for (var i = 0; i < divs.length; i++) {
-      // Generate a random index to select a color from the array
-      var randomIndex = Math.floor(Math.random() * colors.length);
-      // Set the background color of each div
-      divs[i].style.backgroundColor = colors[randomIndex];
-    }
-  }
-  changeColors();
 
     function uishowcat(){
      
@@ -75,4 +73,22 @@
 </script>
 
 
-
+<script>
+  $(function() {
+  var list = $('.js-dropdown-list');
+  var link = $('.js-link');
+  link.click(function(e) {
+    e.preventDefault();
+    list.slideToggle(200);
+  });
+  list.find('li').click(function() {
+    var text = $(this).html();
+    var icon = '<i class="fa fa-chevron-down"></i>';
+    link.html(text+icon);
+    list.slideToggle(200);
+    if (text === '* Reset') {
+      link.html('Select one option'+icon);
+    }
+  });
+});
+  </script>

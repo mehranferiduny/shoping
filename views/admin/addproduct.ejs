@@ -1,139 +1,166 @@
+<div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl">
 
+  <div class="container mt-5 text-end ">
+    <h4>فرم ارسال محصول</h4>
 
+    <%- include('./dashbord/validmessage.ejs') %>
+      <form action="/dashbord/addProduct" method="post" enctype="multipart/form-data">
 
-
-
-<div class="container mt-5 text-end">
-  <h4>فرم ارسال محصول</h4>
-
-  <%- include('./dashbord/validmessage.ejs')  %>
-  <form action="/dashbord/addProduct" method="post" enctype="multipart/form-data">
-
-       <!-- فیلد تصویر -->
-       <div class="mb-3">
-        <label for="image" class="form-label">تصویر(اصلی)</label>
-        <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
-      </div>
-
-    
-       <!-- فیلد تصویر -->
-       <div class="mb-3">
-        <label for="image" class="form-label">تصویر</label>
-        <div class="row">
-          <div class="col"><input type="file" class="form-control" id="image" name="image1" accept="image/*" ></div>
-          <div class="col"><input type="file" class="form-control" id="image" name="image2" accept="image/*" ></div>
-          <div class="col"><input type="file" class="form-control" id="image" name="image3" accept="image/*" ></div>
-      
+        <!-- فیلد تصویر -->
+        <div class="mb-3">
+          <label for="image" class="form-label">تصویر(اصلی)</label>
+          <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
         </div>
-      </div>
-   
- 
 
-    <!-- فیلدهای متنی -->
-    <div class="row">
 
-      <div class="mb-3 col">
-        <label for="text1" class="form-label">برند </label>
-        <input type="text" class="form-control" id="text1" name="brand" required>
-      </div>
+        <!-- فیلد تصویر -->
+        <div class="mb-3">
+          <label for="image" class="form-label">تصویر</label>
+          <div class="row">
+            <div class="col"><input type="file" class="form-control" id="image" name="image1" accept="image/*"></div>
+            <div class="col"><input type="file" class="form-control" id="image" name="image2" accept="image/*"></div>
+            <div class="col"><input type="file" class="form-control" id="image" name="image3" accept="image/*"></div>
 
-    <div class="mb-3 col">
-      <label for="text2" class="form-label">نام محصول  </label>
-      <input type="text" class="form-control nametab" id="text2" name="title" required>
-    </div>
+          </div>
+        </div>
 
-   
+
+
+        <!-- فیلدهای متنی -->
+        <div class="row">
+
+          <div class="mb-3 col">
+            <label for="text2" class="form-label">نام محصول </label>
+            <input type="text" class="form-control nametab" id="text2" name="title" required>
+          </div>
+
+          <div class="mb-3 col">
+            <label for="text1" class="form-label">قیمت </label>
+            <input type="text" class="form-control" id="text1" name="price" required>
+          </div>
+
+
+        </div>
+
+        <div class="row text-end rtl">
+          <div class="mb-3 col">
+            <label for="text5" class="form-label">جنس</label>
+            <input type="text" class="form-control text-end" id="text5" name="jens" required>
+          </div>
+
+         
+
+          <div class="mb-3 col">
+            <label for="text5" class="form-label">دسته بندی</label>
+
+            <select class="form-select text-center " id="selectOptioncat" name="categorymin" required>
+              <option class="nametab" value="" disabled selected>یک گزینه را انتخاب کنید</option>
+              <% for(let cat of category) {%>
+                <hr>
+                <option class="justify-center text-blue-600 h5"  value="" disabled selected><h2>--&nbsp;&nbsp; <%=cat.name%>   </h2>  </option>
+                
+                <% for(let subcat of categorymin) { if(cat.id==subcat.IdCat){ %>
+
+
+                <option class="text-right nametab justify-content-center" value="<%= subcat._id  %>"><span class="mx-1">
+                
+                  </span>&nbsp;&nbsp;<%= subcat.name %>
+                </option>
+
+                <% }}} %>
+
+            </select>
+          </div>
+
+
+
+        </div>
+        <div class="mb-3">
+          <label for="text6" class="form-label">توضیحات</label>
+          <textarea rows="5" type="text" class="form-control nametab" id="editor" name="description" required></textarea>
+        </div>
+
+
+
+
+        <div class="row">
+
+
+
+          <div class="mb-3 row">
+            <div class="col">
+
+              <div class="input-group p-0 border-0 bg-info mb-3">
+                <input type="text" class="form-control border-0 pr20 " id="colorInput"
+                  placeholder="رنگ محصولات را بنویسید" aria-label="Recipient's username"
+                  aria-describedby="basic-addon2" >
+                <div class="input-group-append">
+                  <div class=" p-2 text-white cursor-pointer " onclick="addColor()">اضافه کردن</div>
+                </div>
+
+              </div>
+              <label for="text3" class="form-label">رنگ</label>
+              <input type="text" class="form-control bgsize_input col" id="colorAraay" name="color" required>
+            </div>
+            <div class="col">
+
+              <div class="input-group p-0 border-0 bg-warning mb-3">
+                <input type="text" class="form-control border-0 pr20 " id="sizeInput"
+                  placeholder="سایز محصولات را بنویسید" aria-label="Recipient's username"
+                  aria-describedby="basic-addon2" >
+                <div class="input-group-append">
+                  <div class=" p-2 text-white cursor-pointer " onclick="addSaiz()">اضافه کردن</div>
+                </div>
+
+              </div>
+              <label for="text3" class="form-label">سایز</label>
+              <input type="text" class="form-control bgsize_input col" id="siazAraay" name="size" required>
+            </div>
+
+
+
+           
+          </div>
+
+        </div>
+
+
+
+
+
+
+
+        <button type="submit" class="btn btn-primary w-100">ارسال</button>
+      </form>
   </div>
-    
-  <div class="row text-end rtl">
-    <div class="mb-3 col">
-      <label for="text5" class="form-label">جنس</label>
-      <input type="text" class="form-control text-end" id="text5" name="jens" required>
-    </div>
 
-    <div class="mb-3 col">
-      <label for="text5" class="form-label">رنگ</label>
-      <input type="text" class="form-control text-end" id="text5" name="color" required>
-    </div>
-
-    <div class="mb-3 col">
-      <label for="text5" class="form-label">دسته بندی</label>
-
-      <select class="form-select text-center " id="selectOptioncat" name="categorymin" required>
-        <option class="nametab" value="" disabled selected>یک گزینه را انتخاب کنید</option>
-        <% for(let cat of category) {
-        for(let subcat of categorymin) {
-          if(cat.id==subcat.IdCat){
-          %>
-          
-          
-        <option class="text-right nametab justify-content-center" value="<%= subcat._id  %>"><span class="mx-1"><%=cat.name%></span >&nbsp;-&nbsp;<%= subcat.name  %></option>
-        
-        <% }}} %>
-    
-      </select>
-    </div>
-
-
-   
-  </div>
-    <div class="mb-3">
-      <label for="text6" class="form-label">توضیحات</label>
-      <textarea rows="5" type="text" class="form-control nametab" id="text6" name="description" required></textarea>
-    </div>
-    <div class="row">
-     
-     
-
-    <div class="mb-3 row">
-      <input type="text" class="form-control bgsize_input col" id="siazAraay" name="size"    required>
-      <div class="col">
-      <label for="text3" class="form-label">سایز</label>
-      <input type="text" class="form-control" id="sizeInput"   >
-      <div class="btnaddcolor" onclick="addSaiz()" > اضافه کردن </div>
-    </div>
-     
-
-    
-    <div class="mb-3 col">
-      <label for="text3" class="form-label">قیمت (تومان)</label>
-      <input type="tel" class="form-control" id="text3" name="price" required>
-    </div>
-  </div>
-
-  </div>
-
-
-
-  
-
- 
-
-    <button type="submit" class="btn btn-primary w-100">ارسال</button>
-  </form>
 </div>
-
 <script>
-   // Array to store colors
-  
-   var sizeArray = [];
+  // Array to store colors
+
+  var sizeArray = [];
+  var colorArray = [];
 
 
-   function getCat(id){
-   
-    return id;
-   
 
-   }
-
-function addSaiz() {
-  // Get the input value
-  var sizeInput = document.getElementById('sizeInput').value;
-sizeArray.push(sizeInput)
-document.getElementById('siazAraay').value= sizeArray;
+  function addSaiz() {
+    // Get the input value
+    var sizeInput = document.getElementById('sizeInput').value;
+    sizeArray.push(sizeInput)
+    document.getElementById('siazAraay').value = sizeArray;
+    $('#sizeInput').val("")
 
 
-}
+  }
+  function addColor() {
+    // Get the input value
+    var colorInput = document.getElementById('colorInput').value;
+    colorArray.push(colorInput)
+    document.getElementById('colorAraay').value = colorArray;
+    $('#colorInput').val("")
+
+
+  }
 
 
 </script>

@@ -135,6 +135,15 @@ body {
   border-radius: 4px;
 }
 
+.left-20{
+  left: 20px !important;
+}
+.pr20{
+  padding-right: 20px !important;
+}
+
+
+
 hr {
   margin: 1rem 0;
   color: inherit;

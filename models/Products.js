@@ -40,14 +40,11 @@ const Products = new mongoose.Schema({
       required: [true,'سایز محصول الزامی میباشد'],
       trim: true,
     }],
-    color:{
+    color:[{
       type: String,
       required: [true,'رنگ محصول الزامی میباشد']
-    },
-    brand:{
-      type:String,
-      required:[true,'برند محصول الزامی میباشد']
-    },
+    }],
+
     jens:{
       type:String,
       required:[true,'جنس محصول الزامی میباشد']

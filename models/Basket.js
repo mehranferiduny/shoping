@@ -1,18 +1,28 @@
 const mongoose = require("mongoose");
+const { string } = require("yup");
 
 
 
 const Basket = new mongoose.Schema({
-  userId: {
+userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
 },
-productId:
- [{
+product:[
+ {id:{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Products",
-}],
-   
+},
+size:{
+  type:String,
+  required:true,  
+},
+color:{
+  type:String,
+  required:true,  
+}
+ }],
+
 });
 
 

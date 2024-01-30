@@ -4,8 +4,16 @@ const socket =io();
 
 var x = document.getElementById("snackbar");
 var z = document.getElementById("snackbar2");
+var sizecheck = document.getElementById("sizecheck");
+var colorcheck = document.getElementById("colorcheck");
+let sizeChek=document.getElementsByName('radiosize');
+let colorChek=document.getElementsByName('radiocolor');
 
 
+
+
+x.style="display:none"
+x.style="display:none"
 
 
 
@@ -16,24 +24,45 @@ const divCart= document.querySelector('.item_cart');
 const totall= document.querySelector('.totall'); 
 let total=0;
 function addToCart(id,userId){
-  addItem(id,userId);
+  let data={
+    userId:userId,
+    product:{
+      id:id,
+      size:'',
+      color:''
+    }
+  }
+  for(var i=0;i<sizeChek.length;i++){
+    if(sizeChek[i].checked){
+      data.product.size=sizeChek[i].value
+    }
+  }
+  for(var f=0;f<colorChek.length;f++){
+    if(colorChek[f].checked){
+      data.product.color=colorChek[f].value
+    }
+  }
+
+  addItem(data);
   divCart.innerHTML="";
    updateitem(userId);
 
 }
 
 function updateitem(userId){
-  console.log(userId);
+
   
   socket.on("item",(item)=>{
+   console.log(item);
     divCart.innerHTML=""
-    for(let product of item){
+
+  
+    for(let product of item.product){
       total=total+product.price;
-      count.innerHTML=`${toFarsiNumber(item.length)} مورد`
-      countt.innerHTML=`${toFarsiNumber(item.length)}`
-      let farsitotal=separate(total)
-      totall.innerHTML=`${toFarsiNumber(farsitotal)}`
-    
+      count.innerHTML=`${toFarsiNumber(item.product.length)} مورد`
+       console.log(product);
+      
+   
 
 
       divCart.innerHTML+=`
@@ -74,16 +103,14 @@ function updateitem(userId){
           <div
             class="flex items-center gap-x-2 text-sm text-zinc-500 dark:text-gray-300"
           >
-            <div>رنگ</div>
+          <span id="sizebsk"> </span>
+           
             <div
               class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/5"
             ></div>
             <div class="flex items-center gap-x-2">
-              <span
-                class="h-4 w-4 rounded-full"
-                style="background: rgb(128, 128, 128)"
-              ></span>
-              <span> ${product.color}</span>
+              
+              <span id="colorbsk"> </span>
             </div>
           </div>
           <div
@@ -135,15 +162,24 @@ function updateitem(userId){
     </li>
       `
     }
+    for(let i=0;i<item.user.product.length;i++){
+      document.getElementById('colorbsk').innerHTML=item.user.product[i].color
+
+    }
+    for(let i=0;i<item.user.product.length;i++){
+      document.getElementById('sizebsk').innerHTML=item.user.product[i].size
+
+    }
+    
+
+   
+  
     
   })
 }
 
-function addItem(productId,userId) {
-  socket.emit("add_bsk",{
-    userId:userId,
-    productId:productId
-  })
+function addItem(data) {
+  socket.emit("add_bsk",data)
 
   socket.on("secses",()=>{
    // Add the "show" class to DIV
@@ -200,3 +236,10 @@ function removeitem(id,userId){
   updateitem(userId);
 
 }
+
+
+
+
+
+
+

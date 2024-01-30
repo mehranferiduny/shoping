@@ -1,47 +1,54 @@
 <!doctype html>
 <html dir="rtl" lang="fa">
-  <head>
-    <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title><%= pageTitle  %> </title>
 
-    <link href="../css/fonts.css" rel="stylesheet" />
-    <link href="../css/swiper.min.css" rel="stylesheet" />
-    <link href="../css/app.css" rel="stylesheet" />
-    <link href="../css/theme.css" rel="stylesheet" />
-    <script src="/socket.io/socket.io.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>
+    <%= pageTitle %>
+  </title>
 
-    <!-- <link href="./assets/css/custom.css" rel="stylesheet" /> -->
+  <link href="../css/fonts.css" rel="stylesheet" />
+  <link href="../css/swiper.min.css" rel="stylesheet" />
+  <link href="../css/app.css" rel="stylesheet" />
+  <link href="../css/theme.css" rel="stylesheet" />
+  <script src="/socket.io/socket.io.min.js"></script>
 
-    
 
-    <!-- <script defer src="./assets/scripts/custom.js"></script> -->
 
-    <script>
-      // Set Theme from Localstorage at site load
-      document.documentElement.classList.toggle(
-        "dark",
-        localStorage.getItem("theme") === "dark",
-      );
-    </script>
-  </head>
+  <!-- <link href="./assets/css/custom.css" rel="stylesheet" /> -->
 
-  <body class="replace-digits" >
-   <%- body  %>
+
+
+  <!-- <script defer src="./assets/scripts/custom.js"></script> -->
+
+  <script>
+    // Set Theme from Localstorage at site load
+    document.documentElement.classList.toggle(
+      "dark",
+      localStorage.getItem("theme") === "dark",
+    );
+  </script>
+</head>
+
+<body class="replace-digits">
+  <%- body %>
 
 
     <script>
       $('.replace-digits').replaceDigits();
     </script>
 
-<script defer src="../js/flowbite.min.js"></script>
-<script defer src="../js/swiper.min.js"></script>
-<script defer src="../js/app.js"></script>
-<script defer src="../js/jQuery.persianNumbers-1.0.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="../js/persianumber.js"></script>
-<script src="../js/shop.js"></script>
-<script type="text/javascript">$(document).ready(function(){$('*').persiaNumber();});</script>
+    <script defer src="../js/flowbite.min.js"></script>
 
-  </body>
+    <script defer src="../js/swiper.min.js"></script>
+    <script defer src="../js/app.js"></script>
+    <script defer src="../js/jQuery.persianNumbers-1.0.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../js/persianumber.js"></script>
+    <script src="../js/shop.js"></script>
+    <script type="text/javascript">$(document).ready(function () { $('*').persiaNumber(); });</script>
+
+</body>
+
 </html>

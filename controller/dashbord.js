@@ -82,7 +82,7 @@ exports.getCategory=async(req,res)=>{
         res.render('admin/category',{
           pageTitle:'اضافه کردن دسته بندی',
           layout:'./layouts/dashLayot',
-          path:'/getProducts',
+          path:'/getCategorys',
           category,
           catmain
         })
@@ -93,6 +93,32 @@ exports.getCategory=async(req,res)=>{
         
     }
 }
+exports.deletesubCategory = async (req, res) => {
+    const CategoryID = req.params.id;
+  
+    try {
+      if (!CategoryID) {
+        return res.status(400).json({
+          message: "Category ID is required for deletion.",
+        });
+      }
+  
+      const category = await Categorymin.findById({_id:CategoryID});
+  
+      if (!category) {
+        return res.status(404).json({
+          message: "category not found.",
+        });
+      }
+  
+      await Categorymin.findByIdAndDelete({_id:CategoryID});
+      res.redirect('/dashbord/getCategorys')
+      
+    } catch (error) {
+      console.error(error);
+      res.status(500).json(error.message);
+    }
+  };
 exports.deleteCategory = async (req, res) => {
     const CategoryID = req.headers.authorization;
   
@@ -154,6 +180,7 @@ exports.deleteCategory = async (req, res) => {
 exports.addProducts = async (req, res) => {
 
   const category=await Category.find({}).sort({ name: -1 });
+  const categorymin=await Categorymin.find({}).sort({ name: -1 });
   const errorArr = [];
 
   const image = req.files ? req.files.image : {};
@@ -235,6 +262,7 @@ exports.addProducts = async (req, res) => {
         path:'/getProducts',
         errors:errorArr,
         category,
+        categorymin,
         
       })
       

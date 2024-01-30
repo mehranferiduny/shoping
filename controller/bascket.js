@@ -2,28 +2,43 @@ const Basket = require("../models/Basket");
 const Products = require("../models/Products");
 
 exports.addProToShop = async (data, socket) => {
-  const item = {
-    productId: data.productId.trim(),
-    userId: data.userId.trim(),
-  };
+
+
+
 
   try {
-    const user = await Basket.findOne({ userId: item.userId });
-
+    const user = await Basket.findOne({ userId: data.userId });
+    
+  
+    
     if (!user) {
-      await Basket.create(item);
+      await Basket.create(data);
     } else {
-      const pro=user.productId.indexOf(item.productId)
-       if(pro == -1){
-      user.productId.push(item.productId);
+     const idproducs=[];
+     const newproduct=data.product.id;
+     for(let i=0;i<user.product.length;i++){
+      idproducs.push(user.product[i].id)
+     }  
+     const isMach=idproducs.find(e=>{
+      return e==newproduct
+     })
+     if(isMach==undefined){
+      user.product.push(data.product)
       await user.save();
-      const product = await Products.find({ _id: user.productId });
-      socket.emit("item", product);
-       }else{
-         const product = await Products.find({ _id: user.productId });
-        socket.emit("item", product);
-         console.log("noo");
-       }
+      for(let i=0;i<user.product.length;i++){
+        console.log(user.product[i].id);
+      const product=await Products.find({id:user.product[i].id})
+    
+      console.log(product);
+      }
+      const item={user:user,product:product}
+      socket.emit("item",item)
+     }else{
+      console.log("nooo");
+     }
+
+
+
        
     }
    

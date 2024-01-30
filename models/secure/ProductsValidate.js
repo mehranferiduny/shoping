@@ -14,8 +14,6 @@ exports.schema = Yup.object().shape({
         .required("جنس محصول  الزامی می باشد"),
         color: Yup.string()
         .required("رنگ محصول  الزامی می باشد"),
-        brand: Yup.string()
-        .required("برند محصول  الزامی می باشد"),
         categorymin: Yup.string()
         .required("دسته بندی محصول  الزامی می باشد"),
 

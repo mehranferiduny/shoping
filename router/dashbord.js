@@ -14,6 +14,7 @@ router.post("/addCategory",  adminController.addCategory);
 router.put("/editCategory",  adminController.editCategory);
 router.get("/getCategorys",  adminController.getCategory);
 router.delete("/deleteCategory",  adminController.deleteCategory);
+router.get("/deletesubCategory/:id",  adminController.deletesubCategory);
 
 
 //!mincat

@@ -172,20 +172,19 @@
             </p>
 
             <ul class="space-y-4">
+             
               <li class="flex gap-x-2">
                 <div class="min-w-fit text-zinc-500 dark:text-zinc-400">
-                  برند :
+                  رنگ ها:
                 </div>
                 <div class="text-zinc-600 dark:text-zinc-300">
-                  <%= product.brand %>
-                </div>
-              </li>
-              <li class="flex gap-x-2">
-                <div class="min-w-fit text-zinc-500 dark:text-zinc-400">
-                  رنگ :
-                </div>
-                <div class="text-zinc-600 dark:text-zinc-300">
-                  <%= product.color %>
+                  <%let colors=product.color.toString().split(',')  
+                  for(let Color of colors){
+                  %>
+                  
+                  <%= Color %>
+                 -
+                  <%}%>
                 </div>
               </li>
               <li class="flex gap-x-2">
@@ -206,31 +205,63 @@
           <div class="flex-grow">
             <!-- variant -->
             <div class="mb-6 space-y-6">
+
+              <!-- color -->
+              <div>
+                <div class="mb-4 text-zinc-700 dark:text-white">
+                  انتخاب رنگ
+                </div>
+                <fieldset class="flex flex-wrap items-center gap-2">
+                  <legend class="sr-only">Size</legend>
+
+
+                  <div class="mydict">
+                      <div>
+                        <% let colorss=product.color.toString().split(','); 
+                        
+                        for(let color of colorss){
+                          %>
+                        <label>
+                          <input id="colorcheck"  type="radio" name="radiocolor" value="<%= color %>" checked="">
+                          <span ><%= color %></span>
+                        </label>
+                        <%}%>
+                        
+                        
+                      </div>
+                    </div>
+                </fieldset>
+              </div>
             
               <!-- Size -->
               <div>
                 <div class="mb-4 text-zinc-700 dark:text-white">
                   انتخاب سایز
                 </div>
+                <form action="">
                 <fieldset class="flex flex-wrap items-center gap-2">
                   <legend class="sr-only">Size</legend>
+                  <div class="mydict">
+                      <div>
+                        <% let sizes=product.size.toString().split(','); for(let size of sizes){ %>
+                        <label>
+                          <input  type="radio" name="radiosize" value="<%= size%>" checked="" >
+                          <span><%= size %></span>
+                        </label>
+                        <%}%>
+                        
+                        
+                      </div>
+                    </div>
 
-
-                  <select class="optionrex">
-                  <% let z=product.size.toString().split(','); for(let x of z){ %>
-                  
-                
-                      <option class="optionrex" value="<%= x %>"><%= x %></option>
-                    
-                    
-                  
-                      
-                
-
-                    <% } %>
-                  </select>
+             
+                   
                 </fieldset>
+              </form>
               </div>
+
+                 
+              
             </div>
           </div>
           <div>
@@ -245,17 +276,16 @@
             <!-- price -->
             <div class="mb-6 flex items-center justify-between">
               <div
-                class="flex h-12 w-32 items-center justify-between rounded-lg border border-gray-100 px-4 py-1 dark:border-white/5">
+                class="flex h-12 w-32 items-center justify-between text-secondary   pl-4 py-1 ">
                 <button type="button" data-action="increment">
                   <svg class="h-6 w-6 text-emerald-500 dark:text-emerald-400">
-                    <use xlink:href="#plus" />
+                    <use xlink:href="" />
                   </svg>
                 </button>
-                <input value="1" disabled type="number"
-                  class="flex h-6 w-6 w-full select-none items-center justify-center bg-transparent text-center text-zinc-700 outline-none dark:text-white" />
+             
                 <button type="button" data-action="decrement">
                   <svg class="h-6 w-6 text-red-600 dark:text-red-500">
-                    <use xlink:href="#minus" />
+                    <use xlink:href="" />
                   </svg>
                 </button>
               </div>
@@ -270,7 +300,7 @@
             <div class="mb-6">
               <% if(user){
                 %>
-              <button onclick="addToCart(`<%=product._id%>`,`<%=user._id%>`,)" class="btn-primary w-full py-3 btn-shop">
+              <button onclick="addToCart(`<%=product._id%>`,`<%=user._id%>`)" class="btn-primary w-full py-3 btn-shop">
                 افزودن به سبد خرید
               </button>
               <% }else{ %>
