@@ -1,3 +1,4 @@
+const { object } = require("yup");
 const Basket = require("../models/Basket");
 const Products = require("../models/Products");
 
@@ -12,8 +13,10 @@ exports.addProToShop = async (data, socket) => {
   
     
     if (!user) {
+      //! Add newuser bascket
       await Basket.create(data);
     } else {
+      //! Add product to basket
      const idproducs=[];
      const newproduct=data.product.id;
      for(let i=0;i<user.product.length;i++){
@@ -25,15 +28,19 @@ exports.addProToShop = async (data, socket) => {
      if(isMach==undefined){
       user.product.push(data.product)
       await user.save();
-      for(let i=0;i<user.product.length;i++){
-        console.log(user.product[i].id);
-      const product=await Products.find({id:user.product[i].id})
-    
-      console.log(product);
+      let productID=[];
+      for(let i of user.product)
+      {
+        productID.push(i)
       }
+      const obj=productID.map( o =>{
+        return o.id;
+      })
+       const product=await Products.find({_id:obj})
       const item={user:user,product:product}
       socket.emit("item",item)
      }else{
+      //! Add prodact but add befor produact
       console.log("nooo");
      }
 
@@ -48,21 +55,39 @@ exports.addProToShop = async (data, socket) => {
 };
 
 exports.removeItem = async (data, socket) => {
-   console.log(data);
+ 
   try {
-    const bs = await Basket.findOne({ userId: data.userId });
-    const index = bs.productId.indexOf(data.productId);
-  
-    
-    if (index > -1) {
-      // only splice array when item is found
+     
 
-      bs.productId.splice(index, 1);
-        // 2nd parameter means remove one item only
+    const bs = await Basket.findOne({ userId: data.userId });
+
+    
+    
+     
+    let bascket=[];
+    for( let i of bs.product){
+     bascket.push(i)
     }
+
+    const index=bascket.findIndex(e=> e.id == data.productId);
+    if(index > -1){
+       bascket.splice(index,1)
+    }
+
+    bs.product=bascket;
     await bs.save();
-    const product = await Products.find({ _id: bs.productId });
-    socket.emit("item", product);
+
+    let productID=[];
+    for(let i of bs.product)
+    {
+      productID.push(i)
+    }
+    const obj=productID.map( o =>{
+      return o.id;
+    })
+    const product = await Products.find({ _id: obj });
+    const item={user:bs,product:product}
+    socket.emit("item", item);
  
   } catch (err) {}
 };

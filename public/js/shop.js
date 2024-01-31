@@ -51,20 +51,14 @@ function addToCart(id,userId){
 
 function updateitem(userId){
 
-  
   socket.on("item",(item)=>{
-   console.log(item);
-    divCart.innerHTML=""
 
-  
+    divCart.innerHTML=""
     for(let product of item.product){
       total=total+product.price;
       count.innerHTML=`${toFarsiNumber(item.product.length)} مورد`
-       console.log(product);
-      
-   
-
-
+      countt.innerHTML=toFarsiNumber(item.product.length)
+      totall.innerHTML=toFarsiNumber(total)
       divCart.innerHTML+=`
       <li>
       <div class="flex gap-x-2 py-5">
@@ -74,7 +68,7 @@ function updateitem(userId){
           <a href='/product-detail'>
             <img
               alt=""
-              class="h-[120px] w-[120px]"
+              class="h-[120px] w-[120px] radus"
               loading="lazy"
               src="/uploads/products/${product.image}"
             />
@@ -121,7 +115,7 @@ function updateitem(userId){
               class="text-emerald-500 dark:text-emerald-400"
             >
               <span class="text-lg font-bold"
-                >${toFarsiNumber(product.price)}</span
+                >${toFarsiNumber(separate(product.price))}</span
               >
               <span class="text-sm">تومان</span>
             </div>
@@ -162,6 +156,7 @@ function updateitem(userId){
     </li>
       `
     }
+
     for(let i=0;i<item.user.product.length;i++){
       document.getElementById('colorbsk').innerHTML=item.user.product[i].color
 
