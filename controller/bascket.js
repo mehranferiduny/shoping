@@ -1,4 +1,4 @@
-const { object } = require("yup");
+
 const Basket = require("../models/Basket");
 const Products = require("../models/Products");
 
@@ -86,7 +86,8 @@ exports.removeItem = async (data, socket) => {
       return o.id;
     })
     const product = await Products.find({ _id: obj });
-    const item={user:bs,product:product}
+    const item={user:bs,product:product};
+    
     socket.emit("item", item);
  
   } catch (err) {}

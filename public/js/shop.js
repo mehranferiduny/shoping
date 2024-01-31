@@ -73,18 +73,7 @@ function updateitem(userId){
               src="/uploads/products/${product.image}"
             />
           </a>
-          <button
-            class="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 dark:bg-black"
-            type="button"
-            onclick="removeitem(${product._id},${userId})"
-            
-          >
-            <svg
-              class="h-6 w-6 text-red-600 dark:text-red-500"
-            >
-              <use xlink:href="#close" />
-            </svg>
-          </button>
+        
         </div>
    
         <div class="w-full space-y-1.5">
@@ -94,19 +83,7 @@ function updateitem(userId){
            ${product.title}
           </a>
           <!-- Product Attribute -->
-          <div
-            class="flex items-center gap-x-2 text-sm text-zinc-500 dark:text-gray-300"
-          >
-          <span id="sizebsk"> </span>
-           
-            <div
-              class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/5"
-            ></div>
-            <div class="flex items-center gap-x-2">
-              
-              <span id="colorbsk"> </span>
-            </div>
-          </div>
+          
           <div
             class="flex items-center justify-between gap-x-2"
           >
@@ -114,42 +91,14 @@ function updateitem(userId){
             <div
               class="text-emerald-500 dark:text-emerald-400"
             >
+            <span class="text-black">قیمت:</span>
               <span class="text-lg font-bold"
                 >${toFarsiNumber(separate(product.price))}</span
               >
               <span class="text-sm">تومان</span>
             </div>
             <!-- Product Quantity -->
-            <div
-              class="flex h-10 w-24 items-center justify-between rounded-lg border border-gray-100 px-2 py-1 dark:border-white/5"
-            >
-              <button
-                type="button"
-                data-action="increment"
-              >
-                <svg
-                  class="h-5 w-5 text-emerald-500 dark:text-emerald-400"
-                >
-                  <use xlink:href="#plus" />
-                </svg>
-              </button>
-              <input
-                value="1"
-                disabled
-                type="number"
-                class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm text-zinc-700 outline-none dark:text-white"
-              />
-              <button
-                type="button"
-                data-action="decrement"
-              >
-                <svg
-                  class="h-5 w-5 text-red-600 dark:text-red-500"
-                >
-                  <use xlink:href="#minus" />
-                </svg>
-              </button>
-            </div>
+           
           </div>
         </div>
       </div>
@@ -223,12 +172,27 @@ function separate(Number) {
   return y+ z;
   }
 
-function removeitem(id,userId){
-  console.log(id,"inn",userId);
-
+function removeitem(url,id,userId){
   const data={productId:id,userId:userId}
-  socket.emit("remove",data);
-  updateitem(userId);
+  console.log(data);
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      // درخواست Authorization را با مقدار ذخیره شده از متغیر جاوااسکریپت ارسال کنید
+      'Authorization': userId
+    },
+    body:JSON.stringify({ data })
+  })
+  .then(response =>{
+    response.json();
+    if(response.status == 200){
+      window.location.href ='/user/basketshop';
+      
+    }
+    
+  } )  
+  
 
 }
 

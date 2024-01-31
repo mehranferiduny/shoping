@@ -148,4 +148,26 @@ exports.getBasket=async(req,res)=>{
     console.log(err);
   }
 }
+exports.removeItem=async(req,res)=>{
+  try {
+    const {data}=req.body;
+    console.log(data);
+    const bs = await Basket.findOne({ userId: data.userId });
+     
+    let bascket=[];
+    for( let i of bs.product){
+     bascket.push(i)
+    }
 
+    const index=bascket.findIndex(e=> e.id == data.productId);
+    if(index > -1){
+       bascket.splice(index,1)
+    }
+
+    bs.product=bascket;
+    await bs.save();
+     res.redirect("/user/basketshop")
+  } catch (err) {
+    console.log(err);
+  }
+}

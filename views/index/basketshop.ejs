@@ -1095,6 +1095,8 @@
                         <%if(e.sale == 0){ %>
                           <span class="font-bold"><%=separate(e.price) %></span>
                         <% }else{ %>
+                          <del class="font-bold "><%=separate(e.price) %></del>
+                          &nbsp;&nbsp;
                           <span class="font-bold"><%=separate(e.price-e.sale) %></span>
                         <% }%>
                          
@@ -1104,7 +1106,7 @@
                       </div>
                     </div>
                   </li>
-                  <div class="deleteitm" >
+                  <div class="deleteitm" onclick="removeitem('/user/deleItem','<%= e._id %>','<%= user.id %>')" >
 
                     <button type="button" class="btn-red-nobg px-3 py-2 text-sm mx-auto">
                     <span>
@@ -1186,7 +1188,7 @@
                         sales=totaal-sale
                         }} %>
                         
-                      <span class="font-bold">  <%= sales %></span>
+                      <span class="font-bold">  <%= separate(sale) %></span>
                       <span class="text-xs lg:text-sm">تومان</span>
                     </div>
                   </div>
@@ -1202,7 +1204,7 @@
                     <div
                       class="text-sm text-emerald-500 dark:text-emerald-400 lg:text-base"
                     >
-                      <span class="font-bold">2,400,000</span>
+                      <span class="font-bold"><%= separate(sales) %></span>
                       <span class="text-xs lg:text-sm">تومان</span>
                     </div>
                   </div>
