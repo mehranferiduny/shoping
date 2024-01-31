@@ -2,6 +2,7 @@ const  express  = require("express");
 // const { authenticated } = require("../middlewares/auth");
 
 const userController = require("../controller/users");
+const indexController = require("../controller/index");
 const basketController = require("../controller/bascket");
 const { authenticated } = require("../middlewares/auth");
 
@@ -29,6 +30,7 @@ router.get("/editPage",  userController.editPage);
 
 //!Bascket
 router.post("/addToCart",  basketController.addProToShop);
+router.get("/basketshop", indexController.getBasket);
 
 
 
