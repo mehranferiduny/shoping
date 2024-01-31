@@ -31,6 +31,7 @@ router.get("/editPage",  userController.editPage);
 //!Bascket
 router.post("/addToCart",  basketController.addProToShop);
 router.get("/basketshop", indexController.getBasket);
+router.get("/address", indexController.getAddres);
 router.post("/deleItem", indexController.removeItem);
 
 

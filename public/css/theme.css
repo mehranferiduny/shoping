@@ -461,6 +461,39 @@ select {
   padding: 5px;
   border-radius: 4px;
 }
+.input-item{
+  font-size: 16px;
+  width: 45%;
+  border: 1px solid #10b981ba;
+  padding: 5px;
+  border-radius: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.mt-3{
+  margin-top: 30px !important;
+}
+.input-item-addres{
+  font-size: 16px;
+  width: 92%;
+  border: 1px solid #10b981ba;
+  padding: 5px;
+  border-radius: 4px;
+  margin-left: 30px;
+  margin-right: 30px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.m-3{
+  margin: 30px auto 30px auto !important;
+  text-align: center;
+}
 .red{
   color: #f15f5f !important;
 }

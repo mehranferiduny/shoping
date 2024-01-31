@@ -174,7 +174,6 @@ function separate(Number) {
 
 function removeitem(url,id,userId){
   const data={productId:id,userId:userId}
-  console.log(data);
   fetch(url, {
     method: 'POST',
     headers: {
@@ -201,4 +200,11 @@ function removeitem(url,id,userId){
 
 
 
+let ersal=document.querySelector('input[name="ersal"]:checked').value;
 
+
+function sendpost(ersal){
+  console.log(ersal);
+  return ersal
+}
+sendpost(ersal)
