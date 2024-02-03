@@ -36,12 +36,24 @@ exports.addProToShop = async (data, socket) => {
       const obj=productID.map( o =>{
         return o.id;
       })
+      socket.emit("addsecses");
        const product=await Products.find({_id:obj})
       const item={user:user,product:product}
       socket.emit("item",item)
      }else{
       //! Add prodact but add befor produact
-      console.log("nooo");
+      socket.emit("addbefor");
+      let productID=[];
+      for(let i of user.product)
+      {
+        productID.push(i)
+      }
+      const obj=productID.map( o =>{
+        return o.id;
+      })
+      const product=await Products.find({_id:obj})
+      const item={user:user,product:product}
+      socket.emit("item",item)
      }
 
 

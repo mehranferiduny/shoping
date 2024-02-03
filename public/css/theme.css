@@ -192,24 +192,30 @@
     object-fit: cover;
   }
   .wartust{
-    position: absolute;
-  left: 40%;
-  right: 40%;
-
-  background-color: #eec444;
-  color: #fdfdfd;
-  padding: 10px;
-  text-align: center;
-  border-radius: 6px;
-  }
+    display: none;
+    position: fixed;
+    transform: translateX(-50%) ;
+    top: 30%;
+    left:50%;
+    background-color: #e3e634;
+    color: #fdfdfd;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+    border-radius: 6px;
+    -webkit-transform: translateX(-50%) ;
+    -moz-transform: translateX(-50%) ;
+    -ms-transform: translateX(-50%) ;
+    -o-transform: translateX(-50%) ;
+}
   .sectust{
-    position: absolute;
-  left: 40%;
-  right: 40%;
-  bottom: 10%;
+    display: none;
+    position: fixed;
+    transform: translateX(-50%) ;
+    top: 30%;
+    left:50%;
   background-color: #44ee4a;
   color: #fdfdfd;
-  padding: 10px;
+  padding: 10px 30px 10px 30px;
   text-align: center;
   border-radius: 6px;
   }
@@ -480,7 +486,17 @@ select {
 .item-search{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+}
+.catstayl{
+  color: #474747;
+}
+.catstayl:hover{
+  background-color: #47474700;
+}
+.catstayl:active{
+  --tw-bg-opacity:0;
+  background-color: #47474700;
 }
 .input-item-addres{
   font-size: 16px;

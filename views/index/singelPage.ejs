@@ -1,4 +1,4 @@
-
+<%- include('../includes/toust.ejs')  %>
 
 <%- include('./header.ejs')  %>
 
@@ -24,7 +24,7 @@
                 <h3
                   class="line-clamp-1 text-zinc-700 dark:text-white md:text-lg"
                 >
-                  تصاویر محصول کفش پیاده روی مردانه نیو بالانس مدل Mdrftlm2
+                 <%=product.title  %>
                 </h3>
                 <button
                   class="text-zinc-700 dark:text-white"
@@ -52,6 +52,7 @@
                           loading="lazy"
                         />
                       </div>
+                      <% if(product.image1){ %>
                       <div class="swiper-slide">
                         <img
                           src="../uploads/products/<%= product.image1 %>"
@@ -60,6 +61,8 @@
                           loading="lazy"
                         />
                       </div>
+                      <% } %>
+                      <% if(product.image2){ %>
                       <div class="swiper-slide">
                         <img
                           src="../uploads/products/<%= product.image2 %>"
@@ -68,6 +71,8 @@
                           loading="lazy"
                         />
                       </div>
+                      <% } %>
+                      <% if(product.image3){ %>
                       <div class="swiper-slide">
                         <img
                           src="../uploads/products/<%= product.image3 %>"
@@ -76,6 +81,7 @@
                           loading="lazy"
                         />
                       </div>
+                      <% } %>
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-next hidden md:flex"></div>
@@ -1012,7 +1018,7 @@
       <!-- Submit answer to Comments modal -->
 
     
-      <%- include('../includes/toust.ejs')  %>
+    
     </main>
     
    

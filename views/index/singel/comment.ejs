@@ -331,17 +331,7 @@
                       >
                         <%= comm.title  %>
                       </h5>
-                      <button
-                        data-modal-target="submit-answers-to-comments-drawer-navigation"
-                        data-modal-toggle="submit-answers-to-comments-drawer-navigation"
-                        type="button"
-                        class="btn-secondary-nobg"
-                      >
-                        پاسخ
-                        <svg class="w-5 h-5">
-                          <use xlink:href="#chevron-left" />
-                        </svg>
-                      </button>
+                   
                     </div>
                     <div
                       class="mb-6 flex items-center gap-x-4 border-b border-gray-100 pb-6 dark:border-white/5"
@@ -386,34 +376,10 @@
                         <%= comm.comment  %>
                       </p>
                     </div>
-                    <div
-                      class="flex items-center justify-end gap-x-8"
-                    >
-                      <div
-                        class="text-sm text-zinc-500 dark:text-zinc-400"
-                      >
-                        آیا این دیدگاه برایتان مفید بود؟
-                      </div>
-                      <button
-                        class="flex items-center gap-x-2 text-emerald-500 transition-all duration-200 hover:text-emerald-400 dark:text-emerald-400 hover:dark:text-emerald-500"
-                      >
-                        <span class="text-sm"> 32 </span>
-                        <svg class="h-6 w-6">
-                          <use xlink:href="#like" />
-                        </svg>
-                      </button>
-                      <button
-                        class="flex items-center gap-x-2 text-red-500 transition-all duration-200 hover:text-red-400 dark:text-red-400 hover:dark:text-red-500"
-                      >
-                        <span class="text-sm"> 76 </span>
-                        <svg class="h-6 w-6">
-                          <use xlink:href="#dislike" />
-                        </svg>
-                      </button>
-                    </div>
+                   
                   </div>
                   <!-- Answers -->
-                  <!-- <ul class="space-y-2">
+                   <ul class="space-y-2">
                     <li>
                       <div
                         class="py-6 pr-8 border-r border-gray-200 dark:border-white/10"
@@ -421,31 +387,17 @@
                         <div
                           class="flex items-center justify-between"
                         >
-                          <h5
-                            class="mb-4 leading-relaxed text-zinc-700 dark:text-white xl:text-lg"
-                          >
-                            با این قیمت کاملا مناسب و خوبه
-                          </h5>
-                          <button
-                            data-modal-target="submit-answers-to-comments-drawer-navigation"
-                            data-modal-toggle="submit-answers-to-comments-drawer-navigation"
-                            type="button"
-                            class="btn-secondary-nobg"
-                          >
-                            پاسخ
-                            <svg class="w-5 h-5">
-                              <use xlink:href="#chevron-left" />
-                            </svg>
-                          </button>
+                    
+                       
                         </div>
                         <div
                           class="mb-6 flex items-center gap-x-4 border-b border-gray-100 pb-6 dark:border-white/5"
                         >
                           <div class="flex items-center gap-x-2">
                             <div
-                              class="text-sm text-zinc-500 dark:text-zinc-400"
+                              class="text-sm text-emerald-500 dark:text-emerald-400"
                             >
-                              10 شهریور 1403
+                        پاسخ ادمین 
                             </div>
                             <span
                               class="h-3 w-px rounded-full bg-grauy-200 dark:bg-black/10"
@@ -453,7 +405,7 @@
                             <div
                               class="text-sm text-zinc-500 dark:text-zinc-400"
                             >
-                              خریدار
+                              10 شهریور 1403
                             </div>
                           </div>
                         </div>
@@ -467,84 +419,17 @@
                             گزینه خیلی خوبیه
                           </p>
                         </div>
-                        <div
-                          class="flex items-center justify-end gap-x-8"
-                        >
-                          <div
-                            class="text-sm text-zinc-500 dark:text-zinc-400"
-                          >
-                            آیا این دیدگاه برایتان مفید بود؟
-                          </div>
-                          <button
-                            class="flex items-center gap-x-2 text-emerald-500 transition-all duration-200 hover:text-emerald-400 dark:text-emerald-400 hover:dark:text-emerald-500"
-                          >
-                            <span class="text-sm"> 32 </span>
-                            <svg class="h-6 w-6">
-                              <use xlink:href="#like" />
-                            </svg>
-                          </button>
-                          <button
-                            class="flex items-center gap-x-2 text-red-500 transition-all duration-200 hover:text-red-400 dark:text-red-400 hover:dark:text-red-500"
-                          >
-                            <span class="text-sm"> 76 </span>
-                            <svg class="h-6 w-6">
-                              <use xlink:href="#dislike" />
-                            </svg>
-                          </button>
-                        </div>
+                      
                       </div>
                     </li>
-                  </ul> -->
+                  </ul> 
                 </li>
 
-                <% } %>
+              
              
-              </ul>
-              <!-- Pagination -->
-              <div
-                class="flex items-center justify-center gap-x-4 md:justify-end"
-              >
-                <!-- Previous page-->
-                <a
-                  class="pagination-button flex items-center justify-center"
-                  href="#"
-                >
-                  <svg class="h-6 w-6">
-                    <use xlink:href="#chevron-right"></use>
-                  </svg>
-                </a>
-
-                <!-- Pages -->
-                <div class="flex items-center gap-x-2">
-                  <a
-                    class="pagination-button pagination-button-active"
-                    href="#"
-                  >
-                    1
-                  </a>
-                  <p class="text-sm text-zinc-500 dark:text-zinc-400">
-                    ...
-                  </p>
-
-                  <a class="pagination-button" href="#"> 3 </a>
-                  <a class="pagination-button" href="#"> 4 </a>
-
-                  <p class="text-sm text-zinc-500 dark:text-zinc-400">
-                    ...
-                  </p>
-
-                  <a class="pagination-button" href="#"> 10 </a>
-                </div>
-                <!-- Next page-->
-                <a
-                  class="flex h-8 w-8 items-center justify-center rounded-full bg-white text-zinc-700 transition-all duration-200 hover:bg-emerald-500 hover:text-white dark:bg-zinc-900 dark:text-white hover:dark:bg-emerald-600"
-                  href="#"
-                >
-                  <svg class="h-6 w-6">
-                    <use xlink:href="#chevron-left"></use>
-                  </svg>
-                </a>
-              </div>
+           
+              <% } %>
+            </ul>
             </div>
             <!-- Mobile Comments -->
             <div class="md:hidden">
@@ -851,7 +736,7 @@
         </div>
       </div>
       <div class="hidden justify-center md:flex">
-        <button class="btn-secondary-nobg" id="toggleCommentsButton">
+        <button type="button" class="btn-secondary-nobg" id="toggleCommentsButton">
           مشاهده بیشتر
           <svg class="h-5 w-5">
             <use xlink:href="#chevron-left" />

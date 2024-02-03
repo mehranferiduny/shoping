@@ -134,6 +134,9 @@ body {
   margin: 1px;
   border-radius: 4px;
 }
+.float-left{
+  float: left !important;
+}
 
 .left-20{
   left: 20px !important;

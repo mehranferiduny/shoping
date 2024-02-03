@@ -1,0 +1,82 @@
+<div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl">
+
+  <div class="container mt-5 text-end ">
+    <h4> دیدگاه کاربران( <span> تعداد- <%= comments.length  %></span> )</h4>
+    
+
+      <div class="card-body px-0 pb-5 p-5 bg-white w-100 mx-auto">
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">شماره کاربر </th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">محصول </th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">عنوان دیدگاه</th>
+            
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let comment of comments){ %>
+              <tr>
+               
+                <td>
+                  <div class="d-flex px-2 py-1">
+               
+                    <div class="d-flex flex-column  justify-content-center">
+                      <% for( let user of users){ 
+                     
+                        if(user.id.toString() == comment.user.toString()){
+                        %>
+                      <h6 class="mb-0 text-sm"><%= user.phone  %></h6>
+                    <% }} %>
+                    </div>
+                  </div>
+                </td>
+
+
+                <td>
+                  <div class="d-flex px-2 py-1">
+               
+                    <div class="d-flex flex-column  justify-content-center">
+                      <% for( let product of products){ 
+                     
+                        if(product.id.toString() == comment.product.toString()){
+                        %>
+                      <h6 class="mb-0 text-sm"><%= product.title  %></h6>
+                    <% }} %>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="d-flex px-2 py-1">
+               
+                    <div class="d-flex flex-column justify-content-center">
+                    <%= comment.title  %>
+                    </div>
+                  </div>
+                </td>
+           
+               
+               
+                <td class="align-middle">
+                  <div class="progress-wrapper w-75 mx-auto">
+                    <div class="d-flex flex-column justify-content-center">
+                     <a href="/dashbord/showComment/<%= comment._id  %>" class="btn btn-success btn-sm">نمایش</a>
+                    </div>
+                  </div>
+                </td>
+               
+              </tr>
+              <% } %>
+      
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+
+
+
+</div>

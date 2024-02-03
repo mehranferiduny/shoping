@@ -13,7 +13,7 @@ const router = new express.Router();
 
 router.get("/",  indexController.getProducts);
 router.get("/product/:id",  indexController.singelProduct);
-router.get("/category",  indexController.categoryProduct);
+router.get("/category/:id",  indexController.categoryProduct);
 
 
 

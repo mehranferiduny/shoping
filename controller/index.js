@@ -257,9 +257,42 @@ exports.sendComment=async(req,res)=>{
 
 
 exports.categoryProduct=async(req,res)=>{
-  console.log("hiii");
+  const catId=req.params.id;
+  let user='';
+  if(req.user){
+  user=req.user
+  }
+
   try {
-console.log(req);
+    const product=await Products.find({categorymin:catId});
+    const category=await Category.find({}).sort({ name: -1 })
+      const categorymin=await CategoryMin.find({}).sort({ name: -1 })
+      const catminproduct=await CategoryMin.findOne({_id:catId});
+    const catproduct=await Category.findOne({_id:catminproduct.IdCat})
+
+      const basckeid=await Basket.find({userId:user.id}).sort({ name: -1 });
+      let productbas="";
+      let id=[];
+      if(basckeid.length>0){
+      for(let b=0;b<basckeid[0].product.length;b++){
+        id.push(basckeid[0].product[b].id)
+      }
+       productbas=await Products.find({_id:id})
+      }
+   
+     res.render('index/search',{
+      pageTitle:`دسته بندی : ${catminproduct.name} `,
+      layout:'./layouts/mainLayout',
+      product,
+      category,
+      separate,
+      user:req.user,
+      productbas,
+      categorymin,
+      catproduct,
+      catminproduct
+
+     })
   } catch (err) {
     console.log(err);
   }

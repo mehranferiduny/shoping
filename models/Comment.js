@@ -1,13 +1,11 @@
 const mongoose = require("mongoose");
 
-
 const { schema } = require("./secure/commentValidet");
-
 
 const commentSchema = new mongoose.Schema({
   title: {
     type: String,
-    required:true,
+    required: true,
     minlength: 2,
     maxlength: 100,
   },
@@ -19,11 +17,11 @@ const commentSchema = new mongoose.Schema({
     maxlength: 255,
     required: true,
   },
-  user:{
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  product:{
+  product: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Products",
   },
@@ -31,19 +29,19 @@ const commentSchema = new mongoose.Schema({
     type: String,
     default: "status-like",
     enum: ["status-like", "status-dislike"],
-},
+  },
+  replay: {
+    type: String,
+    default: "",
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
-
-
 });
 
 commentSchema.statics.commentValidation = function (body) {
   return schema.validate(body, { abortEarly: false });
 };
-
-
 
 module.exports = mongoose.model("Comment", commentSchema);

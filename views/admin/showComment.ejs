@@ -1,0 +1,48 @@
+
+<div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl">
+
+  <div class="container mt-5 text-end ">
+
+  <div class="media mb-4">
+      
+      <div class="media-body card p-3 border-info">
+          <h5 class="mt-0">
+              <div class="row">
+                  <div class="col">
+                      <p class="text-secondary">
+                       کاربر :   <%= user.phone %>
+                      </p>
+                  </div>
+                  <div class="col">
+                      <p class="text-secondary">
+                       محصول :   <%= product.title %>
+                      </p>
+                  </div>
+                  <p class="col text-right rounded">
+                    تاریخ :  <%=  formatDate(comment[0].createdAt)%>
+                    </p>
+
+              </div>
+              <div class="mt-3 pb-3">
+              <span class="text-secondary">عنوان :</span>  <%= comment[0].title %>
+            </div>
+              <div class="mt-3 text-sm  pb-3">
+                <span class="text-secondary"> دیدگاه :</span>  <%= comment[0].comment %>
+              </div>
+              <div class="mt-3">
+                <form action="/dashbord/replayComment/<%= comment[0]._id  %>" method="post" class="d-grid">
+                  <label for="replay">پاسخ :</label>
+                  <textarea class="text-sm" name="replay" id="replay" cols="100" rows="5"></textarea>
+                  <div class=" text-left float-left  mt-2">
+                    <button type="submit" class="btn  btn-sm btn-success px-5 float-left">پاسخ</button>
+                </div>
+                </form>
+                  
+              </div>
+          </h5>
+      </div>
+  </div>
+
+
+  </div>
+  </div>

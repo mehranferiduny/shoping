@@ -916,7 +916,7 @@
     </symbol>
   </svg>
 </div>
-<div class="flex min-h-screen flex-col">
+
   <header>
     <!-- Header -->
     <div class="fixed left-0 right-0 top-0 z-30 bg-white dark:bg-zinc-900">
@@ -1369,7 +1369,7 @@
                           <!-- Product Image -->
 
                           <div class="relative min-w-fit">
-                            <a href='/product-detail'>
+                            <a href='/product/<%= item.productID %>'>
                               <img
                                 alt=""
                                 class="h-[120px] w-[120px] radus"
@@ -1383,7 +1383,7 @@
                           <div class="w-full space-y-1.5">
                             <!-- Product Title -->
 
-                            <a class='line-clamp-2 h-12 text-zinc-700 dark:text-white' href='/product-detail'>
+                            <a class='line-clamp-2 h-12 text-zinc-700 dark:text-white' href='/product/<%= item.productID %>'>
                            <%= item.title  %>
                             </a>
                             <!-- Product Attribute -->
@@ -1495,6 +1495,64 @@
             <div
               class="container relative flex max-w-[1680px] items-center gap-x-2"
             >
+            <div>
+              <div class="relative flex cursor-pointer items-center gap-x-2 pb-2 text-zinc-700 dark:text-white">
+              
+                <a class="group relative" href="/">
+                  
+                  <div class="p-2 pt-0 text-zinc-700 dark:text-white">
+                  صفحه اصلی
+                  </div>
+                  <div class="absolute bottom-0 flex w-full justify-center">
+                    <div
+                      class="left-0 h-0.5 animate-border-width-reverse rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-emerald-500 to-[rgba(17,17,17,0)] transition-all duration-200 group-hover:animate-border-width dark:via-emerald-400"
+                    ></div>
+                  </div>
+                </a>
+              </div>
+
+              </div>
+              
+              
+
+              
+              <div>
+                <a class="group relative" href="./how-to-buy.html">
+                  <div class="p-2 pt-0 text-zinc-700 dark:text-white">
+                    تماس با ما
+                  </div>
+                  <div class="absolute bottom-0 flex w-full justify-center">
+                    <div
+                      class="left-0 h-0.5 animate-border-width-reverse rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-emerald-500 to-[rgba(17,17,17,0)] transition-all duration-200 group-hover:animate-border-width dark:via-emerald-400"
+                    ></div>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a class="group relative" href="./how-to-buy.html">
+                  <div class="p-2 pt-0 text-zinc-700 dark:text-white">
+                    درباره ما
+                  </div>
+                  <div class="absolute bottom-0 flex w-full justify-center">
+                    <div
+                      class="left-0 h-0.5 animate-border-width-reverse rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-emerald-500 to-[rgba(17,17,17,0)] transition-all duration-200 group-hover:animate-border-width dark:via-emerald-400"
+                    ></div>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a class="group relative" href="./how-to-buy.html">
+                  <div class="p-2 pt-0 text-zinc-700 dark:text-white">
+                    راهنمای خرید
+                  </div>
+                  <div class="absolute bottom-0 flex w-full justify-center">
+                    <div
+                      class="left-0 h-0.5 animate-border-width-reverse rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-emerald-500 to-[rgba(17,17,17,0)] transition-all duration-200 group-hover:animate-border-width dark:via-emerald-400"
+                    ></div>
+                  </div>
+                </a>
+              </div>
+
               <div class="group" id="desktopMegamenuWrapper">
                 <div
                   class="relative flex cursor-pointer items-center gap-x-2 pb-2 text-zinc-700 dark:text-white"
@@ -1530,7 +1588,7 @@
                         <ul dir="rtl" id="mega-menu-parents">
                           <% for(let cat of category){ %>
                           <li>
-                            <a class='flex py-4 pr-4 text-zinc-700 dark:text-white' data-category-parent='1' href='/shop'>
+                            <a class='flex catstayl py-4 pr-4 text-zinc-700 dark:text-white' data-category-parent='1' >
                              <%= cat.name  %>
                             </a>
                           </li>
@@ -1554,11 +1612,9 @@
                           <div class="hidden row p-5" data-category-child="1">
                             <!-- head -->
                             <div class="mb-4 w-100 pr-2 mb-0">
-                              <a class='flex items-center gap-x-1 py-2 text-sm text-emerald-500 dark:text-emerald-400' href='/shop'>
+                              <a class='flex items-center gap-x-1 py-2 text-sm text-emerald-500 dark:text-emerald-400'>
                                 <div>مشاهده همه</div>
-                                <svg class="h-5 w-5">
-                                  <use xlink:href="#chevron-left"></use>
-                                </svg>
+                              
                               </a>
                             </div>
                             <% for(let cat of category){ %>
@@ -1567,20 +1623,20 @@
                             >
 
                               <div class="space-y-2 col p-2">
-                                <a class='flex items-center gap-x-2 text-zinc-700 hover:text-emerald-500 dark:text-white hover:dark:text-emerald-400' href='/shop'>
+                                <div class='flex items-center gap-x-2 text-zinc-700 hover:text-emerald-500 dark:text-white hover:dark:text-emerald-400'>
                                   <span
                                     class="h-5 w-0.5 rounded-full bg-emerald-500 dark:bg-emerald-500"
                                   ></span>
                                   <div><%= cat.name  %> </div>
                                   <svg class="h-5 w-5">
-                                    <use xlink:href="#chevron-left"></use>
+                                    <use xlink:href="#chevron-down"></use>
                                   </svg>
-                                </a>
-                                <ul >
+                                </div>
+                                <ul>
                                   <% for(let mincat of categorymin){
                                     if(mincat.IdCat == cat.id){ %>
                                   <li >
-                                    <a class='block py-2 text-sm text-zinc-600 hover:text-emerald-500 dark:text-zinc-300 hover:dark:text-emerald-400' onclick="sendCatgory('<%=mincat._id %>')">
+                                    <a class='block py-2 text-sm text-zinc-600 hover:text-emerald-500 dark:text-zinc-300 hover:dark:text-emerald-400' href="/category/<%= mincat._id %>">
                                     <%= mincat.name  %>
                                     </a>
                                   </li>
@@ -1599,90 +1655,7 @@
                   </div>
                 </div>
               </div>
-
-              <div>
-                <a class="group relative" href="./special-sale.html">
-                  <div class="p-2 pt-0 text-zinc-700 dark:text-white">
-                    فروش ویژه
-                  </div>
-                  <div class="absolute bottom-0 flex w-full justify-center">
-                    <div
-                      class="left-0 h-0.5 animate-border-width-reverse rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-emerald-500 to-[rgba(17,17,17,0)] transition-all duration-200 group-hover:animate-border-width dark:via-emerald-400"
-                    ></div>
-                  </div>
-                </a>
-              </div>
-              <div>
-                <a class="group relative" href="./why-us.html">
-                  <div class="p-2 pt-0 text-zinc-700 dark:text-white">
-                    چرا روتی کالا
-                  </div>
-                  <div class="absolute bottom-0 flex w-full justify-center">
-                    <div
-                      class="left-0 h-0.5 animate-border-width-reverse rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-emerald-500 to-[rgba(17,17,17,0)] transition-all duration-200 group-hover:animate-border-width dark:via-emerald-400"
-                    ></div>
-                  </div>
-                </a>
-              </div>
-              <div>
-                <a class="group relative" href="./how-to-buy.html">
-                  <div class="p-2 pt-0 text-zinc-700 dark:text-white">
-                    راهنمای خرید
-                  </div>
-                  <div class="absolute bottom-0 flex w-full justify-center">
-                    <div
-                      class="left-0 h-0.5 animate-border-width-reverse rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-emerald-500 to-[rgba(17,17,17,0)] transition-all duration-200 group-hover:animate-border-width dark:via-emerald-400"
-                    ></div>
-                  </div>
-                </a>
-              </div>
-              <div class="group relative">
-                <div
-                  class="flex cursor-pointer items-center gap-x-2 p-2 pt-0 text-zinc-700 dark:text-white"
-                >
-                  سایر
-                  <span class="text-emerald-500 dark:text-emerald-400"
-                    >...</span
-                  >
-                </div>
-                <div
-                  class="absolute right-0 top-full hidden w-44 overflow-hidden rounded-b-lg bg-white group-hover:block dark:bg-zinc-900"
-                >
-                  <div class="relative">
-                    <div class="absolute top-0 flex w-full justify-center">
-                      <div
-                        class="left-0 h-0.5 animate-border-width rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-emerald-500 to-[rgba(17,17,17,0)] transition-all duration-200 dark:via-emerald-400"
-                      ></div>
-                    </div>
-                    <ul class="space-y-1 p-2">
-                      <li>
-                        <a
-                          class="hover:dark: flex rounded-lg px-4 py-3 text-zinc-700 hover:text-emerald-500 dark:text-white hover:dark:text-emerald-400"
-                          href="./contact.html"
-                        >
-                          تماس با ما
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          class="hover:dark: flex rounded-lg px-4 py-3 text-zinc-700 hover:text-emerald-500 dark:text-white hover:dark:text-emerald-400"
-                          href="./about.html"
-                        >
-                          درباره ما
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          class="hover:dark: flex rounded-lg px-4 py-3 text-zinc-700 hover:text-emerald-500 dark:text-white hover:dark:text-emerald-400"
-                          href="./faq.html"
-                        >
-                          سوالات متداول
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+            
             </div>
           </div>
         </div>
@@ -2035,7 +2008,7 @@
       id="header-overlay"
     ></div>
   </header>
-
+  
 
 
 
@@ -3021,7 +2994,7 @@
       </div>
     </div>
   </div>
-  <!-- Color Effect -->
-  <div
-    class="fixed inset-x-0 top-1/3 mx-auto h-1/3 w-1/4 bg-emerald-500/50 blur-[200px] dark:bg-emerald-400/50"
-  ></div>
+
+
+
+ 

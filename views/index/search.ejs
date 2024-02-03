@@ -3,6 +3,8 @@
 
     <!-- Special Products section Start -->
 
+
+
     <section class="mb-8">
       <div class="container relative">
         <!-- Section Header -->
@@ -10,22 +12,19 @@
           <h3
             class="font-medium text-zinc-700 dark:text-white md:text-lg lg:text-xl"
           >
-            پیشنهادات ویژه
+          <%= catminproduct.name  %>
           </h3>
           <a class='flex items-center gap-x-2 py-2 text-sm text-emerald-500 dark:text-emerald-400 lg:text-base' href='/shop'>
-            مشاهده همه
-            <span>
-              <svg class="h-5 w-5 lg:h-6 lg:w-6">
-                <use xlink:href="#chevron-left" />
-              </svg>
+         (  <%=catproduct.name  %>  )
+            
             </span>
           </a>
         </div>
-
+        <% if(product.length > 0){ %>
         <!-- Section Content -->
         <div class="swiper product-slider p-px">
           <div class="swiper-wrapper item-search">
-            <% for(let productx of products){ %>
+            <% for(let productx of product){ %>
             <div class="swiper-slide">
               <!-- Product Card -->
               <div
@@ -40,7 +39,7 @@
                       <img
                         alt=""
                         class="mx-auto w-32 rounded-lg md:w-auto image-pro"
-                        src="uploads/products/<%= productx.image %>"
+                        src="../uploads/products/<%= productx.image %>"
                       />
                     </a>
                   </div>
@@ -103,11 +102,16 @@
             <% } %>
            
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
+  
         </div>
+        <% }else{ %>
+        
+        <p>هنوز محصولی در این دسته بندی ارائه نشده است</p>
+  
+        <% } %>
       </div>
     </section>
+ 
    
 
 </main>

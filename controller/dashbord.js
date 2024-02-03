@@ -5,9 +5,12 @@ const fs=require("fs");
 
 const Category=require('../models/Category')
 const Products=require('../models/Products');
+const User=require('../models/Users');
 const Banner=require('../models/baner');
+const Comment=require('../models/Comment');
 const {separate}=require('../utils/separate');
 const Categorymin = require("../models/Categorymin");
+const {formatDate}=require('../utils/jalali')
 
 //!dashbord
 exports.getDashbord=async(req,res)=>{
@@ -560,5 +563,61 @@ exports.deleteProducts = async (req, res) => {
          
     } catch (err) {
       console.log(err);
+    }
+  }
+
+
+  //! Comment
+  exports.getComment= async(req,res)=>{
+    try {
+      const comments =await Comment.find({});
+      const users =await User.find();
+      const products =await Products.find({});
+      res.render('admin/comment',{
+       pageTitle:"دیدگاه کاربران",
+       layout:'./layouts/dashLayot',
+         path:'/getComment',
+         comments,
+         users,
+         products
+      })
+      
+    } catch (err) {
+      console.log(err);
+    }
+   
+  }
+  exports.showComment= async(req,res)=>{
+    try {
+      const comment =await Comment.find({_id:req.params.id});
+      const user =await User.findOne({_id:comment[0].user});
+      const product =await Products.findOne({_id:comment[0].product});
+
+      res.render('admin/showComment',{
+       pageTitle:"دیدگاه کاربران",
+       layout:'./layouts/dashLayot',
+         path:'/getComment',
+         comment,
+         user,
+         product,
+         formatDate
+      })
+      
+    } catch (err) {
+      console.log(err);
+    }
+   
+  }
+
+  exports.replayComment= async (req,res)=>{
+    try {
+      const comment= await Comment.findById(req.params.id)
+      const {replay}=req.body;
+      comment.replay=replay;
+      await comment.save();
+      res.redirect('/dashbord/getComment')
+      
+    } catch (err) {
+      console.log(err)
     }
   }

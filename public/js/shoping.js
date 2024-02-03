@@ -1,8 +1,8 @@
 
-
+console.log("hiiii")
 const socket =io();
 
-
+console.log("hiiii1")
 
 
 var sizecheck = document.getElementById("sizecheck");
@@ -10,14 +10,14 @@ var colorcheck = document.getElementById("colorcheck");
 let sizeChek=document.getElementsByName('radiosize');
 let colorChek=document.getElementsByName('radiocolor');
 
-
-
+console.log("hiiii2")
 
 const count= document.querySelector('.count');
 const countt= document.querySelector('.countt');
 const divCart= document.querySelector('.item_cart'); 
 const totall= document.querySelector('.totall'); 
 let total=0;
+
 function addToCart(id,userId){
   let data={
     userId:userId,
@@ -56,11 +56,11 @@ function updateitem(userId){
       totall.innerHTML=toFarsiNumber(total)
       divCart.innerHTML+=`
       <li>
-      <div class="flex gap-x-2 ">
+      <div class="flex gap-x-2 py-5">
         <!-- Product Image -->
    
         <div class="relative min-w-fit">
-          <a href='/product/${product.productID}'>
+          <a href='/product-detail'>
             <img
               alt=""
               class="h-[120px] w-[120px] radus"
@@ -74,7 +74,7 @@ function updateitem(userId){
         <div class="w-full space-y-1.5">
           <!-- Product Title -->
    
-          <a class='line-clamp-2 h-12 text-zinc-700 dark:text-white' href='/product/${product.productID}'>
+          <a class='line-clamp-2 h-12 text-zinc-700 dark:text-white' href='/product-detail'>
            ${product.title}
           </a>
           <!-- Product Attribute -->
@@ -101,44 +101,34 @@ function updateitem(userId){
       `
     }
 
-   
+    for(let i=0;i<item.user.product.length;i++){
+      document.getElementById('colorbsk').innerHTML=item.user.product[i].color
+
+    }
+    for(let i=0;i<item.user.product.length;i++){
+      document.getElementById('sizebsk').innerHTML=item.user.product[i].size
+
+    }
     
-  
+
    
   
     
   })
 }
-
 function addItem(data) {
   socket.emit("add_bsk",data)
 
-  
+  socket.on("secses",()=>{
+   // Add the "show" class to DIV
+   x.className = "show";
+
+   // After 3 seconds, remove the show class from DIV
+   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  })
+
 
 }
-
-
-//!lisning
-socket.on("addsecses",()=>{
- 
-  document.getElementById("snackbar").style.display= "block"
-
-  setTimeout(function(){
-    document.getElementById("snackbar").style.display= "none"
-  },3000)
-
-})
-socket.on("addbefor",()=>{
- 
-  document.getElementById("snackbar2").style.display= "block"
-
-  setTimeout(function(){
-    document.getElementById("snackbar2").style.display= "none"
-  },3000)
-})
-
-
-
 
 
 function toFarsiNumber(n) {
@@ -187,6 +177,28 @@ function removeitem(url,id,userId){
 }
 
 
+function convertPersianToEnglishNumber(persianNumber) {
+  const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  let englishNumber = '';
+
+  for (let i = 0; i < persianNumber.length; i++) {
+    const char = persianNumber[i];
+    const index = persianNumbers.indexOf(char);
+    
+    if (index !== -1) {
+      englishNumber += index;
+    } else {
+      englishNumber += char;
+    }
+  }
+
+  return parseInt(englishNumber, 10);
+}
+
+function removevirgol(number){
+  return number.replace(/,/,'').replace(/^+/,'0');
+}
+
 function edit(){
   const jamekol=document.getElementById("jamekol");
   let edit=jamekol.innerText
@@ -220,8 +232,4 @@ function sendpost(){
 }
 
 
-
-
-
-  
 
