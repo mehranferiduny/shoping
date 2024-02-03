@@ -379,6 +379,7 @@
                    
                   </div>
                   <!-- Answers -->
+                  <% if (comm.replay.length > 1){ %>
                    <ul class="space-y-2">
                     <li>
                       <div
@@ -402,11 +403,7 @@
                             <span
                               class="h-3 w-px rounded-full bg-grauy-200 dark:bg-black/10"
                             ></span>
-                            <div
-                              class="text-sm text-zinc-500 dark:text-zinc-400"
-                            >
-                              10 شهریور 1403
-                            </div>
+                           
                           </div>
                         </div>
                         <div
@@ -415,14 +412,14 @@
                           <p
                             class="line-clamp-4 text-sm text-zinc-600 dark:text-zinc-300"
                           >
-                            برا کسایی که نمیخوان هزینه بالایی کنن
-                            گزینه خیلی خوبیه
+                         <%= comm.replay %>
                           </p>
                         </div>
                       
                       </div>
                     </li>
                   </ul> 
+                  <% } %>
                 </li>
 
               

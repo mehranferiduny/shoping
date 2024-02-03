@@ -46,6 +46,7 @@ router.get("/deleteBanner/:id",adminController.deleteBanner);
 router.get("/getComment",adminController.getComment);
 router.get("/showComment/:id",adminController.showComment);
 router.post("/replayComment/:id",adminController.replayComment);
+router.get("/deleteComment/:id",adminController.deleteComment);
 
 
 module.exports = router;

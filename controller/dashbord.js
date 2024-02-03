@@ -621,3 +621,12 @@ exports.deleteProducts = async (req, res) => {
       console.log(err)
     }
   }
+  exports.deleteComment= async (req,res)=>{
+    try {
+     await Comment.findByIdAndDelete(req.params.id)
+      res.redirect('/dashbord/getComment')
+      
+    } catch (err) {
+      console.log(err)
+    }
+  }
