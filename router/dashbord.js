@@ -36,4 +36,10 @@ router.get("/editProductindex/:_id",  adminController.editProductindex);
 
 
 
+//! Banner
+router.get("/getBanner",adminController.getBanner);
+router.post("/addBanner",adminController.addBanner);
+router.get("/deleteBanner/:id",adminController.deleteBanner);
+
+
 module.exports = router;

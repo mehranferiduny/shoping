@@ -28,7 +28,7 @@
           <span
             class="absolute -left-5 -top-4 flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-xs text-white dark:bg-emerald-600 dark:text-white xs:text-sm"
           >
-            2
+           <%= comment.length  %>
           </span>
         </a>
       </li>
@@ -112,13 +112,22 @@
           </li>
           <li class="grid grid-cols-3 gap-x-2 lg:grid-cols-5">
             <div class="col-span-1 text-zinc-500 dark:text-zinc-400">
-              برند 
+              سایز 
             </div>
             <div
               class="col-span-2 border-b border-gray-100 pb-4 text-zinc-600 dark:border-white/5 dark:text-zinc-300 lg:col-span-4"
             >
               <ul class="space-y-4">
-                <li><%= product.brand  %></li>
+                <li>
+                  <%let sizes=product.size.toString().split(',')  
+                  for(let Size of sizes){
+                  %>
+                  
+                  <%= Size %>
+                 -
+                  <%}%>
+
+                </li>
               </ul>
             </div>
           </li>
@@ -179,7 +188,8 @@
       <div>
         <div class="grid grid-cols-12 gap-y-8 md:gap-8">
           <!-- Submit New Comment -->
-          <div class="col-span-12 md:col-span-4 lg:col-span-3">
+          <form class="col-span-12 md:col-span-4 lg:col-span-3" action="/user/sendComment/<%= product.productID  %>" method="post">
+       
             <div class="grid grid-cols-2 gap-4 md:sticky md:top-32">
               <div class="text-lg text-zinc-700 dark:text-white">
                 ثبت دیدگاه
@@ -192,6 +202,7 @@
                   <input
                     type="text"
                     id="title"
+                    name="title"
                     class="peer w-full rounded-lg border-none bg-transparent px-4 py-3 text-zinc-700 placeholder-transparent focus:outline-none focus:ring-0 dark:text-white"
                     placeholder="عنوان دیدگاه"
                   />
@@ -216,8 +227,8 @@
                   <div class="w-full">
                     <input
                       type="radio"
-                      name="suggest"
-                      value="suggest-like"
+                      name="status"
+                      value="status-like"
                       id="suggest-like"
                       class="peer hidden"
                     />
@@ -240,8 +251,8 @@
                   <div class="w-full">
                     <input
                       type="radio"
-                      name="suggest"
-                      value="suggest-dislike"
+                      name="status"
+                      value="status-dislike"
                       id="suggest-dislike"
                       class="peer hidden"
                     />
@@ -270,6 +281,7 @@
                   <textarea
                     type="text"
                     id="comment"
+                    name="comment"
                     rows="3"
                     class="main-scroll peer w-full rounded-lg border-none bg-transparent px-4 py-3 text-zinc-700 placeholder-transparent focus:outline-none focus:ring-0 dark:text-white"
                     placeholder="متن دیدگاه"
@@ -283,14 +295,20 @@
                 </label>
               </div>
               <div class="col-span-2 flex justify-end">
+                <% if(user){ %>
                 <button
                   class="btn-primary w-full px-4 py-2 md:w-auto"
+                  type="submit"
                 >
                   ارسال دیدگاه
                 </button>
+                <% }else{ %>
+                  <a class="btn-primary w-full px-4 py-2 md:w-auto" href="user/LoginPage">   ارسال دیدگاه</a>
+                  <% } %>
               </div>
             </div>
-          </div>
+       
+        </form>
           <!-- Comments -->
           <div
             class="order-first col-span-12 mb-10 max-h-[500px] overflow-hidden md:order-last md:col-span-8 lg:col-span-9"
@@ -301,6 +319,8 @@
               <ul
                 class="mb-8 space-y-4 divide-y divide-gray-200 dark:divide-white/10"
               >
+
+              <% for(let comm of comment){ %>
                 <li class="space-y-2">
                   <div class="py-6">
                     <div
@@ -309,7 +329,7 @@
                       <h5
                         class="mb-4 leading-relaxed text-zinc-700 dark:text-white xl:text-lg"
                       >
-                        با این قیمت کاملا مناسب و خوبه
+                        <%= comm.title  %>
                       </h5>
                       <button
                         data-modal-target="submit-answers-to-comments-drawer-navigation"
@@ -326,6 +346,7 @@
                     <div
                       class="mb-6 flex items-center gap-x-4 border-b border-gray-100 pb-6 dark:border-white/5"
                     >
+                    <% if(comm.status == "status-like"){  %>
                       <div
                         class="flex items-center gap-x-2 text-emerald-500 dark:text-emerald-400"
                       >
@@ -334,20 +355,26 @@
                         </svg>
                         پیشنهاد میکنم
                       </div>
+                      <% }else{ %>
+                        <div
+                        class="flex items-center gap-x-2 text-red-500 dark:text-red-400"
+                      >
+                        <svg class="h-5 w-5">
+                          <use xlink:href="#dislike" />
+                        </svg>
+                        پیشنهاد نمیکنم
+                      </div>
+                        <% } %>
                       <div class="flex items-center gap-x-2">
                         <div
                           class="text-sm text-zinc-500 dark:text-zinc-400"
                         >
-                          10 شهریور 1403
+                          <%= formatDate(comm.createdAt)  %>
                         </div>
                         <span
                           class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/10"
                         ></span>
-                        <div
-                          class="text-sm text-zinc-500 dark:text-zinc-400"
-                        >
-                          خریدار
-                        </div>
+                        
                       </div>
                     </div>
                     <div
@@ -356,8 +383,7 @@
                       <p
                         class="line-clamp-4 text-sm text-zinc-600 dark:text-zinc-300"
                       >
-                        برا کسایی که نمیخوان هزینه بالایی کنن گزینه
-                        خیلی خوبیه
+                        <%= comm.comment  %>
                       </p>
                     </div>
                     <div
@@ -387,7 +413,7 @@
                     </div>
                   </div>
                   <!-- Answers -->
-                  <ul class="space-y-2">
+                  <!-- <ul class="space-y-2">
                     <li>
                       <div
                         class="py-6 pr-8 border-r border-gray-200 dark:border-white/10"
@@ -468,78 +494,11 @@
                         </div>
                       </div>
                     </li>
-                  </ul>
+                  </ul> -->
                 </li>
-                <li>
-                  <div class="py-6">
-                    <h5
-                      class="mb-4 leading-relaxed text-zinc-700 dark:text-white xl:text-lg"
-                    >
-                      با این قیمت اصلا مناسب نیست
-                    </h5>
-                    <div
-                      class="mb-6 flex items-center gap-x-4 border-b border-gray-100 pb-6 dark:border-white/5"
-                    >
-                      <div
-                        class="flex items-center gap-x-2 text-red-500 dark:text-red-400"
-                      >
-                        <svg class="h-5 w-5">
-                          <use xlink:href="#dislike" />
-                        </svg>
-                        پیشنهاد نمیکنم
-                      </div>
-                      <div class="flex items-center gap-x-2">
-                        <div
-                          class="text-sm text-zinc-500 dark:text-zinc-400"
-                        >
-                          10 شهریور 1403
-                        </div>
-                        <span
-                          class="h-3 w-px rounded-full bg-gray-200 dark:bg-white/10"
-                        ></span>
-                        <div
-                          class="text-sm text-zinc-500 dark:text-zinc-400"
-                        >
-                          خریدار
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="mb-6 border-b border-gray-100 pb-6 dark:border-white/5"
-                    >
-                      <p
-                        class="line-clamp-4 text-sm text-zinc-600 dark:text-zinc-300"
-                      >
-                        اصلا خوب نیست
-                      </p>
-                    </div>
-                    <div
-                      class="flex items-center justify-end gap-x-8"
-                    >
-                      <div
-                        class="text-sm text-zinc-500 dark:text-zinc-400"
-                      >
-                        آیا این دیدگاه برایتان مفید بود؟
-                      </div>
-                      <button
-                        class="flex items-center gap-x-2 text-emerald-500 transition-all duration-200 hover:text-emerald-400 dark:text-emerald-400 hover:dark:text-emerald-500"
-                      >
-                        <span class="text-sm"> 32 </span>
-                        <svg class="h-6 w-6">
-                          <use xlink:href="#like" />
-                        </svg>
-                      </button>
-                      <button
-                        class="flex items-center gap-x-2 text-red-500 transition-all duration-200 hover:text-red-400 dark:text-red-400 hover:dark:text-red-500"
-                      >
-                        <span class="text-sm"> 76 </span>
-                        <svg class="h-6 w-6">
-                          <use xlink:href="#dislike" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </li>
+
+                <% } %>
+             
               </ul>
               <!-- Pagination -->
               <div

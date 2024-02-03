@@ -8,6 +8,10 @@ userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
 },
+ersal:{
+  type:String,
+  default:"post",
+},
 product:[
  {id:{
     type: mongoose.Schema.Types.ObjectId,

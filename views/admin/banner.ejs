@@ -1,0 +1,109 @@
+<div class="main-content position-relative max-height-vh-100 h-100 border-radius-lg rtl">
+
+  <div class="container mt-5 text-end ">
+    <h4>فرم ارسال بنر</h4>
+
+    <%- include('./dashbord/validmessage.ejs') %>
+      <form action="/dashbord/addBanner" method="post" enctype="multipart/form-data">
+
+        
+
+
+      
+
+
+
+        <!-- فیلدهای متنی -->
+        <div class="row">
+
+          <div class="mb-3 col">
+            <label for="text2" class="form-label">نام بنر </label>
+            <input type="text" class="form-control nametab" id="text2" name="title" required>
+          </div>
+
+          <div class="mb-3 col">
+            <label for="text5" class="form-label">دسته بندی</label>
+
+            <select class="form-select text-center " id="selectOptioncat" name="status" required>
+              <option class="nametab" value="" disabled selected>یک گزینه را انتخاب کنید</option>
+              <option class="nametab" value="first" > اسلایدر اصلی</option>
+              <option class="nametab" value="second" >بنر دوم</option>
+              <option class="nametab" value="third" >بنر دوم گیفت</option>
+             
+
+            </select>
+          </div>
+
+           
+          </div>
+          <!-- فیلد تصویر -->
+        <div class="mb-3">
+          <label for="image" class="form-label">تصویر</label>
+          <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+        </div>
+          <button type="submit" class="btn btn-primary w-100">ارسال</button>
+        </div>
+
+
+
+      
+      </form>
+      <div class="card-body px-0 pb-2 w-50 mx-auto">
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">نام بنر</th>
+            
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let banner of banners){ %>
+              <tr>
+               
+                <td>
+                  <div class="d-flex px-2 py-1">
+               
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm"><%= banner.title   %></h6>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="d-flex px-2 py-1">
+               
+                    <div class="d-flex flex-column justify-content-center">
+                      <% if(banner.status == 'first'){ %>
+                      <h6 class="mb-0 text-sm">اسلایدر</h6>
+                      <% }else if( banner.status == 'second'){ %>
+                        <h6 class="mb-0 text-sm">بنر</h6>
+                        <% }else{ %>
+                          <h6 class="mb-0 text-sm">گیفت</h6>
+                          <% } %>
+                    </div>
+                  </div>
+                </td>
+           
+               
+               
+                <td class="align-middle">
+                  <div class="progress-wrapper w-75 mx-auto">
+                    <div class="d-flex flex-column justify-content-center">
+                     <a href="/dashbord/deleteBanner/<%= banner._id  %>" class="btn btn-outline-danger btn-sm">حذف</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% } %>
+      
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+
+
+
+</div>

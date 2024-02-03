@@ -5,6 +5,7 @@ const fs=require("fs");
 
 const Category=require('../models/Category')
 const Products=require('../models/Products');
+const Banner=require('../models/baner');
 const {separate}=require('../utils/separate');
 const Categorymin = require("../models/Categorymin");
 
@@ -497,5 +498,67 @@ exports.deleteProducts = async (req, res) => {
             });
         });
       //  res.send(errorArr)
+    }
+  }
+
+
+
+  //! Banner
+  exports.getBanner= async(req,res)=>{
+    try {
+      const banners =await Banner.find({});
+      res.render('admin/banner',{
+       pageTitle:"ارسال بنر",
+       layout:'./layouts/dashLayot',
+         path:'/getBanner',
+         banners
+      })
+      
+    } catch (err) {
+      console.log(err);
+    }
+   
+  }
+  exports.addBanner= async(req,res)=>{
+    const image = req.files ? req.files.image : {};
+    const fileName = `${shortId.generate()}_${image.name}`;
+    const uploadPath = `${appRoot}/public/images/baneer/${fileName}`;
+    try {
+ 
+      const {title,status}=req.body
+      if(!req.body) res.send("body requrd")
+      await Banner.BannerValidation({title,image});
+     if(status == "third"){
+     fs.writeFile(uploadPath,image.data,(err)=>{
+      console.log(err);
+    })
+
+     }else{
+      await sharp(image.data)
+          .jpeg({ quality: 70 })
+          .toFile(uploadPath)
+          .catch((err) => console.log(err));
+     }
+          await Banner.create({title,status, image: fileName});
+          res.redirect('/dashbord/getBanner')
+    } catch (err) {
+      console.log(err);
+      
+    }
+  
+  }
+
+  exports.deleteBanner =async (req,res)=>{
+
+    try {
+      
+      const resalt= await Banner.findByIdAndDelete(req.params.id)
+         const uploadPath = `${appRoot}/public/images/baneer/${resalt.image}`;
+        fs.unlink(uploadPath,(err)=> console.log(err));
+        res.redirect('/dashbord/getBanner')
+
+         
+    } catch (err) {
+      console.log(err);
     }
   }

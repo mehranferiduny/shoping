@@ -1,7 +1,10 @@
 const Products=require('../models/Products');
+const Banner=require('../models/baner');
 const Category=require('../models/Category')
 const CategoryMin=require('../models/Categorymin')
 const Basket=require('../models/Basket')
+const Comment=require('../models/Comment')
+const {formatDate}=require('../utils/jalali')
 
 const {separate}=require('../utils/separate')
 
@@ -22,6 +25,7 @@ exports.getProducts=async(req,res)=>{
       const category=await Category.find({}).sort({ name: -1 })
       const categorymin=await CategoryMin.find({}).sort({ name: -1 })
       const basckeid=await Basket.find({userId:user.id}).sort({ name: -1 });
+      const banners =await Banner.find({});
       let productbas="";
       let id=[];
       if(basckeid.length>0){
@@ -30,7 +34,7 @@ exports.getProducts=async(req,res)=>{
       }
        productbas=await Products.find({_id:id})
       }
-
+   
     
       if(!products) res.status(401).send('not Products in db');
       // res.status(201).send(products)
@@ -38,12 +42,14 @@ exports.getProducts=async(req,res)=>{
         pageTitle:'صفحه ای اصلی',
         layout:'./layouts/mainLayout',
         path: "/",
+        banners,
         products,
         category,
         separate,
         user:req.user,
         productbas,
-        categorymin
+        categorymin,
+   
       })
       
   } catch (err) {
@@ -79,7 +85,8 @@ exports.singelProduct=async(req,res)=>{
       
       if(!productId) console.log("id product is requaid");
       const product=await Products.findOne({productID:productId});
-    // console.log(productbas);
+      const comment =await Comment.find({product:product.id}).sort({createdAt: "desc"})
+ 
       res.render('index/singelPage',{
         pageTitle:product.title,
         path: "/product",
@@ -90,8 +97,10 @@ exports.singelProduct=async(req,res)=>{
         products,
         user:user,
         productbas,
+        comment,
         separate,
         split,
+        formatDate,
         categorymin
       });
   } catch (err) {
@@ -217,6 +226,40 @@ exports.getAddres=async(req,res)=>{
   
       })
     
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+
+
+
+exports.sendComment=async(req,res)=>{
+  try {
+   
+  
+    if(!req.user){
+      res.redirect('user/LoginPage')
+    }
+    const product =await Products.findOne({productID:req.params.id})
+    const user = req.user;
+    const {title,comment,status}=req.body;
+    await Comment.commentValidation({title,comment});
+    await Comment.create({title,comment,status,product,user})
+    res.redirect(`/product/${req.params.id}`)
+    
+  } catch (err) {
+    console.log(err);
+  }
+
+}
+
+
+
+exports.categoryProduct=async(req,res)=>{
+  console.log("hiii");
+  try {
+console.log(req);
   } catch (err) {
     console.log(err);
   }

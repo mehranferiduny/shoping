@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 const socket =io();
 
 
@@ -197,14 +199,77 @@ function removeitem(url,id,userId){
 
 
 
+function convertPersianToEnglishNumber(persianNumber) {
+  const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  let englishNumber = '';
 
+  for (let i = 0; i < persianNumber.length; i++) {
+    const char = persianNumber[i];
+    const index = persianNumbers.indexOf(char);
+    
+    if (index !== -1) {
+      englishNumber += index;
+    } else {
+      englishNumber += char;
+    }
+  }
 
-
-let ersal=document.querySelector('input[name="ersal"]:checked').value;
-
-
-function sendpost(ersal){
-  console.log(ersal);
-  return ersal
+  return parseInt(englishNumber, 10);
 }
-sendpost(ersal)
+
+function removevirgol(number){
+  return number.replace(/,/,'').replace(/^+/,'0');
+}
+
+function edit(){
+  const jamekol=document.getElementById("jamekol");
+  let edit=jamekol.innerText
+  console.log(edit);
+  edit=removevirgol(edit)
+  console.log(edit);
+  edit=convertPersianToEnglishNumber(edit)
+  edit=parseInt(edit);
+  return edit
+}
+
+
+
+
+function sendpost(){
+  console.log(edit());
+  let ersal=document.querySelector('input[name="ersal"]:checked').value;
+  const hazineh=document.getElementById("hazinhe");
+
+  
+  
+  if(ersal == "ارسال پست"){
+    
+  hazineh.innerHTML=`${toFarsiNumber(60000)}  `
+  jamekol.innerHTML=toFarsiNumber(edit()+60000);
+  }else{
+    hazineh.innerHTML=`${toFarsiNumber(0)}`
+    jamekol.innerHTML=toFarsiNumber(edit()-60000);
+  }
+  
+}
+
+
+
+
+
+
+
+//!catgory
+function sendCatgory(id){
+  console.log(id);
+  fetch('/category',{
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      // درخواست Authorization را با مقدار ذخیره شده از متغیر جاوااسکریپت ارسال کنید
+      'Authorization': id
+    }
+  }).then(response=>{
+     response.json()
+  })
+}

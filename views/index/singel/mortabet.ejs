@@ -24,7 +24,7 @@
             >
               <!-- image -->
               <div class="mb-2 md:mb-5" draggable="false">
-                <a href='/product-detail'>
+                <a href='/product/<%= pro.productID  %>'>
                   <img
                     alt=""
                     class="mx-auto w-32 rounded-lg md:w-auto image-pro"
@@ -34,7 +34,7 @@
               </div>
               <!-- title -->
               <div class="mb-2">
-                <a class='line-clamp-2 h-10 text-sm text-zinc-700 dark:text-white md:h-12 md:text-base' href='/product-detail'>
+                <a class='line-clamp-2 h-10 text-sm text-zinc-700 dark:text-white md:h-12 md:text-base' href='/product/<%= pro.productID  %>'>
                 <%= pro.title  %>
                 </a>
               </div>

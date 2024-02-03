@@ -1343,13 +1343,14 @@
                   id="dropdownBasketDesktop"
                 >
                   <!-- Head -->
-                  <div class="flex items-center justify-between p-5 pb-2">
-                    <div class="count text-sm text-zinc-600 dark:text-zinc-300">
+                  <div class="flex items-center justify-between p-5 pb-2 ">
+                    <div class="count text-sm text-zinc-600 dark:text-zinc-300 ">
                       <% if(productbas){ %>
-                        <%=  productbas.length %> مورد
+                       تعداد کالا (<%=  productbas.length %>) مورد
                         <% }%>
                         
                     </div>
+                   
                   
                   </div>
                   <!-- Items -->
@@ -1364,7 +1365,7 @@
                  <% for(let item of productbas){ 
                   %>
                       <li>
-                        <div class="flex gap-x-2 py-5">
+                        <div class="flex gap-x-2 ">
                           <!-- Product Image -->
 
                           <div class="relative min-w-fit">
@@ -1579,7 +1580,7 @@
                                   <% for(let mincat of categorymin){
                                     if(mincat.IdCat == cat.id){ %>
                                   <li >
-                                    <a class='block py-2 text-sm text-zinc-600 hover:text-emerald-500 dark:text-zinc-300 hover:dark:text-emerald-400' href='/shop'>
+                                    <a class='block py-2 text-sm text-zinc-600 hover:text-emerald-500 dark:text-zinc-300 hover:dark:text-emerald-400' onclick="sendCatgory('<%=mincat._id %>')">
                                     <%= mincat.name  %>
                                     </a>
                                   </li>
@@ -1686,6 +1687,21 @@
           </div>
         </div>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <!-- Mobile Desktop -->
       <div>
         <div class="md:hidden">
@@ -2019,6 +2035,16 @@
       id="header-overlay"
     ></div>
   </header>
+
+
+
+
+
+
+
+
+
+
 
   <!-- Header Mobile drawers -->
   <div>

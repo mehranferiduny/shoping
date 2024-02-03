@@ -35,5 +35,8 @@ router.get("/address", indexController.getAddres);
 router.post("/deleItem", indexController.removeItem);
 
 
+//!Comment
+router.post("/sendComment/:id",  indexController.sendComment);
+
 
 module.exports = router;

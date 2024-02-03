@@ -4,33 +4,22 @@
       <!-- Swiper -->
       <div class="swiper banner-slider rounded-lg shadow-base">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
+          <% 
+          for(let b of banners){
+            if(b.status == 'first'){
+       %>
+              <div class="swiper-slide">
             <a href="#">
               <img
                 alt=""
                 class="max-h-[450px]"
-                src="images/baneer/main-slider-1.jpg"
+                src="images/baneer/<%= b.image %>"
               />
             </a>
           </div>
-          <div class="swiper-slide">
-            <a href="#">
-              <img
-                alt=""
-                class="max-h-[450px]"
-                src="images/baneer/main-slider-2.jpg"
-              />
-            </a>
-          </div>
-          <div class="swiper-slide">
-            <a href="#">
-              <img
-                alt=""
-                class="max-h-[450px]"
-                src="images/baneer/main-slider-3.jpg"
-              />
-            </a>
-          </div>
+            <% }} %>
+        
+     
         </div>
         <div class="swiper-button-next hidden md:flex"></div>
         <div class="swiper-button-prev hidden md:flex"></div>
@@ -41,25 +30,37 @@
       <div
         class="flex h-full flex-row justify-between gap-x-2 lg:flex-col"
       >
-        <div>
-          <a href="#">
+      
+          <% for(let c of banners){
+       
+            if( c.status == "second" ){ %>
+              <div>
+              <a href="#">
             <img
               alt=""
               class="rounded-lg shadow-base"
-              src="images/baneer/main-banner-top.jpg"
+              src="images/baneer/<%= c.image %>"
             />
           </a>
         </div>
+            <%  }  }%>
+        
+       
 
-        <div>
-          <a href="#">
+    
+            <% for(let d of banners){
+         
+            if( d.status == "third" ){ %>
+              <div>
+              <a href="#">
             <img
               alt=""
               class="rounded-lg shadow-base"
-              src="images/baneer/main-bot.gif"
+              src="images/baneer/<%= d.image %>"
             />
           </a>
         </div>
+            <% break } }%>
       </div>
     </div>
   </div>
