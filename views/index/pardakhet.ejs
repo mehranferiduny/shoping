@@ -920,7 +920,6 @@
 <div class="flex min-h-screen flex-col">
   <%- include('./header.ejs')  %>
   <main class="flex-grow bg-gray-100 pb-14 pt-36 dark:bg-black xs:pt-36">
-    <form action="" method="post">
     <div class="container pb-14">
       <div class="grid grid-cols-12 gap-2 lg:gap-6">
         <!-- breadCrumb -->
@@ -939,8 +938,8 @@
             </li>
 
             <li
-            class="flex flex-col items-center justify-center gap-2 bg-emerald-500/10 p-4 text-xs text-emerald-500 dark:bg-emerald-400/10 dark:text-emerald-400 sm:text-sm md:text-base"
-           
+    
+            class="flex flex-col items-center justify-center gap-2 p-4 text-xs text-emerald-500 opacity-50 dark:text-emerald-400 sm:text-sm md:text-base"
               >
               <a href="/user/address">
               <svg class="h-6 w-6 md:h-8 md:w-8">
@@ -950,7 +949,8 @@
             </a>
             </li>
             <li
-              class="flex flex-col items-center justify-center gap-2 p-4 text-xs text-emerald-500 opacity-50 dark:text-emerald-400 sm:text-sm md:text-base"
+            class="flex flex-col items-center justify-center gap-2 bg-emerald-500/10 p-4 text-xs text-emerald-500 dark:bg-emerald-400/10 dark:text-emerald-400 sm:text-sm md:text-base"
+
             >
               <svg class="h-6 w-6 md:h-8 md:w-8">
                 <use xlink:href="#credit" />
@@ -962,7 +962,6 @@
         </div>
 
         <!-- Cart List -->
-    
         <div class="col-span-12 md:col-span-8">
           <div class="rounded-lg bg-white p-4 dark:bg-zinc-900">
             <!-- Heading -->
@@ -971,22 +970,21 @@
                 class="  w-100 flex items-center gap-x-4 text-sm text-zinc-700 dark:text-white xs:text-base md:text-lg"
               >
              تکمیل اطلاعات
-             
+              <form action="" method="post">
                   <div class=" m-3">
-                    <input class="col input-item" name="name" type="text" placeholder="نام">
-                    <input class="col input-item" name="family" type="text" placeholder="نام خانودگی">
+                    <input class="col input-item" type="text" placeholder="نام">
+                    <input class="col input-item" type="text" placeholder="نام خانودگی">
                   </div>
                   <div class="m-3">
-                    <input class="col input-item" name="codemeli" type="text" placeholder="کدملی">
-                    <input class="col input-item" name="codeposti" type="text" placeholder="کد پستی">
+                    <input class="col input-item" type="text" placeholder="کدملی">
+                    <input class="col input-item" type="text" placeholder="کد پستی">
                   </div>
                   <div class="m-3">
-                    <input class="col input-item" name="email" type="text" placeholder="آدرس ایمیل">
-                    <input class="col input-item" name="home" type="text" placeholder=" شماره ثابت (اختیاری)">
+                    <input class="col input-item" type="text" placeholder="آدرس ایمیل">
+                    <input class="col input-item" type="text" placeholder=" شماره ثابت (اختیاری)">
                   </div>
-                  <div class="m-3">
-                  <input class=" input-item-addres" name="address" type="text" placeholder=" آدرس تحویل سفارش">
-                  <h2  class="m-3">شیوه ارسال</h2>
+                  <input class=" input-item-addres" type="text" placeholder=" آدرس تحویل سفارش">
+                  <h2 class="mt-3">شیوه ارسال</h2>
                   <div class="row mydict" onchange="sendpost()">
                   
 
@@ -1016,10 +1014,8 @@
                   </label>
                 </div>
                  
-                  </div>
                 </div>
-
-             
+              </form>
               </h1>
           
             </div>
@@ -1126,9 +1122,9 @@
               </div>
             </div>
             <div>
-              <button type="submit" class="btn-primary py-3">
+              <a href="./checkout-shipping.html" class="btn-primary py-3">
                 ادامه فرایند خرید
-              </button>
+              </a>
             </div>
           </div>
           <!-- Mobile -->
@@ -1152,10 +1148,8 @@
             </div>
           </div>
         </div>
-     
       </div>
     </div>
-  </form>
   </main>
 </div>
 

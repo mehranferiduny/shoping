@@ -17,6 +17,11 @@ router.get("/category/:id",  indexController.categoryProduct);
 
 
 
+//!like
+router.get("/likeProduct",  indexController.likeProduct);
+
+
+
 
 
 module.exports = router;

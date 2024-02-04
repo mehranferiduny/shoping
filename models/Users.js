@@ -23,10 +23,7 @@ const UserSchema = new mongoose.Schema({
     maxlength: 11,
     required: true,
   },
-  // email: {
-  //   type: String,
-  //   unique: true,
-  // },
+
   password: {
     type: String,
     required: true,
@@ -56,6 +53,17 @@ const UserSchema = new mongoose.Schema({
     default:' ',
     trim: true,
   },
+  home: {
+    type: String,
+    default:'',
+    trim: true,
+  },
+  like:[
+    {id:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Products"
+  }}],
+  
 
 });
 

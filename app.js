@@ -87,6 +87,9 @@ io.on("connection",(socket)=>{
   socket.on("remove",(data)=>{
    basketcontroll.removeItem(data,socket)
   })
+  socket.on("like",(data)=>{
+   basketcontroll.like(data,socket)
+  })
 
  
 

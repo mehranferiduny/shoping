@@ -1241,7 +1241,7 @@
                     <li>
                       <a
                         class="flex items-center justify-between rounded-lg p-4 text-zinc-700 hover:text-emerald-500 dark:text-white dark:hover:text-emerald-400"
-                        href="./profile-favorite.html"
+                        href="/likeProduct"
                       >
                         <span class="flex items-center gap-x-2">
                           <svg class="h-6 w-6">
@@ -1251,31 +1251,7 @@
                         </span>
                       </a>
                     </li>
-                    <li>
-                      <a
-                        class="flex items-center justify-between rounded-lg p-4 text-zinc-700 hover:text-emerald-500 dark:text-white dark:hover:text-emerald-400"
-                        href="./profile-notification.html"
-                      >
-                        <span class="flex items-center gap-x-2">
-                          <svg class="h-6 w-6">
-                            <use xlink:href="#notification" />
-                          </svg>
-                          <span> پیام ها </span>
-                        </span>
-
-                        <span class="relative flex h-5 w-5">
-                          <span
-                            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"
-                          ></span>
-                          <span
-                            class="relative inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-sm text-white dark:text-white"
-                         >
-                            3
-                            </span
-                          >
-                        </span>
-                      </a>
-                    </li>
+                   
                     <li>
                       <div
                         class="my-2 h-px w-full rounded-full bg-gray-100 dark:bg-white/5"
@@ -1457,7 +1433,8 @@
                         <span class="text-sm">تومان</span>
                       </div>
                     </div>
-                
+                <% if(total == 0){ %>
+                  <% }else{ %>
                     <a href="/user/basketshop">
                       <button
                         class="btn-primary w-32 py-3 text-sm"
@@ -1466,6 +1443,7 @@
                       نمایش سبد خرید
                       </button>
                     </a>
+                    <%}%>
                   </div>
                 </div>
              
@@ -1495,6 +1473,7 @@
             <div
               class="container relative flex max-w-[1680px] items-center gap-x-2"
             >
+
             <div>
               <div class="relative flex cursor-pointer items-center gap-x-2 pb-2 text-zinc-700 dark:text-white">
               
@@ -1512,12 +1491,12 @@
               </div>
 
               </div>
-              
-              
 
-              
               <div>
-                <a class="group relative" href="./how-to-buy.html">
+              <div class="relative flex cursor-pointer items-center gap-x-2 pb-2 text-zinc-700 dark:text-white">
+              
+                <a class="group relative" href="/">
+                  
                   <div class="p-2 pt-0 text-zinc-700 dark:text-white">
                     تماس با ما
                   </div>
@@ -1528,8 +1507,13 @@
                   </div>
                 </a>
               </div>
+
+              </div>
               <div>
-                <a class="group relative" href="./how-to-buy.html">
+              <div class="relative flex cursor-pointer items-center gap-x-2 pb-2 text-zinc-700 dark:text-white">
+              
+                <a class="group relative" href="/">
+                  
                   <div class="p-2 pt-0 text-zinc-700 dark:text-white">
                     درباره ما
                   </div>
@@ -1540,8 +1524,13 @@
                   </div>
                 </a>
               </div>
+
+              </div>
               <div>
-                <a class="group relative" href="./how-to-buy.html">
+              <div class="relative flex cursor-pointer items-center gap-x-2 pb-2 text-zinc-700 dark:text-white">
+              
+                <a class="group relative" href="/">
+                  
                   <div class="p-2 pt-0 text-zinc-700 dark:text-white">
                     راهنمای خرید
                   </div>
@@ -1552,6 +1541,10 @@
                   </div>
                 </a>
               </div>
+
+              </div>
+              
+  
 
               <div class="group" id="desktopMegamenuWrapper">
                 <div

@@ -9,11 +9,33 @@
             <!-- add to favorite -->
 
             <div>
-              <button data-tooltip-target="add-to-favorite" type="button">
-                <svg class="h-6 w-6">
-                  <use xlink:href="#heart" />
+              
+               
+              <button data-tooltip-target="add-to-favorite" onclick="like('<%= product._id %>','<%= user._id %>')" type="button">
+              
+                <svg class="h-6 w-6"  id="heartz">
+                  <% if(likestatus == true){ %>     
+                      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          fill="red"
+                          stroke="red"
+                          d="M 10,30
+                             A 19,21 0,0,1 51,32
+                             A 19,22 0,0,1 92,32
+                             Q 90,57 52,92
+                             Q 10,60 10,30 z" />
+                      </svg>
+                  
+                  </svg>
+                  <% }else{ %>
+     
+                   <svg class="h-6 w-6" id="heartz">
+                  <use xlink:href="#heart"  />
                 </svg>
+                <% } %>
               </button>
+
+         
               <div id="add-to-favorite" role="tooltip"
                 class="tooltip invisible absolute z-10 inline-block rounded-lg bg-zinc-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-zinc-800">
                 افزودن به علاقه‌مندی ها
@@ -21,17 +43,7 @@
             </div>
             <!-- add to compare -->
 
-            <div>
-              <button data-tooltip-target="add-to-compare" type="button">
-                <svg class="h-6 w-6">
-                  <use xlink:href="#compare" />
-                </svg>
-              </button>
-              <div id="add-to-compare" role="tooltip"
-                class="tooltip invisible absolute z-10 inline-block rounded-lg bg-zinc-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-zinc-800">
-                افزودن به لیست مقایسه
-              </div>
-            </div>
+         
 
             <!-- share on social -->
             <div>
@@ -51,7 +63,7 @@
                 id="copy-social-share-link">
                 <ul class="space-y-2 p-2">
                   <li>
-                    <button type="button" data-link="https://www.google.com"
+                    <button type="button" data-link="/product/<%= product.productID  %>"
                       onclick="copyToClipboardSocialShareDesktop(this)"
                       class="flex w-full items-center justify-between rounded-lg px-4 py-3 text-sky-500 hover:bg-sky-500/10 dark:text-sky-400 dark:hover:bg-sky-400/10">
                       <div class="flex items-center gap-x-2">
