@@ -208,8 +208,16 @@ exports.getAddres=async(req,res)=>{
         basket.push(i.product);
       }
       const bassket=basket[0];
-  
-  
+
+      let tot=0;
+      for(let prod of productbas){
+        tot=prod.price+tot;
+        tot=tot-prod.sale
+         
+        
+      }
+       basckeid[0].totall=tot
+       await basckeid[0].save();
       
   
       res.render('index/addres',{

@@ -12,6 +12,15 @@ ersal:{
   type:String,
   default:"post",
 },
+totall:{
+  type:String,
+  default:"",
+},
+status: {
+  type: String,
+  default: "first",
+  enum: ["first", "second","third","fourth"],
+},
 product:[
  {id:{
     type: mongoose.Schema.Types.ObjectId,

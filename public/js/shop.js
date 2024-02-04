@@ -141,6 +141,15 @@ socket.on("addbefor",()=>{
 
 
 
+function toEnglishNumber(n) {
+  const farsiDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+  return separate(n
+    .toString()
+    .split('')
+    .map(x => farsiDigits[x])
+    .join(''));
+}
 function toFarsiNumber(n) {
   const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 
@@ -190,22 +199,23 @@ function removeitem(url,id,userId){
 function edit(){
   const jamekol=document.getElementById("jamekol");
   let edit=jamekol.innerText
-  console.log(edit);
-  // edit=removevirgol(edit)
-  console.log(edit);
+
+  edit=edit.replace(',','')
+  edit=edit.replace(',','')
+
   // edit=convertPersianToEnglishNumber(edit)
   // edit=parseInt(edit);
-  return edit
+  return parseInt(edit)
 }
 
 
 
 
 function sendpost(){
-  console.log(edit());
+
   let ersal=document.querySelector('input[name="ersal"]:checked').value;
   const hazineh=document.getElementById("hazinhe");
-
+   
   
   
   if(ersal == "ارسال پست"){
@@ -213,7 +223,7 @@ function sendpost(){
   hazineh.innerHTML=`${toFarsiNumber(60000)}  `
   jamekol.innerHTML=toFarsiNumber(edit()+60000);
   }else{
-    hazineh.innerHTML=`${toFarsiNumber(0)}`
+    hazineh.innerHTML=`-`
     jamekol.innerHTML=toFarsiNumber(edit()-60000);
   }
   
