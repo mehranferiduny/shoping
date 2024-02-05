@@ -296,14 +296,16 @@ exports.likeProduct = async (req, res) => {
       return res.redirect('/user/LoginPage')
     }
     const likepro=[];
+
     for(let like of user.like){
       likepro.push(like._id)
     } 
 
-    console.log(likepro)
+    
+
 
   try {
-    const product = await Products.find({ _id: likepro });
+    const product = await Products.find({ _id: { $in :likepro} });
     const category = await Category.find({}).sort({ name: -1 });
     const categorymin = await CategoryMin.find({}).sort({ name: -1 });
 

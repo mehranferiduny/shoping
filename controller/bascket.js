@@ -92,35 +92,46 @@ exports.like = async (data, socket) => {
       socket.emit("dontUser");
     }
 
-    let idlike = [];
+   
     if (user.like.length == 0) {
       user.like.push(data.id);
       await user.save();
       socket.emit("likeSecses");
     } else {
-      for (let id of user.like) {
-        console.log(id._id,data.id)
-        if (id._id.toString() != data.id) {
-      
-          user.like.push(data.id);
-          await user.save();
-          socket.emit("likeSecses");
-        } else {
-          idlike.push(id);
-          const index = idlike.findIndex((e) => e._id == data.id);
-   console.log(idlike)
-          if (index > -1) {
-            idlike.splice(index, 1);
-          }
-          console.log(idlike)
-          user.like = idlike;
-          await user.save();
-          socket.emit("dislikeSecses");
-        }
+      const idlike = [];
+      const newlike= data.id;
 
+      for(let i=0; i < user.like.length; i++ ){
+        idlike.push({_id:user.like[i]._id});
+      }
+      const idlike2=[]
+      for(let i of idlike){
+        idlike2.push(i._id)
+      }
+   
+      const isMach=idlike2.find(e=>{
+        return e == newlike;
+      })
+      if(isMach == undefined){
+        user.like.push(newlike);
+       await user.save();
+        socket.emit("likeSecses");
+      }else{
+
+        const index = idlike.findIndex((e) => e._id == newlike);
+        if (index > -1) {
+          idlike.splice(index, 1);
+        }
+        user.like=idlike;
+        await user.save();
+        socket.emit("dislikeSecses");
+
+    
       
       }
-    }
+     
+      
+     }
   } catch (err) {
     console.log(err);
   }
