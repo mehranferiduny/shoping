@@ -3,12 +3,13 @@
     <div class="logo">
       <img src="/images/logo/1.png" alt="" srcset="">
     </div>
+    <%- include("./validatelogin.ejs") %>
     <div class="m-2 p-1   mx-auto text-center mt-5  dark:text-white">
      <span>کلمه عبور را برای حساب کاربری خود وارد کنید</span>
      </div>
      <form action="/user/creatUser" method="POST" class="mx-auto mt-5 text-center">
-      <input type="text" name="password" class="w-50 border-input p-2 text-right m-2" placeholder="کلمه عبور    ">
-      <input type="text" name="confirmPassword" class="w-50 border-input p-2 text-right m-2" placeholder="  تکرار کلمه عبور  ">
+      <input type="password" name="password" class="w-70 border-input p-2 text-center m-2" placeholder="کلمه عبور    ">
+      <input type="password" name="confirmPassword" class="w-70 border-input p-2 text-center m-2" placeholder="  تکرار کلمه عبور  ">
       <input type="submit" class="w-50 btn-sabt mt-5 p-2 text-right m-2" value="تکمیل ثبت نام">
      </form>
   </div>

@@ -1,17 +1,18 @@
 <main class="backgrand">
   <div class="bg-login">
-    <div class="logo">
+    <div class="logo mb-5">
       <img src="/images/logo/1.png" alt="" srcset="">
     </div>
-    <div class="m-2 p-1   mx-auto text-center mt-5  btn-login dark:text-white row btn-vorod">
-      <a class="column " href="/user/LoginPage"> ورود</a>
-
-      <a class="column " href="/user/LoginPage">ثبت نام</a>
-    </div>
+   
     <%- include("./messageLogin.ejs") %>
-      <form action="/user/addPhone" method="POST" class="mx-auto mt-5 text-center">
-        <input type="text" name="phone" class="w-50 border-input p-2 text-right m-2" placeholder="شماره موبایل ">
+  
+    
+      <form action="/user/addPhone" method="POST" class="mx-auto mt-8  text-center">
+        <p class="mx-auto mtninfo ">جهت ثبت نام شماره همراه خود را وارد نمایید</p>
+        <input type="text" name="phone" class="w-70 border-input p-2 text-right m-2" placeholder="شماره موبایل ">
+      
         <input type="submit" class="w-50 btn-sabt mt-5 p-2 text-right m-2" value="ارسال کد">
       </form>
+      <div class="mtnsabtnam">حساب کاربری دارم!  <a href="/user/LoginPage"> ورود</a></div>
   </div>
 </main>

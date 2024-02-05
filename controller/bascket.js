@@ -86,11 +86,13 @@ exports.removeItem = async (data, socket) => {
 
 exports.like = async (data, socket) => {
   try {
-    const user = await User.findById(data.userId);
-
-    if (!user) {
+    if (!data.userId) {
       socket.emit("dontUser");
     }
+ 
+    const user = await User.findById(data.userId);
+  
+    
 
    
     if (user.like.length == 0) {

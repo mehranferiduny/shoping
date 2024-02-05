@@ -1,26 +1,33 @@
 <main class="backgrand">
-  <div class="bg-login">
-    <div class="logo">
-      <img src="/images/logo/1.png" alt="" srcset="">
-    </div>
+  <div class="bg-login p-1">
    
+    <div class="logo mx-auto">
+      <img src="/images/logo/1.png" alt="" srcset="">
+      <p>ورود به حساب کاربری </p>
+    </div>
     <%- include("./messageLogin.ejs") %>
-      <form action="/user/loginUser" method="POST" class="mx-auto mt-5 text-center">
-        <input type="text" name="phone" class="w-50 border-input p-2 text-right m-2" placeholder="شماره موبایل ">
-        <input type="password" name="password" class="w-50 border-input p-2 text-right m-2" placeholder="کلمه عبور">
-        <div class="form-group mx-auto text-center">
-          <div class="checkbox mb-3">
-            <label>
-                <input name="remember" type="checkbox" value="remember-me" /> من را
-                به خاطر بسپار
-            </label>
-        </div>
+  
+      <form action="/user/loginUser" method="POST" class="mx-auto mt-3 text-center">
+        <input type="text" name="phone" class="w-70 border-input p-2 text-center m-2" placeholder="شماره موبایل ">
+        <input type="password" name="password" class="w-70 border-input p-2 text-center m-2" placeholder="کلمه عبور">
+        <div class="form-group mt-5 mx-auto text-center">
+          
           <div
-              class="g-recaptcha mx-auto text-center w-50" 
+              class="g-recaptcha recapch" 
               data-sitekey="6LcZTVcpAAAAAIKHYaQ38IitsI7riMTN8IFncvBR"
           ></div>
+          
       </div>
-        <input type="submit" class="w-50 btn-sabt mt-5 p-2 text-right m-2" value="ورود">
+      <div class="checkbox ">
+        <label>
+            <input name="remember" type="checkbox" value="remember-me" /> من را
+            به خاطر بسپار
+        </label>
+    </div>
+        <input type="submit" class="btn-sabt w-50 mt-5 p-2 text-right m-2" value="ورود">
       </form>
+      <div class="mtnsabtnam">حساب کاربری ندارم!  <a href="/user/registerPage">ثبت نام</a></div>
+      <div class="mtnsabtnam">  <a href="/user/registerPage"> فراموشی کلمه عبور</a></div>
+     
   </div>
 </main>

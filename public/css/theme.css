@@ -191,6 +191,16 @@
     height: 200px !important;
     object-fit: cover;
   }
+  .mtnsabtnam{
+    margin-top: 6px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
+  }
+  .mtnsabtnam > a {
+    color: #0ca270;
+  }
   .wartust{
     display: none;
     position: fixed;
@@ -291,8 +301,9 @@
   height: 100%;
 }
 .bg-login{
-  width: 30%;
-  height: 600px;
+  width: 35%;
+  height: auto;
+  padding: 20px !important;
   background-color: #fefeff;
   margin-left: auto;
   margin-right: auto;
@@ -338,20 +349,30 @@
   -o-border-radius: 6px;
 }
 .border-input{
-  border-bottom: 1px solid #78787845;
-}
-.border-input:hover{
-  border-bottom: 1px solid #10b981;
+  
+  outline: none;
+  background-color: #b0b0b010;
+  border-bottom: 1px solid #b0b0b010;
 }
 .border-input:focus{
-  border: none;
-  border: 1px solid #10b981 !important;
+  transition: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  border-bottom: 1px solid #10b981;
 }
+.mtninfo{
+  font-size: 14px;
+ text-align: right !important;
+  width: 50%;
+  margin-bottom: 8px;
+}
+
 
 .btn-sabt{
   background-color: #10b981;
   color: #fdfdfd;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px !important;
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -361,13 +382,29 @@
 .btn-sabt:hover{
   background-color: #0ca270;
 }
+.recapch{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 304px;
+}
+.text-rightt{
+  direction: rtl;
+  text-align: right !important;
+  background-color: #b90c0c !important;
+}
+.alertsuccess{
+  background-color: #0ca270 !important;
+  color: #fdfdfd !important;
+}
 .alert-error{
-  width: 50%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
   text-align: right;
   direction: rtl;
-  background-color: #0ca270 !important;
+  font-size: 14px !important;
+  background-color: #b90c0c !important;
 }
 
 .banner{
@@ -378,8 +415,7 @@
   margin-left: auto;
   margin-right: auto;
   text-align: right;
-  color: #345609 !important;
-  background-color: #fdfdfd;
+
 }
 
 .wsingel{
@@ -562,3 +598,8 @@ label span {
 }
 
 
+@media screen and (max-width :1024px) {
+  .bg-login{
+    width: 70% !important;
+  }
+}

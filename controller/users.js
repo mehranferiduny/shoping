@@ -3,22 +3,31 @@ const Users = require('../models/Users');
 const Category=require('../models/Category')
 const Products=require('../models/Products');
 
-let CAPCHA_NUM;
+let CAPCHA_NUM=0;
 
 //!Users
 
 exports.addPhone=async(req,res)=>{
   
   const errorArr = [];
-  const phone=req.body.phone;
+  let phone=0; 
+  if(req.body.phone){
+     phone=req.body.phone;
+  }else{
+    phone=req.session.phone
+  }
+ 
   try {
     const user = await Users.findOne({ phone: phone });
   if(user){
     req.flash("error","شما قبلا ثبت نام کرده اید! ")
     return res.redirect("/user/LoginPage")
   }
-
+    if(CAPCHA_NUM==0){
    CAPCHA_NUM=Math.floor(Math.random() * 100000) + 1;
+    }else{
+      CAPCHA_NUM=req.session.CAPCHA_NUM;
+    }
     console.log(CAPCHA_NUM);
     req.session.phone=phone;
     req.session.CAPCHA_NUM=CAPCHA_NUM;
@@ -45,14 +54,14 @@ exports.addUsers = async (req, res) => {
 
     if (!req.body.CAPCHA_NUM){
       req.flash("error","کد ارسالی را  وارد کنید")
-      return res.redirect('/user/LoginPage')
+      return res.redirect('/user/addPhone')
     }
     console.log(req.session.phone);
     console.log(req.body.CAPCHA_NUM);
     console.log(req.session.CAPCHA_NUM);
     if(req.body.CAPCHA_NUM != req.session.CAPCHA_NUM){
       req.flash("error","کد ارسال شده را درست وارد کنید")
-      return res.redirect('/user/LoginPage')
+      return res.redirect('/user/addPhone')
     }
     res.render('index/login/sabetNam',{
       pageTitle:"ثبت کلمه عبور",
@@ -90,13 +99,15 @@ exports.addUsers = async (req, res) => {
 }
 
 exports.createUser=async(req,res)=>{
+  const errorArr = [];
   const phone=req.session.phone;
-  console.log(phone.toString());
   const {password,confirmPassword}=req.body;
   try {
 
     await Users.userValidationsabt({phone,password,confirmPassword});
     await Users.create({phone:phone,password:password})
+    req.session.phone=null;
+    req.session.CAPCHA_NUM=null;
     req.flash("message","ثبت نام با موفقیت انجام شد وارد شوید")
     res.redirect('/user/LoginPage')
 
@@ -104,6 +115,24 @@ exports.createUser=async(req,res)=>{
     
   } catch (err) {
     console.log(err);
+    err.inner.forEach((e) => {
+      errorArr.push({
+        name: e.path,
+        message: e.message,
+      });
+
+
+
+    });
+    res.render("index/login/sabetNam", {
+      pageTitle: ' ثبت کلمه عبور ',
+      path: "/",
+      layout: './layouts/loginLayout',
+      errors: errorArr,
+      message: req.flash('message'),
+      error: req.flash("error"),
+    })
+
   }
 }
 
