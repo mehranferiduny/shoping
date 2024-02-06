@@ -922,19 +922,22 @@
   <main class="flex-grow bg-gray-100 pb-14 pt-36 dark:bg-black xs:pt-36">
 
     <% let totaal=0;
-                  let sale=0
-                  let sales=0
-                        if(productbas){
-                        %>
-                        <%for( let price of productbas){
-                         totaal=totaal+price.price;
-                         sale=sale+price.sale;
-                          %>
-  
-                        
-                        <%
-                      sales=totaal-sale
-                      }} %>
+    let sale=0
+    let sales=0
+          if(productbas){
+          %>
+          <% bassket.forEach(element => {
+          for( let price of productbas){
+
+            if(element.id.toString() == price._id.toString()){
+           totaal=totaal+(price.price*element.number);
+           sale=sale+(price.sale* element.number);
+             } %>
+
+          
+          <%
+        sales=totaal-sale
+        }})}  %>
     <div class="container pb-14">
       <div class="grid grid-cols-12 gap-2 lg:gap-6">
         <!-- breadCrumb -->
@@ -1009,13 +1012,18 @@
                     </thead>
                     <tbody>
                        
-                          <% for(let pro of productbas){ %>
+                          <% for(let pro of productbas){ 
+                            basskett.product.forEach(e=>{
+ 
+                              if(e.id.toString()== pro._id.toString()){
+                           %>
+                           
                             <tr>
                             <td><%= pro.title  %></td>
-                            <td> ۱</td>
+                            <td><%= e.number %></td>
                             <td><%= separate(pro.price)  %> تومان</td>
                           </tr>
-                            <% } %>
+                            <% } })} %>
                         
                         
                     </tbody>
@@ -1024,15 +1032,16 @@
                 <div class="total">
 
                   
-
+                 <% if(sale > 0){  %>
+             
                    <p><strong> سود شما از این خرید :</strong> <%= separate(sale) %></p>
-
+                   <% } %>
                   <% if(bassket.ersal == "post"){ %>
                     <p><strong> شیوه ارسال:</strong> پست</p>
                     <% }else{ %>
                       <p><strong> شیوه ارسال:</strong> تیپاکس</p>
                       <% } %>
-                    <p><strong>جمع کل:</strong> <%= separate(bassket.totall) %> تومان</p>
+                    <p><strong>جمع کل:</strong> <%= separate(sales) %> %> تومان</p>
                 </div>
             </div>
           
@@ -1060,13 +1069,19 @@
                   class="text-sm text-emerald-500 dark:text-emerald-400 lg:text-base"
                 >
                 <% let total=0
-                      if(productbas){
-                      %>
-                      <%for( let price of productbas){
-                       total=total+price.price;
-                        %>
-                      
-                      <%}} %>
+                   
+                   if(productbas){
+                   %>
+                   <% bassket.forEach(element => {
+                   for( let price of productbas){
+   
+                     if(element.id.toString() == price._id.toString()){
+                  
+                    total=total+(price.price*element.number);
+                     }
+                     %>
+                   
+                   <%}})} %>
                   <span class="font-bold">    <%= separate(total) %></span>
                   <span class="text-xs lg:text-sm">تومان</span>
                 </div>
@@ -1104,7 +1119,7 @@
                
                
                    
-                    <%if(bassket.ersal == "post"){  %>
+                    <%if(basskett.ersal == "post"){  %>
                       <span class="font-bold"  id="hazinhe"> <%= separate(60000) %> </span>
                     <% }else{ %>
                       <span class="font-bold"  id="hazinhe"> - </span>
@@ -1125,7 +1140,7 @@
                 <div
                   class="text-sm text-emerald-500 dark:text-emerald-400 lg:text-base"
                 >
-                  <span class="font-bold" id="jamekol"> <%= separate(bassket.totall) %> %></span>
+                  <span class="font-bold" id="jamekol"> <%= separate(sales) %> %></span>
                   <span class="text-xs lg:text-sm">تومان</span>
                 </div>
               </div>

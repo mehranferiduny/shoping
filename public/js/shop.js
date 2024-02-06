@@ -235,9 +235,15 @@ function edit(){
   return parseInt(edit)
 }
 
-function sendnumber(){
- const countnumber=document.getElementById("numbercount").value;
- console.log(countnumber)
+function plusnumber(basketId,prodactId){
+ const data={basketId : basketId , prodactId:prodactId}
+ socket.emit("countNumberplus",data)
+
+}
+function minnumber(basketId,prodactId){
+ const data={basketId : basketId , prodactId:prodactId}
+ socket.emit("countNumbermin",data)
+
 }
 
 const jamekol=document.querySelector("#jamekol");

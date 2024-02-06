@@ -12,6 +12,10 @@ orderID:{
   type:String,
   default: generateUniqueNumericId,
 },
+totall:{
+  type:String,
+  default:"",
+},
 
 
 status: {

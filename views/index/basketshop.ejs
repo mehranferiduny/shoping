@@ -983,6 +983,7 @@
                   <!-- Cart Item-->
                
                   <%
+                
                   let idbask="";
                   bassket.forEach(element => {
                     productbas.forEach(e=>{
@@ -1069,7 +1070,7 @@
                           <div
                             class="flex h-10 w-24 items-center justify-between gap-x-3 rounded-lg border border-gray-100 py-1 dark:border-white/5 sm:w-28"
                           >
-                            <button type="button" data-action="increment">
+                            <button type="button" onclick="plusnumber('<%= basckeid[0]._id %>','<%= e._id %>')" data-action="increment">
                               <svg
                                 class="h-5 w-5 text-emerald-500 dark:text-emerald-400 sm:h-6 sm:w-6"
                               >
@@ -1077,14 +1078,14 @@
                               </svg>
                             </button>
                             <input
-                              value="1"
+                              value="<%= element.number %>"
                               name="number"
                               disabled
-                              id="numbercount"
+              
                               type="number"
                               class="flex h-5 w-5 w-full select-none items-center justify-center bg-transparent text-center text-sm font-medium text-zinc-700 outline-none dark:text-white sm:h-6 sm:w-6 sm:text-lg"
                             />
-                            <button type="button" data-action="decrement">
+                            <button type="button" data-action="decrement"  onclick="minnumber('<%= basckeid[0]._id %>','<%= e._id %>')" >
                               <svg
                                 class="h-5 w-5 text-red-600 dark:text-red-500 sm:h-6 sm:w-6"
                               >
@@ -1156,13 +1157,19 @@
                       class="text-sm text-emerald-500 dark:text-emerald-400 lg:text-base"
                     >
                     <% let total=0
+                   
                           if(productbas){
                           %>
-                          <%for( let price of productbas){
-                           total=total+price.price;
+                          <% bassket.forEach(element => {
+                          for( let price of productbas){
+          
+                            if(element.id.toString() == price._id.toString()){
+                         
+                           total=total+(price.price*element.number);
+                            }
                             %>
                           
-                          <%}} %>
+                          <%}})} %>
                       <span class="font-bold">    <%= separate(total) %></span>
                       <span class="text-xs lg:text-sm">تومان</span>
                     </div>
@@ -1184,15 +1191,18 @@
                     let sales=0
                           if(productbas){
                           %>
-                          <%for( let price of productbas){
-                           totaal=totaal+price.price;
-                           sale=sale+price.sale;
-                            %>
+                          <% bassket.forEach(element => {
+                          for( let price of productbas){
+          
+                            if(element.id.toString() == price._id.toString()){
+                           totaal=totaal+(price.price*element.number);
+                           sale=sale+(price.sale* element.number);
+                             } %>
 
                           
                           <%
                         sales=totaal-sale
-                        }} %>
+                        }})}  %>
                         
                       <span class="font-bold">  <%= separate(sale) %></span>
                       <span class="text-xs lg:text-sm">تومان</span>
@@ -1216,7 +1226,8 @@
                   </div>
                 </div>
                 <div>
-                  <a href="/user/address" onclick="sendnumber()" class="btn-primary py-3">
+                
+                  <a href="/user/address"  class="btn-primary py-3">
                     ادامه فرایند خرید
                   </a>
                 </div>

@@ -90,6 +90,13 @@ io.on("connection",(socket)=>{
   socket.on("like",(data)=>{
    basketcontroll.like(data,socket)
   })
+  socket.on("countNumberplus",(data)=>{
+   basketcontroll.countNumberplus(data)
+  })
+  socket.on("countNumbermin",(data)=>{
+   basketcontroll.countNumbermin(data)
+  })
+
 
  
 

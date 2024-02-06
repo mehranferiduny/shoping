@@ -151,6 +151,7 @@ exports.getBasket = async (req, res) => {
       productbas,
       categorymin,
       bassket,
+      basckeid,
     });
   } catch (err) {
     console.log(err);
@@ -194,6 +195,7 @@ exports.getAddres = async (req, res) => {
     const category = await Category.find({}).sort({ name: -1 });
     const categorymin = await CategoryMin.find({}).sort({ name: -1 });
     const basckeid = await Basket.find({ userId: user.id });
+    const basck = await Basket.findOne({ userId: user.id });
 
     let productbas = "";
     let id = [];
@@ -212,11 +214,14 @@ exports.getAddres = async (req, res) => {
 
     let tot = 0;
     for (let prod of productbas) {
-      tot = prod.price + tot;
-      tot = tot - prod.sale;
-    }
-    basckeid[0].totall = tot;
-    await basckeid[0].save();
+      bassket.forEach(e=>{
+        if(e.id.toString()== prod._id.toString()){
+        tot =  tot+ (prod.price*e.number) ;
+      }
+      })
+   }
+   basck.totall = tot;
+    await basck.save();
 
     res.render("index/addres", {
       pageTitle: "سبد خرید",
@@ -454,13 +459,13 @@ exports.pardakhet= async (req,res)=>{
   if (req.user) {
     user = req.user;
   }
-  
+
   try {
     const products = await Products.find({}).sort({ createdAt: -1 });
     const category = await Category.find({}).sort({ name: -1 });
     const categorymin = await CategoryMin.find({}).sort({ name: -1 });
     const basckeid = await Basket.find({ userId: user.id }).sort({ name: -1 });
-    const bassket = await Basket.findOne({ userId: user.id });
+    const basskett = await Basket.findOne({ userId: user.id });
     let productbas = "";
     let id = [];
     if (basckeid.length > 0) {
@@ -470,6 +475,13 @@ exports.pardakhet= async (req,res)=>{
       productbas = await Products.find({ _id: id });
     }
 
+    let basket = [];
+    for (let i of basckeid) {
+      basket.push(i.product);
+    }
+    const bassket = basket[0];
+
+  console.log(basskett)
     res.render('index/pardakhet',{
       pageTitle: "صفحه ای پرداخت",
       layout: "./layouts/mainLayout",
@@ -480,7 +492,9 @@ exports.pardakhet= async (req,res)=>{
       user: req.user,
       productbas,
       categorymin,
-      bassket
+      bassket,
+      basskett,
+      basckeid
     })
     
   } catch (err) {

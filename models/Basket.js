@@ -13,10 +13,7 @@ ersal:{
   default:"tipox",
   enum:["tipox","post"]
 },
-totall:{
-  type:String,
-  default:"",
-},
+
 
 product:[
  {id:{

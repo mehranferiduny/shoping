@@ -920,6 +920,25 @@
 <div class="flex min-h-screen flex-col">
   <%- include('./header.ejs')  %>
   <main class="flex-grow bg-gray-100 pb-14 pt-36 dark:bg-black xs:pt-36">
+
+
+    <% let totaal=0;
+    let sale=0
+    let sales=0
+          if(productbas){
+          %>
+          <% bassket.forEach(element => {
+          for( let price of productbas){
+
+            if(element.id.toString() == price._id.toString()){
+           totaal=totaal+(price.price*element.number);
+           sale=sale+(price.sale* element.number);
+             } %>
+
+          
+          <%
+        sales=totaal-sale
+        }})}  %>
     <form action="/editUser/<%= user._id  %>" method="post">
     <div class="container pb-14">
       <div class="grid grid-cols-12 gap-2 lg:gap-6">
@@ -1048,13 +1067,19 @@
                   class="text-sm text-emerald-500 dark:text-emerald-400 lg:text-base"
                 >
                 <% let total=0
-                      if(productbas){
-                      %>
-                      <%for( let price of productbas){
-                       total=total+price.price;
-                        %>
-                      
-                      <%}} %>
+                   
+                          if(productbas){
+                          %>
+                          <% bassket.forEach(element => {
+                          for( let price of productbas){
+          
+                            if(element.id.toString() == price._id.toString()){
+                         
+                           total=total+(price.price*element.number);
+                            }
+                            %>
+                          
+                          <%}})} %>
                   <span class="font-bold">    <%= separate(total) %></span>
                   <span class="text-xs lg:text-sm">تومان</span>
                 </div>
@@ -1071,20 +1096,7 @@
                 <div
                   class="text-sm font-medium text-red-500 dark:text-red-400 lg:text-base"
                 >
-                <% let totaal=0;
-                let sale=0
-                let sales=0
-                      if(productbas){
-                      %>
-                      <%for( let price of productbas){
-                       totaal=totaal+price.price;
-                       sale=sale+price.sale;
-                        %>
-
-                      
-                      <%
-                    sales=totaal-sale
-                    }} %>
+           
                     
                   <span class="font-bold">  <%= separate(sale) %></span>
                   <span class="text-xs lg:text-sm">تومان</span>

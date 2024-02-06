@@ -138,3 +138,40 @@ exports.like = async (data, socket) => {
     console.log(err);
   }
 };
+
+exports.countNumberplus= async(data)=>{
+  try {
+    
+    const basket=await Basket.findById(data.basketId)
+
+    basket.product.forEach(e=>{
+      if(e.id == data.prodactId){
+        e.number=parseInt(e.number)+1
+      }
+    })
+    await basket.save();
+
+    
+  } catch (err) {
+    console.log(err)
+  }
+}
+exports.countNumbermin= async(data)=>{
+  try {
+    
+    const basket=await Basket.findById(data.basketId)
+
+    basket.product.forEach(e=>{
+      if(e.id == data.prodactId){
+        if(parseInt(e.number) > 1){
+        e.number=parseInt(e.number)-1
+      }
+    }
+    })
+    await basket.save();
+
+    
+  } catch (err) {
+    console.log(err)
+  }
+}
