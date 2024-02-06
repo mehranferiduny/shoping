@@ -20,7 +20,13 @@ router.get("/category/:id",  indexController.categoryProduct);
 //!like
 router.get("/likeProduct",  indexController.likeProduct);
 
+//!edit user
+router.post("/editUser/:id",  indexController.editUser);
 
+
+
+router.get("/pardakhet",  indexController.pardakhet);
+router.get("/order",  indexController.order);
 
 
 

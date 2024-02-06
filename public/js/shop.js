@@ -235,23 +235,34 @@ function edit(){
   return parseInt(edit)
 }
 
+function sendnumber(){
+ const countnumber=document.getElementById("numbercount").value;
+ console.log(countnumber)
+}
 
+const jamekol=document.querySelector("#jamekol");
+const jj=jamekol.innerHTML;
 
-
-function sendpost(){
-
+function runeny(){
   let ersal=document.querySelector('input[name="ersal"]:checked').value;
   const hazineh=document.getElementById("hazinhe");
-   
-  
-  
-  if(ersal == "ارسال پست"){
-    
+if(ersal == "post"){
   hazineh.innerHTML=`${toFarsiNumber(60000)}  `
   jamekol.innerHTML=toFarsiNumber(edit()+60000);
-  }else{
+  }
+}
+
+
+runeny();
+function sendpost(){
+  let ersal=document.querySelector('input[name="ersal"]:checked').value;
+const hazineh=document.getElementById("hazinhe");
+  if(ersal == "post"){
+  hazineh.innerHTML=`${toFarsiNumber(60000)}  `
+  jamekol.innerHTML=toFarsiNumber(edit()+60000);
+  }else if(ersal == "tipox"){
     hazineh.innerHTML=`-`
-    jamekol.innerHTML=toFarsiNumber(edit()-60000);
+    jamekol.innerHTML=toFarsiNumber(jj);
   }
   
 }

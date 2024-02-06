@@ -180,6 +180,11 @@ exports.removeItem = async (req, res) => {
 };
 
 exports.getAddres = async (req, res) => {
+  let user = "";
+  if (req.user) {
+    user = req.user;
+  }
+
   try {
     if (!req.user) {
       return res.redirect("/user/LoginPage");
@@ -335,3 +340,190 @@ exports.likeProduct = async (req, res) => {
     console.log(err);
   }
 };
+
+
+exports.editUser=async(req,res)=>{
+  let user = "";
+  if (req.user) {
+    user = req.user;
+  }
+
+  const errorArr = [];
+  const UserID = req.params.id;
+  if(!UserID) {
+    errorArr.push({ message: " از پرفایل خود خارج شدید دوباره امتحان کنید" });
+    res.render("index/loginPage", {
+      pageTitle: ' ورورد کاربر ',
+      path: "/",
+      layout: './layouts/loginLayout',
+      errors: errorArr,
+      message: req.flash('message'),
+      error: req.flash("error"),
+    })
+  }
+  const products = await Products.find({}).sort({ createdAt: -1 });
+  const category = await Category.find({}).sort({ name: -1 });
+  const categorymin = await CategoryMin.find({}).sort({ name: -1 });
+  const basckeid = await Basket.find({ userId: user.id }).sort({ name: -1 });
+
+  let productbas = "";
+  let id = [];
+  if (basckeid.length > 0) {
+    for (let b = 0; b < basckeid[0].product.length; b++) {
+      id.push(basckeid[0].product[b].id);
+    }
+    productbas = await Products.find({ _id: id });
+  }
+
+
+  let basket = [];
+  for (let i of basckeid) {
+    basket.push(i.product);
+  }
+  const bassket = basket[0];
+
+  let tot = 0;
+  for (let prod of productbas) {
+    tot = prod.price + tot;
+    tot = tot - prod.sale;
+  }
+  basckeid[0].totall = tot;
+  await basckeid[0].save();
+
+
+  try {
+   
+
+    const user = await User.findOne({ _id: UserID });
+    const bascket = await Basket.findOne({ userId: user.id })
+
+      if (!user) {
+          return res.redirect("/404");
+      }
+
+     
+       await User.userValidationedit(req.body);
+     
+      
+     
+
+          const { name, family, codeposti,email, codemeli,home,address,ersal} = req.body;
+          user.name=name;
+          user.family=family;
+          user.codemeli=codemeli;
+          user.codeposti=codeposti;
+          user.email=email;
+          user.address=address;
+          user.home=home;
+          bascket.ersal=ersal;
+          if(ersal=="post"){
+            bascket.totall=parseInt(bascket.totall) + 60000;
+          }
+          await bascket.save();
+          await user.save();
+          res.redirect('/pardakhet')
+       
+        //   return res.status(200).redirect('/');
+      
+  } catch (err) {
+      console.log(err)
+      err.inner.forEach((e) => {
+          errorArr.push({
+              name: e.path,
+              message: e.message,
+          });
+      });
+      res.render("index/addres", {
+        pageTitle: "سبد خرید",
+        path: "/basket",
+        layout: "./layouts/mainLayout",
+        products,
+        category,
+        separate,
+        user: req.user,
+        productbas,
+        categorymin,
+        bassket,
+        errors:errorArr
+      });
+  }
+}
+
+exports.pardakhet= async (req,res)=>{
+  let user = "";
+  if (req.user) {
+    user = req.user;
+  }
+  
+  try {
+    const products = await Products.find({}).sort({ createdAt: -1 });
+    const category = await Category.find({}).sort({ name: -1 });
+    const categorymin = await CategoryMin.find({}).sort({ name: -1 });
+    const basckeid = await Basket.find({ userId: user.id }).sort({ name: -1 });
+    const bassket = await Basket.findOne({ userId: user.id });
+    let productbas = "";
+    let id = [];
+    if (basckeid.length > 0) {
+      for (let b = 0; b < basckeid[0].product.length; b++) {
+        id.push(basckeid[0].product[b].id);
+      }
+      productbas = await Products.find({ _id: id });
+    }
+
+    res.render('index/pardakhet',{
+      pageTitle: "صفحه ای پرداخت",
+      layout: "./layouts/mainLayout",
+      path: "/pardakhet",
+      products,
+      category,
+      separate,
+      user: req.user,
+      productbas,
+      categorymin,
+      bassket
+    })
+    
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+
+//!get order
+exports.order=async (req,res)=>{
+  let user = "";
+  if (req.user) {
+    user = req.user;
+  }
+
+  try {
+    const products = await Products.find({}).sort({ createdAt: -1 });
+    const category = await Category.find({}).sort({ name: -1 });
+    const categorymin = await CategoryMin.find({}).sort({ name: -1 });
+    const basckeid = await Basket.find({ userId: user.id }).sort({ name: -1 });
+    let productbas = "";
+    let id = [];
+    if (basckeid.length > 0) {
+      for (let b = 0; b < basckeid[0].product.length; b++) {
+        id.push(basckeid[0].product[b].id);
+      }
+      productbas = await Products.find({ _id: id });
+    }
+
+    if (!products) res.status(401).send("not Products in db");
+   
+    res.render("index/order", {
+      pageTitle: " سفارش ها ",
+      layout: "./layouts/mainLayout",
+      path: "/order",
+      products,
+      category,
+      separate,
+      user: req.user,
+      productbas,
+      categorymin,
+    });
+  } catch (err) {
+    console.log(err);
+  } 
+}

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const shortId = require("shortid");
 const {generateUniqueNumericId} = require("../utils/randumid");
 
 const { schema } = require("./secure/ProductsValidate");

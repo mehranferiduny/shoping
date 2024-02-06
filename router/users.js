@@ -16,7 +16,6 @@ router.post("/addPhone",  userController.addPhone);
 router.get("/addPhone",  userController.addPhone);
 router.post("/creatUser",  userController.createUser);
 router.post("/loginUser",  userController.loginUser,userController.rememberMe);
-router.post("/editUser/:id",  userController.editUser);
 router.get("/logout", authenticated, userController.logout);
 
 

@@ -920,6 +920,21 @@
 <div class="flex min-h-screen flex-col">
   <%- include('./header.ejs')  %>
   <main class="flex-grow bg-gray-100 pb-14 pt-36 dark:bg-black xs:pt-36">
+
+    <% let totaal=0;
+                  let sale=0
+                  let sales=0
+                        if(productbas){
+                        %>
+                        <%for( let price of productbas){
+                         totaal=totaal+price.price;
+                         sale=sale+price.sale;
+                          %>
+  
+                        
+                        <%
+                      sales=totaal-sale
+                      }} %>
     <div class="container pb-14">
       <div class="grid grid-cols-12 gap-2 lg:gap-6">
         <!-- breadCrumb -->
@@ -966,57 +981,60 @@
           <div class="rounded-lg bg-white p-4 dark:bg-zinc-900">
             <!-- Heading -->
             <div class="flex items-center justify-between gap-x-2 pb-4">
-              <h1
-                class="  w-100 flex items-center gap-x-4 text-sm text-zinc-700 dark:text-white xs:text-base md:text-lg"
-              >
-             تکمیل اطلاعات
-              <form action="" method="post">
-                  <div class=" m-3">
-                    <input class="col input-item" type="text" placeholder="نام">
-                    <input class="col input-item" type="text" placeholder="نام خانودگی">
-                  </div>
-                  <div class="m-3">
-                    <input class="col input-item" type="text" placeholder="کدملی">
-                    <input class="col input-item" type="text" placeholder="کد پستی">
-                  </div>
-                  <div class="m-3">
-                    <input class="col input-item" type="text" placeholder="آدرس ایمیل">
-                    <input class="col input-item" type="text" placeholder=" شماره ثابت (اختیاری)">
-                  </div>
-                  <input class=" input-item-addres" type="text" placeholder=" آدرس تحویل سفارش">
-                  <h2 class="mt-3">شیوه ارسال</h2>
-                  <div class="row mydict" onchange="sendpost()">
+              <div class="invoice">
+                <div class="header">فاکتور</div>
+                 <div class="row margin">
+                <div class="customer-info col">
+                    <p><strong>نام:</strong><%= user.name  %>  </p>
+                  
+                    <p><strong>کد ملی:</strong> <%= user.codemeli  %></p>
+                    <p><strong>آدرس:</strong> <%= user.address  %></p>
+                    <p><strong>شماره موبایل:</strong> <%= user.phone  %></p>
+                </div>
+                <div class="customer-info col">
+                  <p><strong>نام خانوادگی:</strong> <%= user.family  %></p>
+                  <p><strong>کد پستی:</strong> <%= user.codeposti  %></p>
+                  <p><strong>ادرس ایمیل:</strong> <%= user.address  %></p>
+                  <p><strong> شماره ثابت:</strong> <%= user.home  %></p>
+              </div>
+              </div>
+        
+                <table class="products">
+                    <thead>
+                        <tr>
+                            <th>محصول</th>
+                            <th>تعداد</th>
+                            <th>مبلغ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                          <% for(let pro of productbas){ %>
+                            <tr>
+                            <td><%= pro.title  %></td>
+                            <td> ۱</td>
+                            <td><%= separate(pro.price)  %> تومان</td>
+                          </tr>
+                            <% } %>
+                        
+                        
+                    </tbody>
+                </table>
+        
+                <div class="total">
+
                   
 
-                     <div class="m-3 col">
-                      <label for="post" >
-                     <input  type="radio" name="ersal" id="post" value="ارسال پست" checked=""> 
-                     <span class="mx-auto">
-                      <svg class="h-6 w-6 md:h-8 md:w-8 mx-auto">
-                        <use xlink:href="#delivery-truck" />
-                      </svg>
-                      <p class="leading-none">ارسال توسط پست </p>
+                   <p><strong> سود شما از این خرید :</strong> <%= separate(sale) %></p>
 
-                     </span>
-                    </label>
-                  </div>
-
-                  <div class=" m-3 col">
-                    <label for="tipaks">
-                   <input  type="radio" name="ersal" id="tipaks" value="ارسال تیپاکس" checked="checked"> 
-                   <span class="mx-auto">
-                    <svg class="h-6 w-6 md:h-8 md:w-8 mx-auto">
-                      <use xlink:href="#delivery-truck" />
-                    </svg>
-                    <p class="leading-none">ارسال توسط تیپاکس </p>
-
-                   </span>
-                  </label>
+                  <% if(bassket.ersal == "post"){ %>
+                    <p><strong> شیوه ارسال:</strong> پست</p>
+                    <% }else{ %>
+                      <p><strong> شیوه ارسال:</strong> تیپاکس</p>
+                      <% } %>
+                    <p><strong>جمع کل:</strong> <%= separate(bassket.totall) %> تومان</p>
                 </div>
-                 
-                </div>
-              </form>
-              </h1>
+            </div>
           
             </div>
           
@@ -1065,20 +1083,7 @@
                 <div
                   class="text-sm font-medium text-red-500 dark:text-red-400 lg:text-base"
                 >
-                <% let totaal=0;
-                let sale=0
-                let sales=0
-                      if(productbas){
-                      %>
-                      <%for( let price of productbas){
-                       totaal=totaal+price.price;
-                       sale=sale+price.sale;
-                        %>
-
-                      
-                      <%
-                    sales=totaal-sale
-                    }} %>
+               
                     
                   <span class="font-bold">  <%= separate(sale) %></span>
                   <span class="text-xs lg:text-sm">تومان</span>
@@ -1099,8 +1104,12 @@
                
                
                    
-                    
-                  <span class="font-bold"  id="hazinhe"> - </span>
+                    <%if(bassket.ersal == "post"){  %>
+                      <span class="font-bold"  id="hazinhe"> <%= separate(60000) %> </span>
+                    <% }else{ %>
+                      <span class="font-bold"  id="hazinhe"> - </span>
+                    <%  }%>
+              
                   <span class="text-xs lg:text-sm">تومان</span>
                 </div>
               </div>
@@ -1116,14 +1125,14 @@
                 <div
                   class="text-sm text-emerald-500 dark:text-emerald-400 lg:text-base"
                 >
-                  <span class="font-bold" id="jamekol"><%= separate(sales) %></span>
+                  <span class="font-bold" id="jamekol"> <%= separate(bassket.totall) %> %></span>
                   <span class="text-xs lg:text-sm">تومان</span>
                 </div>
               </div>
             </div>
             <div>
               <a href="./checkout-shipping.html" class="btn-primary py-3">
-                ادامه فرایند خرید
+              پرداخت
               </a>
             </div>
           </div>

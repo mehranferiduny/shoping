@@ -1,7 +1,11 @@
 const passport = require("passport");
 const Users = require('../models/Users');
 const Category=require('../models/Category')
+const CategoryMin=require('../models/Categorymin')
+const Basket=require('../models/Basket')
 const Products=require('../models/Products');
+const { separate } = require("../utils/separate");
+
 
 let CAPCHA_NUM=0;
 
@@ -142,74 +146,7 @@ exports.createUser=async(req,res)=>{
 
 
 
-exports.editUser=async(req,res)=>{
-    
-  const errorArr = [];
-  const UserID = req.params.id;
-  
-  
 
-  if(!UserID) {
-    errorArr.push({ message: " از پرفایل خود خارج شدید دوباره امتحان کنید" });
-    res.render("index/loginPage", {
-      pageTitle: ' ورورد کاربر ',
-      path: "/",
-      layout: './layouts/loginLayout',
-      errors: errorArr,
-      message: req.flash('message'),
-      error: req.flash("error"),
-    })
-  }
-
-
-
-
-  try {
-     
-    const user = await Users.findOne({ _id: UserID });
-
-
-      if (!user) {
-          return res.redirect("/404");
-      }
-
-     
-       await Users.userValidationedit(req.body);
-     
-      
-         console.log(req.body);
-
-          const { name, family, codeposti,email, codemeli,phone,address} = req.body;
-          user.name=name;
-          user.family=family;
-          user.codemeli=codemeli;
-          user.codeposti=codeposti;
-          user.email=email;
-          user.address=address;
-
-          await user.save();
-       
-          return res.status(200).redirect('/');
-      
-  } catch (err) {
-      console.log(err);
-      err.inner.forEach((e) => {
-          errorArr.push({
-              name: e.path,
-              message: e.message,
-          });
-      });
-      res.render("index/editPage", {
-        pageTitle: ' ویرایش کاربر ',
-        path: "/",
-        layout: './layouts/loginLayout',
-        message: req.flash('message'),
-        error: req.flash("error"),
-        user:req.user,
-        errors:errorArr,
-      })
-  }
-}
 
 exports.loginUser = async (req, res, next) => {
 
@@ -246,7 +183,7 @@ exports.loginUser = async (req, res, next) => {
 
 }
 exports.rememberMe = (req, res) => {
-  console.log(req.body.remember);
+
   if (req.body.remember == 'remember-me') {
     req.session.cookie.originalMaxAge = 24 * 60 * 60 * 1000; // 1 day 24
   } else {
@@ -260,7 +197,7 @@ exports.rememberMe = (req, res) => {
 
 };
 exports.logout = (req, res,next) => {
-  console.log(req.session);
+
   req.session = null;
   req.logout();
     res.redirect('/');

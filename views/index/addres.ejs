@@ -920,7 +920,7 @@
 <div class="flex min-h-screen flex-col">
   <%- include('./header.ejs')  %>
   <main class="flex-grow bg-gray-100 pb-14 pt-36 dark:bg-black xs:pt-36">
-    <form action="" method="post">
+    <form action="/editUser/<%= user._id  %>" method="post">
     <div class="container pb-14">
       <div class="grid grid-cols-12 gap-2 lg:gap-6">
         <!-- breadCrumb -->
@@ -966,6 +966,7 @@
         <div class="col-span-12 md:col-span-8">
           <div class="rounded-lg bg-white p-4 dark:bg-zinc-900">
             <!-- Heading -->
+            <%- include('./login/validatelogin.ejs')  %>
             <div class="flex items-center justify-between gap-x-2 pb-4">
               <h1
                 class="  w-100 flex items-center gap-x-4 text-sm text-zinc-700 dark:text-white xs:text-base md:text-lg"
@@ -973,26 +974,27 @@
              تکمیل اطلاعات
              
                   <div class=" m-3">
-                    <input class="col input-item" name="name" type="text" placeholder="نام">
-                    <input class="col input-item" name="family" type="text" placeholder="نام خانودگی">
+                    
+                    <input class="col input-item" name="name" type="text" placeholder="نام" value="<%= user.name.length > 0 ? user.name :''  %>">
+                    <input class="col input-item" name="family" type="text" placeholder="نام خانودگی"  value="<%= user.family.length > 0 ? user.family :''  %>">
                   </div>
                   <div class="m-3">
-                    <input class="col input-item" name="codemeli" type="text" placeholder="کدملی">
-                    <input class="col input-item" name="codeposti" type="text" placeholder="کد پستی">
+                    <input class="col input-item" name="codemeli" type="text" placeholder="کدملی" value="<%= user.codemeli.length > 0 ? user.codemeli :''  %>">
+                    <input class="col input-item" name="codeposti" type="text" placeholder="کد پستی" value="<%= user.codeposti.length > 0 ? user.codeposti :''  %>">
                   </div>
                   <div class="m-3">
-                    <input class="col input-item" name="email" type="text" placeholder="آدرس ایمیل">
-                    <input class="col input-item" name="home" type="text" placeholder=" شماره ثابت (اختیاری)">
+                    <input class="col input-item" name="email" type="text" placeholder="آدرس ایمیل" value="<%= user.email.length > 0 ? user.email :''  %>">
+                    <input class="col input-item" name="home" type="text" placeholder=" شماره ثابت (اختیاری)" value="<%= user.home.length > 0 ? user.home :''  %>">
                   </div>
                   <div class="m-3">
-                  <input class=" input-item-addres" name="address" type="text" placeholder=" آدرس تحویل سفارش">
+                  <input class=" input-item-addres" name="address" type="text" placeholder=" آدرس تحویل سفارش" value="<%= user.address.length > 0 ? user.address :''  %>">
                   <h2  class="m-3">شیوه ارسال</h2>
                   <div class="row mydict" onchange="sendpost()">
                   
 
                      <div class="m-3 col">
                       <label for="post" >
-                     <input  type="radio" name="ersal" id="post" value="ارسال پست" checked=""> 
+                     <input  type="radio" name="ersal" id="post" value="post" checked=""> 
                      <span class="mx-auto">
                       <svg class="h-6 w-6 md:h-8 md:w-8 mx-auto">
                         <use xlink:href="#delivery-truck" />
@@ -1005,7 +1007,7 @@
 
                   <div class=" m-3 col">
                     <label for="tipaks">
-                   <input  type="radio" name="ersal" id="tipaks" value="ارسال تیپاکس" checked="checked"> 
+                   <input  type="radio" name="ersal" id="tipaks" value="tipox" checked="checked"> 
                    <span class="mx-auto">
                     <svg class="h-6 w-6 md:h-8 md:w-8 mx-auto">
                       <use xlink:href="#delivery-truck" />
@@ -1126,7 +1128,7 @@
               </div>
             </div>
             <div>
-              <button type="submit" class="btn-primary py-3">
+              <button type="submit" class="btn-primary mx-auto w-100 py-3">
                 ادامه فرایند خرید
               </button>
             </div>

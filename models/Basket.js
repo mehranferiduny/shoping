@@ -10,17 +10,14 @@ userId: {
 },
 ersal:{
   type:String,
-  default:"post",
+  default:"tipox",
+  enum:["tipox","post"]
 },
 totall:{
   type:String,
   default:"",
 },
-status: {
-  type: String,
-  default: "first",
-  enum: ["first", "second","third","fourth"],
-},
+
 product:[
  {id:{
     type: mongoose.Schema.Types.ObjectId,
@@ -33,7 +30,11 @@ size:{
 color:{
   type:String,
   required:true,  
-}
+},
+number:{
+  type:String,
+  default:"1"  
+},
  }],
 
 });
